@@ -24,7 +24,7 @@ class HomeController extends Controller
     {
         $data['webTitle'] = '关于我们-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = ' ';
-        return view('dream.about_us')->with($data);
+        return view('mobile.about_us')->with($data);
     }
 
     public function getNews()
@@ -32,7 +32,7 @@ class HomeController extends Controller
         $data['webTitle'] = '足迹-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'news';
 
-        return view('dream.news',$data);
+        return view('mobile.news',$data);
     }
 
     public function getNewsDetail($id)
@@ -40,20 +40,20 @@ class HomeController extends Controller
         /*$data['detail'] = Article::find($id);
         $data['webTitle'] = $data['detail']->title . '-LI小小发明家-把世界变成你想象的样子';*/
         $data['nav'] = 'news';
-        return view('dream.news_details',$data);
+        return view('mobile.news_details',$data);
     }
 
     public function getLogin()
     {
         $data['webTitle']    = '用户登录-LI小小发明家-把世界变成你想象的样子';
-        return view('dream.login',$data);
+        return view('mobile.login',$data);
     }
 
     public function getInventions()
     {
         $data['webTitle'] = '小发明-LI小小发明家-把世界变成你想象的样子';
         $data['nav']      = 'idea';
-        return view('dream.inventions')->with($data);
+        return view('mobile.inventions')->with($data);
     }
 
     public function getInventionDetail($id)
@@ -61,7 +61,7 @@ class HomeController extends Controller
         /*$detail = Work::with('cate')->find($id);
         $data['nav'] = 'idea';
         $data['webTitle'] = $detail->title.'-LI小小发明家-把世界变成你想象的样子';*/
-        return view('dream.invention_detail')->with($data);
+        return view('mobile.invention_detail')->with($data);
     }
 
     public function getSearch()
@@ -70,13 +70,13 @@ class HomeController extends Controller
         $data['nav'] = ' ';
         /*$keyword = Request::get('keyword');
         $data['webTitle'] = '关于'.$keyword.'的搜索-LI小小发明家-把世界变成你想象的样子';*/
-        return view('dream.search',$data);
+        return view('mobile.search',$data);
     }
 
     public function getIntroduction()
     {
         $data['webTitle'] = '活动简介-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'active';
-        return view('dream.introduction')->with($data);
+        return view('mobile.introduction')->with($data);
     }
 }
