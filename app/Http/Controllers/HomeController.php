@@ -17,7 +17,7 @@ class HomeController extends Controller
 
     public function getIndex()
     {
-        return view('mobile.welcome');
+        return view('mobile.index');
     }
 
     public function getAbout()
@@ -35,7 +35,7 @@ class HomeController extends Controller
         return view('mobile.news',$data);
     }
 
-    public function getNewsDetail($id)
+    public function getNewsDetail($id='')
     {
         /*$data['detail'] = Article::find($id);
         $data['webTitle'] = $data['detail']->title . '-LI小小发明家-把世界变成你想象的样子';*/
@@ -56,7 +56,7 @@ class HomeController extends Controller
         return view('mobile.inventions')->with($data);
     }
 
-    public function getInventionDetail($id)
+    public function getInventionDetail($id='')
     {
         /*$detail = Work::with('cate')->find($id);
         $data['nav'] = 'idea';
