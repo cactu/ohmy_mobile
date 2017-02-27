@@ -110,32 +110,38 @@
 			<span class="als-next"><img src="{{asset('/mobile/img/designer_right.png')}}"></span>
 			<div class="d_comments als-viewport">		    	
 		        <ul class="clearfix als-wrapper">
-		            <li class="als-item">		                
-	                    <img class='avatar' src="{{asset('/mobile/img/avatar_bg.png')}}">
-	                    <p>
-	                    	<img src="{{asset('/mobile/img/test2.jpg')}}" width="100%">               	
-	                    </p>		                
-		                <div class="name">吴翔</div>
-		                <div class="company">东华大学服装与设计学院产品设计系&海派时尚设计创新协同中心</div>
-		                <div class="position">主任兼教授&首席研究员</div>
+		            <li class="als-item">
+			            <div class='als_div'>
+							<img class='avatar' src="{{asset('/mobile/img/avatar_bg.png')}}">
+		                    <p>
+		                    	<img src="{{asset('/mobile/img/test2.jpg')}}" width="100%">               	
+		                    </p>		                
+			                <div class="name">吴翔</div>
+			                <div class="company">东华大学服装与设计学院产品设计系&海派时尚设计创新协同中心</div>
+			                <div class="position">主任兼教授&首席研究员</div>
+			            </div>		                	                    
 		            </li>	
-		            <li class="als-item">		                
-	                    <img class='avatar' src="{{asset('/mobile/img/avatar_bg.png')}}">
-	                    <p>
-	                    	<img src="{{asset('/mobile/img/test2.jpg')}}" width="100%">               	
-	                    </p>		                
-		                <div class="name">秦玉龙</div>
-		                <div class="company">东华大学服装与设计学院产品设计系&海派时尚设计创新协同中心</div>
-		                <div class="position">主任兼教授&首席研究员</div>
+		            <li class="als-item">
+			            <div class='als_div'>
+							<img class='avatar' src="{{asset('/mobile/img/avatar_bg.png')}}">
+		                    <p>
+		                    	<img src="{{asset('/mobile/img/test2.jpg')}}" width="100%">               	
+		                    </p>		                
+			                <div class="name">吴翔</div>
+			                <div class="company">东华大学服装与设计学院产品设计系&海派时尚设计创新协同中心</div>
+			                <div class="position">主任兼教授&首席研究员</div>
+			            </div>		                	                    
 		            </li>	
-		            <li class="als-item">		                
-	                    <img class='avatar' src="{{asset('/mobile/img/avatar_bg.png')}}">
-	                    <p>
-	                    	<img src="{{asset('/mobile/img/test2.jpg')}}" width="100%">               	
-	                    </p>		                
-		                <div class="name">方聪</div>
-		                <div class="company">东华大学服装与设计学院产品设计系&海派时尚设计创新协同中心</div>
-		                <div class="position">主任兼教授&首席研究员</div>
+		            <li class="als-item">
+			            <div class='als_div'>
+							<img class='avatar' src="{{asset('/mobile/img/avatar_bg.png')}}">
+		                    <p>
+		                    	<img src="{{asset('/mobile/img/test2.jpg')}}" width="100%">               	
+		                    </p>		                
+			                <div class="name">吴翔</div>
+			                <div class="company">东华大学服装与设计学院产品设计系&海派时尚设计创新协同中心</div>
+			                <div class="position">主任兼教授&首席研究员</div>
+			            </div>		                	                    
 		            </li>		        
 		        </ul>		        		       				
 		    </div>

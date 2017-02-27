@@ -17,7 +17,9 @@ $(function(){
 		}
 		
 	})
-
+	$wrap.find('.hide').on('touchend',function(){
+		closeMenu();
+	})
 	function openMenu(){
 		$nav.addClass('animate');
 		$menu.addClass('animate');
@@ -30,4 +32,21 @@ $(function(){
 		$wrap.removeClass('animate');
 		$('body').css({"overflow-y":'scroll'})
 	}
+
+	$nav.find('.search').on(click,function(){
+		$nav.find('.search_div').css({'display':'block'})
+	})
+	$nav.find('.del').on(click,function(){
+		$nav.find('.search_div').css({'display':'none'})
+	})
+	$nav.find('#sear').on(click,function(){
+		var _input = $nav.find('input').val()
+		if(_input){
+			console.log(_input);
+		}else{
+			console.log('您没有输入任何内容')
+			return;
+		}
+		
+	})
 })

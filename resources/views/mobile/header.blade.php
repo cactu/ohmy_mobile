@@ -35,6 +35,13 @@
         <span class='burger'></span>
         <span class='logo'></span>
         <span class='search'></span>
+        <div class='search_div clearfix'>
+            <form action=" " name="srcForm" id="seaform" class='clearfix'>
+                <i class="iconfont" id="sear">&#xe600;</i>
+                <input type="text" name="keyword" placeholder="编号/作品名称/作者姓名">
+            </form>
+            <span class='del'><i class="iconfont">&#xe61c;</i></span>
+        </div>
     </nav>
     <div class='menu'>
         <div class='login'>
@@ -63,3 +70,4 @@
         </ul>
     </div>
     <div class='wrap'>
+    <div class='hide'></div>

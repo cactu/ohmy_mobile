@@ -26,6 +26,18 @@ a:hover, a:visited, a:link, a:active{
 	text-decoration: none;
 	color:#4a4a4a;
 }
+@font-face {
+  font-family: 'iconfont';  /* project id 135369 */
+  src: url('//at.alicdn.com/t/font_nxxgzpmkxrhsq0k9.eot');
+  src: url('//at.alicdn.com/t/font_nxxgzpmkxrhsq0k9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_nxxgzpmkxrhsq0k9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_nxxgzpmkxrhsq0k9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_nxxgzpmkxrhsq0k9.svg#iconfont') format('svg');
+}
+.iconfont{
+    font-family:"iconfont";
+    font-size:16px;font-style:normal;
+}
 .bodybg{
 	background:#fff;
 }
@@ -50,13 +62,13 @@ a:hover, a:visited, a:link, a:active{
 	left:5.5rem;
 }
 .navbar .burger{
-	width:0.39rem;
-	height:0.3rem;
+	width:0.59rem;
+	height:0.9rem;
 	background:url('../img/burger.png') no-repeat;
 	background-size:0.39rem 0.3rem;
+	background-position: center center;
 	float:left;
-	margin-left:0.5rem;
-	margin-top:0.3rem;
+	margin-left:0.4rem;
 }
 .navbar .logo{
 	display:inline-block;
@@ -68,12 +80,61 @@ a:hover, a:visited, a:link, a:active{
 }
 .navbar .search{
 	float:right;
-	width:0.3rem;
-	height:0.3rem;
+	width:0.5rem;
+	height:0.9rem;
 	background:url('../img/search.png') no-repeat;
 	background-size:0.3rem 0.3rem;
-	margin-right:0.5rem;
-	margin-top:0.3rem;
+	margin-right:0.4rem;
+	background-position: center center;
+}
+.navbar .search_div{
+	position: absolute;
+	width:7.5rem;
+	height:15rem;
+	background:rgba(0,0,0,0.8);
+	left:0;
+	top:0;
+	z-index: 10;
+	display:none;
+}
+.navbar .search_div #seaform {
+	margin-top:18px;
+	width:6.18rem;
+	height:40px;
+	float:left;
+	margin-left:0.4rem;
+	background:#fff;
+	padding:5px 0;
+	border-radius: 6px;
+}
+.navbar .search_div #seaform i {
+	float:left;
+	width:30px;
+	height:30px;
+	line-height:28px;
+	color:#000;
+	font-size:20px;
+}
+.navbar .search_div #seaform input {
+	float:left;
+	padding:4px 0;
+	outline: none;
+	border:none;
+	height:30px;
+	line-height:22px;
+	width:5rem;
+}
+.navbar .search_div .del {
+	margin-top:18px;
+	float:left;
+	color:#fff;
+	margin-left:0.15rem;
+}
+.navbar .search_div .del i{
+	font-size:20px;
+	width:30px;
+	height:40px;
+	line-height:40px;
 }
 .menu{
 	width:5.5rem;
@@ -182,8 +243,20 @@ a:hover, a:visited, a:link, a:active{
 	     -o-transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
 	        transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
 }
+.wrap .hide{
+	width:7.5rem;
+	height:15rem;
+	position: absolute;
+	z-index: 999;
+	display:none;
+	left:0;
+	top:0;
+}
 .wrap.animate{
 	left:5.5rem;
+}
+.wrap.animate .hide{
+	display:block!important;
 }
 /* 首页脑洞推荐部分 */
 .index_bg{
@@ -550,12 +623,12 @@ a:hover, a:visited, a:link, a:active{
 	float: left;
 }
 #lista1{
-	width:7.5rem;
+	width:100%;
 	height:3.4rem;
 	margin:0 auto 0.5rem;
 }
 .d_comments{
-	width:7.5rem;
+	width:100%;
 	padding-top:0.65rem;
 	overflow:hidden;
 	height:3.4rem!important;
@@ -563,14 +636,18 @@ a:hover, a:visited, a:link, a:active{
 .d_comments li{
 	float:left;
 	height:2.75rem;
-	width:6.5rem;
+	width:7.5rem;
+	position: relative;	
+	padding:0 0.5rem;	
+	background:#fff;
+}
+.d_comments li .als_div{
 	border:1px solid #ddd;
 	border-radius: 10px;
 	position: relative;
 	padding-top:0.75rem;
-	box-sizing: border-box;
-	margin:0 0.5rem;
 	z-index: 2;
+	height:2.75rem;
 	background:#fff;
 }
 .d_comments li .avatar{
