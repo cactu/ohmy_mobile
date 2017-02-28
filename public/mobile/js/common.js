@@ -20,6 +20,9 @@ $(function(){
 	$wrap.find('.hide').on('touchend',function(){
 		closeMenu();
 	})
+	$(document).on('touchmove',function (e){
+	    e.preventDefault();
+	});
 	function openMenu(){
 		$nav.addClass('animate');
 		$menu.addClass('animate');

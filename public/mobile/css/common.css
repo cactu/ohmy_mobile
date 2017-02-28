@@ -9,6 +9,7 @@ html, body {
 body{
 	width:7.5rem;	
 	overflow-x:hidden;
+	position:relative;
 }
 .clearfix:after{
     content:"";
