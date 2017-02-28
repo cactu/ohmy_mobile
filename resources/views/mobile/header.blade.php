@@ -20,9 +20,10 @@
 	<link rel="icon" href="{{asset('/dream/img/llogo.ico')}}" type="image/x-icon"/>
     <link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdn.bootcss.com/normalize/4.2.0/normalize.min.css">
-    <link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('/mobile/css/common.css')}}">  	
-	<link rel="stylesheet" href="//cdn.bootcss.com/Swiper/3.1.2/css/swiper.min.css">
+    <link href="http://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">   
+    <link rel="stylesheet" href="//cdn.bootcss.com/Swiper/3.1.2/css/swiper.min.css">  
+    <link rel="stylesheet" href="{{asset('/mobile/css/common.css')}}"> 	
+	    
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script>
     $(document).ready(function(){
@@ -38,7 +39,7 @@
         <div class='search_div clearfix'>
             <form action=" " name="srcForm" id="seaform" class='clearfix'>
                 <i class="iconfont" id="sear">&#xe600;</i>
-                <input type="text" name="keyword" placeholder="编号/作品名称/作者姓名">
+                <input type="text" name="keyword" placeholder="编号/作品名称/作者姓名" autofocus="autofocus">
             </form>
             <span class='del'><i class="iconfont">&#xe61c;</i></span>
         </div>
@@ -56,10 +57,10 @@
         </div>
         <ul>
             <li class='active'>
-                <a href="#">首页</a>
+                <a href="{{url('index')}}">首页</a>
             </li>
             <li>
-                <a href="#">小发明</a>
+                <a href="{{url('inventions')}}">小发明</a>
             </li>
             <li>
                 <a href="#">足迹</a>

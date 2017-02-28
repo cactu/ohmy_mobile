@@ -35,6 +35,8 @@ $(function(){
 
 	$nav.find('.search').on(click,function(){
 		$nav.find('.search_div').css({'display':'block'})
+		//$nav.find('input').focus();
+		//$nav.find('input').css({'background':'red'})
 	})
 	$nav.find('.del').on(click,function(){
 		$nav.find('.search_div').css({'display':'none'})
