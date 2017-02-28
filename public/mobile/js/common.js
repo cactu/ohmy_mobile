@@ -21,13 +21,15 @@ $(function(){
 		closeMenu();
 	})
 	$(document).on('touchmove',function (e){
-	    e.preventDefault();
+		if($nav.hasClass('animate')){
+			e.preventDefault();
+		}	    
 	});
 	function openMenu(){
 		$nav.addClass('animate');
 		$menu.addClass('animate');
 		$wrap.addClass('animate');
-		$('body').css({"overflow-y":'hidden'})
+		$('body').css({"overflow-y":'hidden'})		
 	};
 	function closeMenu(){
 		$nav.removeClass('animate');
