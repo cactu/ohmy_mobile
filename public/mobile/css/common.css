@@ -890,8 +890,9 @@ a:hover, a:visited, a:link, a:active{
 .more_inventions {	
 	width:1.7rem;
 	padding-top:0.18rem;
+	padding-bottom:0.4rem;
 	text-align: center;
-	margin:0 auto 0.4rem;
+	margin:0 auto;
 }
 .more_inventions span{
 	display:inline-block;
