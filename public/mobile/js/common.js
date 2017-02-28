@@ -30,7 +30,7 @@ $(function(){
 		$nav.removeClass('animate');
 		$menu.removeClass('animate');
 		$wrap.removeClass('animate');
-		$('body').css({"overflow-y":'scroll'})
+		$('body').css({"overflow-y":'auto'})
 	}
 
 	$nav.find('.search').on(click,function(){
