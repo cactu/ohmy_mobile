@@ -411,8 +411,8 @@ a:hover, a:visited, a:link, a:active{
 	position: absolute;
 	display:inline-block;
 	width:30px;
-	height:15px;
-	line-height:15px;
+	height:16px;
+	line-height:16px;
 	text-align: center;
 	background:#000;
 	border-radius: 1px;
@@ -888,8 +888,10 @@ a:hover, a:visited, a:link, a:active{
 	background-size:12px 20px;
 }
 .more_inventions {	
+	width:1.7rem;
 	padding-top:0.18rem;
 	text-align: center;
+	margin:0 auto 0.4rem;
 }
 .more_inventions span{
 	display:inline-block;
@@ -902,7 +904,6 @@ a:hover, a:visited, a:link, a:active{
 	border:1px solid #aaa9aa;
 	color:#888789;
 	border-radius: 0.36rem;
-	margin:0 auto 0.4rem;
 }
 
 @media (min-device-width:320px) and (max-device-width:374px){   
