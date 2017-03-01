@@ -9,6 +9,7 @@ html, body {
 body{
 	width:7.5rem;	
 	overflow-x:hidden;
+	position:relative;
 }
 .clearfix:after{
     content:"";
@@ -25,6 +26,12 @@ ul,li.ol,dl,dd{
 a:hover, a:visited, a:link, a:active{
 	text-decoration: none;
 	color:#4a4a4a;
+}
+.show{
+    display: block;
+}
+.hide{
+    display: none;
 }
 @font-face {
   font-family: 'iconfont';  /* project id 135369 */
@@ -410,7 +417,9 @@ a:hover, a:visited, a:link, a:active{
 	position: absolute;
 	display:inline-block;
 	width:30px;
-	height:15px;
+	height:16px;
+	line-height:16px;
+	text-align: center;
 	background:#000;
 	border-radius: 1px;
 	box-sizing: border-box;
@@ -885,8 +894,11 @@ a:hover, a:visited, a:link, a:active{
 	background-size:12px 20px;
 }
 .more_inventions {	
+	width:1.7rem;
 	padding-top:0.18rem;
+	padding-bottom:0.4rem;
 	text-align: center;
+	margin:0 auto;
 }
 .more_inventions span{
 	display:inline-block;
@@ -894,12 +906,10 @@ a:hover, a:visited, a:link, a:active{
 	height:0.5rem;
 	line-height:0.5rem;
 	text-align: center;
-	color:#aaa9aa;
-	font-size:14px;
+	font-size:12px;
 	border:1px solid #aaa9aa;
 	color:#888789;
 	border-radius: 0.36rem;
-	margin:0 auto 0.4rem;
 }
 
 @media (min-device-width:320px) and (max-device-width:374px){   
@@ -923,8 +933,5 @@ a:hover, a:visited, a:link, a:active{
 	}
 	.d_comments li .name{
 		margin-top:0;
-	}
-	.more_inventions span{
-		font-size:12px;
 	}
 }

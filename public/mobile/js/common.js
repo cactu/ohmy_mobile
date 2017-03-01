@@ -20,17 +20,22 @@ $(function(){
 	$wrap.find('.hide').on('touchend',function(){
 		closeMenu();
 	})
+	$(document).on('touchmove',function (e){
+		if($nav.hasClass('animate')){
+			e.preventDefault();
+		}	    
+	});
 	function openMenu(){
 		$nav.addClass('animate');
 		$menu.addClass('animate');
 		$wrap.addClass('animate');
-		$('body').css({"overflow-y":'hidden'})
+		$('body').css({"overflow-y":'hidden'})		
 	};
 	function closeMenu(){
 		$nav.removeClass('animate');
 		$menu.removeClass('animate');
 		$wrap.removeClass('animate');
-		$('body').css({"overflow-y":'scroll'})
+		$('body').css({"overflow-y":'auto'})
 	}
 
 	$nav.find('.search').on(click,function(){

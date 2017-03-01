@@ -48,7 +48,7 @@
         <div class='login'>
             <img src='{{asset('/mobile/img/nav_logo.png')}}' alt='Little Inventors'>
             <div class='login_btn'>
-                <a href='#'>立即登录</a>
+                <a href="{{url('login')}}">立即登录</a>
             </div>
             <div class='avatar'>
                 <div class='pic'><img src="{{asset('/mobile/img/avatar.jpg')}}"></div>
