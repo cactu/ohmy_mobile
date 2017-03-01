@@ -15,7 +15,7 @@ class HomeController extends Controller
 
     public function __construct()
     {
-        $urls = 'http://littleinventors.cn';
+        $urls = 'http://test.littleinventors.cn';
         View::share('urls',$urls);
     }
 
