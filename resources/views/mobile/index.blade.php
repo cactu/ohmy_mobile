@@ -10,7 +10,7 @@
 		<div class='cards_list'>
 			<ul>
 				<li class='clearfix'>
-					<a href='javascript:;' target='_blank'>
+					<a href="{{url('invention_detail')}}" target='_blank'>
 						<div class='img_holder'>
 							<img src="{{asset('/mobile/img/test.jpg')}}">
 							<span class='num'>4444</span>
@@ -34,7 +34,7 @@
 					</a>
 				</li>
 				<li class='clearfix'>
-					<a href='javascript:;' target='_blank'>
+					<a href="{{url('invention_detail')}}" target='_blank'>
 						<div class='img_holder'>
 							<img src="{{asset('/mobile/img/test.jpg')}}">
 							<span class='num'>4444</span>
@@ -58,7 +58,7 @@
 					</a>
 				</li>
 				<li class='clearfix'>
-					<a href='javascript:;' target='_blank'>
+					<a href="{{url('invention_detail')}}" target='_blank'>
 						<div class='img_holder'>
 							<img src="{{asset('/mobile/img/test.jpg')}}">
 							<span class='num'>4444</span>

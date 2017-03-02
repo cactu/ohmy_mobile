@@ -126,7 +126,7 @@
 	    * */
 	    function isPassword(str){ var isPassword = /^.{3,20}$/; if(isPassword.test(str)){ return true;} return false; }
 		
-		
+		//记住用户名
 		$(document).ready(function () {
 			
 		    if ($.cookie("rmbUser") == "true") {
@@ -136,8 +136,8 @@
 		    }
 		});
 		 
-		    //记住用户名
-		    //取消记住用户名密码的功能（安全考虑）
+		    
+		//取消记住用户名密码的功能（安全考虑）
 		function Save() {
 		    if ($("#ck_rmbUser").prop("checked")) {
 		      var str_username = $("#login_email").val();
