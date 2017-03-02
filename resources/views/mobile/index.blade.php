@@ -9,78 +9,40 @@
 		<div class='featured_right2'></div>
 		<div class='cards_list'>
 			<ul>
+				@foreach($work as $v)
 				<li class='clearfix'>
-					<a href="{{url('invention_detail')}}" target='_blank'>
+					<a href="{{url('invention-detail')}}">
 						<div class='img_holder'>
-							<img src="{{asset('/mobile/img/test.jpg')}}">
-							<span class='num'>4444</span>
+							<img src="{{$urls.$v->thumb}}">
+							<span class='num'>{{$v->id}}</span>
+							@if($v->isrec)
 							<span class='recommend'>
 								<img src="{{asset('/mobile/img/recommend.png')}}">
-							</span>							
+							</span>
+							@endif
 						</div>
-						<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-						<div class='name'>李小明&nbsp;&nbsp;8岁</div>
+						<div class='title'>{{$v->title}}</div>
+						<div class='name'>{{$v->author}}&nbsp;&nbsp;{{$v->age}}岁</div>
 						<div class='involved clearfix'>
-							<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-							<span class='none'>等待热心设计师加入</span> -->
-							<ul class='clearfix'>
-								<li class='inven'>创意实现:</li>
-								<li class='clearfix'>
-									<img src="{{asset('/mobile/img/test1.png')}}">
-								</li>
-								<li class="more">•••</li>
-							</ul>
+
+							@if($v->partin->count()==0)
+								<img src="{{asset('/mobile/img/nobody.png')}}">
+								<span class='none'>等待热心设计师加入</span>
+							@else
+								@foreach($v->partin->take(1) as $h)
+								<ul class='clearfix'>
+									<li class='inven'>创意实现:</li>
+									<li class='clearfix'>
+										<img src="{{$urls.$h->avatar}}">
+									</li>
+									<li class="more">•••</li>
+								</ul>
+								@endforeach
+							@endif
 						</div>
 					</a>
 				</li>
-				<li class='clearfix'>
-					<a href="{{url('invention_detail')}}" target='_blank'>
-						<div class='img_holder'>
-							<img src="{{asset('/mobile/img/test.jpg')}}">
-							<span class='num'>4444</span>
-							<span class='recommend'>
-								<img src="{{asset('/mobile/img/recommend.png')}}">
-							</span>							
-						</div>
-						<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-						<div class='name'>李小明&nbsp;&nbsp;8岁</div>
-						<div class='involved clearfix'>
-							<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-							<span class='none'>等待热心设计师加入</span> -->
-							<ul class='clearfix'>
-								<li class='inven'>创意实现:</li>
-								<li class='clearfix'>
-									<img src="{{asset('/mobile/img/test1.png')}}">
-								</li>
-								<li class="more">•••</li>
-							</ul>
-						</div>
-					</a>
-				</li>
-				<li class='clearfix'>
-					<a href="{{url('invention_detail')}}" target='_blank'>
-						<div class='img_holder'>
-							<img src="{{asset('/mobile/img/test.jpg')}}">
-							<span class='num'>4444</span>
-							<span class='recommend'>
-								<img src="{{asset('/mobile/img/recommend.png')}}">
-							</span>							
-						</div>
-						<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-						<div class='name'>李小明&nbsp;&nbsp;8岁</div>
-						<div class='involved clearfix'>
-							<img src="{{asset('/mobile/img/nobody.png')}}">
-							<span class='none'>等待热心设计师加入</span>
-							<!-- <ul class='clearfix'>
-								<li class='inven'>创意实现:</li>
-								<li class='clearfix'>
-									<img src="{{asset('/mobile/img/test1.png')}}">
-								</li>
-								<li class="more">•••</li>
-							</ul> -->
-						</div>
-					</a>
-				</li>
+				@endforeach
 			</ul>
 		</div>
 		<span class='other'>换一批</span>
@@ -110,39 +72,19 @@
 			<span class="als-next"><img src="{{asset('/mobile/img/designer_right.png')}}"></span>
 			<div class="d_comments als-viewport">		    	
 		        <ul class="clearfix als-wrapper">
+					@foreach($designers as $v)
 		            <li class="als-item">
 			            <div class='als_div'>
 							<img class='avatar' src="{{asset('/mobile/img/avatar_bg.png')}}">
 		                    <p>
-		                    	<img src="{{asset('/mobile/img/test2.jpg')}}" width="100%">               	
+		                    	<img src="{{$urls.$v->avatar}}" width="100%">
 		                    </p>		                
-			                <div class="name">吴翔</div>
-			                <div class="company">东华大学服装与设计学院产品设计系&海派时尚设计创新协同中心</div>
-			                <div class="position">主任兼教授&首席研究员</div>
+			                <div class="name">{{$v->designer->truename}}</div>
+			                <div class="company">{{$v->designer->company}}</div>
+			                <div class="position">{{$v->designer->job}}</div>
 			            </div>		                	                    
-		            </li>	
-		            <li class="als-item">
-			            <div class='als_div'>
-							<img class='avatar' src="{{asset('/mobile/img/avatar_bg.png')}}">
-		                    <p>
-		                    	<img src="{{asset('/mobile/img/test2.jpg')}}" width="100%">               	
-		                    </p>		                
-			                <div class="name">吴翔</div>
-			                <div class="company">东华大学服装与设计学院产品设计系&海派时尚设计创新协同中心</div>
-			                <div class="position">主任兼教授&首席研究员</div>
-			            </div>		                	                    
-		            </li>	
-		            <li class="als-item">
-			            <div class='als_div'>
-							<img class='avatar' src="{{asset('/mobile/img/avatar_bg.png')}}">
-		                    <p>
-		                    	<img src="{{asset('/mobile/img/test2.jpg')}}" width="100%">               	
-		                    </p>		                
-			                <div class="name">吴翔</div>
-			                <div class="company">东华大学服装与设计学院产品设计系&海派时尚设计创新协同中心</div>
-			                <div class="position">主任兼教授&首席研究员</div>
-			            </div>		                	                    
-		            </li>		        
+		            </li>
+					@endforeach
 		        </ul>		        		       				
 		    </div>
 		</div>
@@ -157,40 +99,25 @@
 		<div class='des'>
 			<div class='title'>设计师与创客组织</div>
 			<ul class='clearfix'>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
+				@foreach($links[0] as $v)
+					<li><img src="{{$urls.$v->logo}}"></li>
+				@endforeach
 			</ul>
 		</div>
 		<div class='edu'>
 			<div class='title'>教育机构</div>
 			<ul class='clearfix'>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
+				@foreach($links[1] as $v)
+					<li><img src="{{$urls.$v->logo}}"></li>
+				@endforeach
 			</ul>
 		</div>
 		<div class='soc'>
 			<div class='title'>社会团体</div>
 			<ul class='clearfix'>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
-				<li><img src="{{asset('/mobile/img/test3.png')}}"></li>
+				@foreach($links[2] as $v)
+					<li><img src="{{$urls.$v->logo}}"></li>
+				@endforeach
 			</ul>
 		</div>
 	</div>

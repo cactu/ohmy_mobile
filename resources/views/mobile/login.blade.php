@@ -28,11 +28,13 @@
 	<div class='wrap'>
 		<div class='login_bg'>
 			<div class="logo clearfix">
-                <img src="{{asset('/mobile/img/login_logo1.png')}}">
-                <img src="{{asset('/mobile/img/login_logo2.png')}}">
+				<a href="{{url('index')}}" class='clearfix'>
+	                <img src="{{asset('/mobile/img/login_logo1.png')}}">
+	                <img src="{{asset('/mobile/img/login_logo2.png')}}">
+                </a>
             </div>
             <div class='tab_item'>
-				<span class="login_item active">登录</span>
+				</a><span class="login_item active">登录</span>
                 <span class="or">OR</span>
                 <span class="register_item">注册</span>
             </div>

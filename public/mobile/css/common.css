@@ -249,6 +249,10 @@ a:hover, a:visited, a:link, a:active{
 	     -o-transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
 	        transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
 }
+.wrap1{
+	width:7.5rem;
+	background:#f7f7f9;
+}
 .wrap .hide{
 	width:7.5rem;
 	height:15rem;
@@ -827,10 +831,6 @@ a:hover, a:visited, a:link, a:active{
     height:21px;
 }
 /* 小发明页面作品分类列表 */
-.wrap1{
-	width:7.5rem;
-	background:#f7f7f9;
-}
 .cate {
 	margin:0.3rem auto;
 	width:193px;
@@ -911,7 +911,136 @@ a:hover, a:visited, a:link, a:active{
 	color:#888789;
 	border-radius: 0.36rem;
 }
-
+/* 作品详情页面 */
+.painting{
+	width:100%;
+	background:#fff;
+	height:3.5rem;
+	position: relative;
+	text-align: center;
+	margin-bottom:0.8rem;
+}
+.painting img{
+	height:3.5rem;
+}
+.painting .num{
+	position: absolute;
+	display:inline-block;
+	width:32px;
+	height:18px;
+	line-height:18px;
+	text-align: center;
+	background:#000;
+	border-radius: 1px;
+	box-sizing: border-box;
+	font-size:10px;
+	color:#fff;
+	left:0.6rem;
+	top:0.25rem;
+}
+.painting .recommend{
+	position: absolute;
+	display:inline-block;
+	width:0.56rem;
+	height:0.63rem;
+	background:url('../img/recommend-1.png') no-repeat;
+	background-size:0.56rem 0.63rem;
+	right:0.6rem;
+	top:0.2rem;
+}
+.painting_author{
+	height:2.5rem;
+	width:100%;
+	background:#fff;
+	position: relative;
+	border-bottom:1px #979797 dotted;
+}
+.painting_author>img{
+	position:absolute;
+	width:2.78rem;
+	height:2.78rem;
+	left:0.25rem;
+	top:-0.5rem;
+}
+.painting_author .work{
+	width:3.7rem;
+	position:absolute;
+	font-size:14px;
+	line-height:20px;
+	right:0.4rem;
+	top:0.4rem;
+	margin-bottom:0;
+}
+.painting_author .author{
+	position:absolute;
+	width:3.7rem;
+	color:#4b4b4b;
+	height:14px;
+	line-height:14px;
+	right:0.4rem;
+	bottom:0.4rem;
+}
+.painting_author .author .name{
+	font-size:12px;
+	float:left;
+	margin-bottom:0;
+}
+.painting_author .author .cate{
+	float:right;
+	line-height:14px;
+	height:14px;
+	font-size:12px;
+	margin:0;
+	width:45px;
+}
+.painting_author .author .cate span{
+	float:left;
+	margin-left:2px;
+}
+.painting_author .author .cate img{
+	height:14px;
+	float:left;
+}
+.painting_join {
+	height:1rem;
+	padding:0.3rem 0.5rem;
+	background:#fff;
+	border-bottom:1px #979797 dotted;
+}
+.painting_join span{
+	height:0.4rem;
+	float:left;
+	line-height:0.4rem;
+	color:#888789;
+	font-size:14px;
+}
+.painting_join p{
+	float:right;
+	height:0.4rem;
+	margin-bottom:0;
+}
+.painting_join p img{
+	float:left;
+	height:0.4rem;
+	margin-left:0.4rem;
+}
+.painting_details{
+	width:100%;
+	padding:0.3rem 0.5rem;
+	background:#fff;
+	margin-bottom:0.3rem;
+}
+.painting_more{
+	background:#fff;
+	width:100%;
+}
+.painting_more>p{
+	height:0.9rem;
+	padding:0.25rem 0.5rem;
+	line-height:0.4rem;
+	font-size:14px;
+	margin-bottom:0;
+}
 @media (min-device-width:320px) and (max-device-width:374px){   
 	.menu {
 		font-size:14px;

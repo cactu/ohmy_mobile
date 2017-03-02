@@ -3,21 +3,43 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Models\Link;
+use App\Models\LinkCate;
 use App\Models\User;
+use App\Models\Work;
 use Illuminate\Http\Request;
+use View;
 
 class HomeController extends Controller
 {
 
     public function __construct()
     {
-
+        $urls = 'http://test.littleinventors.cn';
+        View::share('urls',$urls);
     }
 
 
     public function getIndex()
     {
-        return view('mobile.index');
+        $data = '';
+        //首页3幅随机推荐作品
+        $data['work'] = Work::where('isrec',1)->orderByRaw("RAND()")->take(3)
+            ->get(['id','title','author','type','age','thumb','isrec']);
+        //首页设计师说
+        $data['designers'] = User::where(['role'=>2])
+            ->whereNotIn('id', array(14))->take(10)
+            ->orderByRaw("RAND()")->get(['id','avatar']);
+        //查询前三个赞助商分类
+        $cate = LinkCate::take(3)->lists('id');
+        $links = [];
+        //活动支持三个分类的logo图片
+        foreach($cate as $v){
+            $links[] = Link::where('cate_id',$v)->orderby('sort','desc')
+                ->orderby('updated_at','desc')->get(['logo']);
+        }
+        $data['links'] = $links;
+        return view('mobile.index',$data);
     }
 
     public function getAbout()
@@ -58,6 +80,7 @@ class HomeController extends Controller
 
     public function getInventionDetail($id='')
     {
+        $data = [];
         /*$detail = Work::with('cate')->find($id);
         $data['nav'] = 'idea';
         $data['webTitle'] = $detail->title.'-LI小小发明家-把世界变成你想象的样子';*/
