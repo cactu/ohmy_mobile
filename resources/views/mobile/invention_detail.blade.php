@@ -79,32 +79,11 @@
 						</div>
 					</a>
 				</li>
-				<li class='clearfix'>
-					<a href="javascript:;">
-						<div class='img_holder'>
-							<img src="{{asset('/mobile/img/test.jpg')}}">
-							<span class='num'>4444</span>
-							<span class='recommend'>
-								<img src="{{asset('/mobile/img/recommend.png')}}">
-							</span>							
-						</div>
-						<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-						<div class='name'>李小明&nbsp;&nbsp;8岁</div>
-						<div class='involved clearfix'>
-							<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-							<span class='none'>等待热心设计师加入</span> -->
-							<ul class='clearfix'>
-								<li class='inven'>创意实现:</li>
-								<li class='clearfix'>
-									<img src="{{asset('/mobile/img/test1.png')}}">
-								</li>
-								<li class="more">•••</li>
-							</ul>
-						</div>
-					</a>
-				</li>
 			</ul>
 		</div>
+	</div>
+	<div class='painting_footer'>
+		
 	</div>
 </div>
 </div>
