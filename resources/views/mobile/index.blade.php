@@ -131,3 +131,22 @@
 <script type="text/javascript" src="{{asset('/mobile/js/jquery.als-1.7.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('/mobile/js/index.js')}}"></script>
 @include('mobile.footer')
+<script type="text/javascript">
+
+if ('ontouchstart' in window) {
+    var click = 'touchstart';
+} else {
+    var click = 'click';
+}
+
+$('.featured .other').on(click,function(){
+	//console.log(111)
+	$.ajax({
+		type:'post',
+		url:"{{url('others')}}",
+		success:function(rs){
+			console.log(rs)
+		}
+	})
+})
+</script>
