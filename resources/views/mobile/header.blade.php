@@ -12,7 +12,7 @@
 </script>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>{{$webTitle}}</title>
 	<meta name="Keywords" content="Little Inventors,小小发明家,LI小小发明家,发明,儿童创意,儿童教育,脑洞,梦想实现,设计,设计师,创意作品展示,创意灵感" />
 	<meta name="Description" content="Little Inventors小小发明家是由英国发明家Dominic Wilcox与OHMY Design共同发起的全球性儿童创意活动。我们将在全国各地征集4-14岁小朋友的创意发明，并与专业设计师合作，把小朋友的发明实现。我们将打造中国最完善的儿童创意教育体系，和孩子们一起，把世界变成我们想象的样子！" />
 	<meta name='Googlebot' content='index, nofollow, archive'>
@@ -56,16 +56,16 @@
             </div>
         </div>
         <ul>
-            <li class='active'>
+            <li class='{{$nav=='index'?'active':''}}'>
                 <a href="{{url('index')}}">首页</a>
             </li>
-            <li>
+            <li class='{{$nav=='idea'?'active':''}}'>
                 <a href="{{url('inventions')}}">小发明</a>
             </li>
-            <li>
+            <li class='{{$nav=='news'?'active':''}}'>
                 <a href="#">足迹</a>
             </li>
-            <li>
+            <li class='{{$nav=='active'?'active':''}}'>
                 <a href="#">活动简介</a>
             </li>
         </ul>

@@ -22,7 +22,13 @@
 							@endif
 						</div>
 						<div class='title'>{{$v->title}}</div>
-						<div class='name'>{{$v->author}}&nbsp;&nbsp;{{$v->age}}岁</div>
+						<div class='name'>{{$v->author}}&nbsp;&nbsp;
+							@if($v->age == 0)
+								保密
+							@else
+								{{$v->age}}岁
+							@endif
+						</div>
 						<div class='involved clearfix'>
 
 							@if($v->partin->count()==0)
