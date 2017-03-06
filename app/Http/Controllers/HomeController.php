@@ -67,7 +67,6 @@ class HomeController extends Controller
             if($v->partin->count()){
                 $v->part = $v->partin->take(1);
                 foreach($v->part as $h){
-                    $h->role = $h->user->role;
                     $h->avatar = $h->user->avatar;
                 }
                 $v->part = $v->part->toArray();
