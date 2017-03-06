@@ -818,18 +818,6 @@ a:hover, a:visited, a:link, a:active{
 .swiper-container-horizontal>.swiper-pagination .swiper-pagination-bullet {
 	margin:3px 3px;
 }
-.inventions_swiper .swiper-button-next{
-    background-image: url("../img/designer_right.png");
-    background-size:12px 21px;
-    width:12px;
-    height:21px;
-}
-.inventions_swiper .swiper-button-prev{
-    background-image: url("../img/designer_left.png");
-    background-size:12px 21px;
-    width:12px;
-    height:21px;
-}
 /* 小发明页面作品分类列表 */
 .cate {
 	margin:0.3rem auto;
