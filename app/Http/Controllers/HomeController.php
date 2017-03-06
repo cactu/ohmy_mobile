@@ -61,6 +61,7 @@ class HomeController extends Controller
     public function postOthers(){
         $work = Work::where('isrec',1)->take(3)->orderByRaw('RAND()')
             ->get(['id','cate_id','title','author','age','thumb','isrec']);
+        $work->urls = 'http://littleinventors.cn';
         foreach($work as $v){
             $v->count = $v->partin->count();
             if($v->partin->count()){
