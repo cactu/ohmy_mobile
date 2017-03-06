@@ -144,7 +144,7 @@ $('.featured .other').on(click,function(){
 			if(rs.status == 1){
 				$.each(rs.data,function(index,item){
 					//console.log(item)
-					var img1 = $('<img>').attr('src',item.thumb);
+					var img1 = $('<img>').attr('src',item.urls+item.thumb);
 					var num = $('<span>').attr('class','num').html(item.id);					
 					var img2 = $('<img>').attr('src','{{asset('/mobile/img/recommend.png')}}');
 					var recommend = $('<span>').attr('class','recommend').append(img2);
@@ -171,7 +171,7 @@ $('.featured .other').on(click,function(){
 						involved_ul.append(inven);
 						$.each(item.part,function(index,rst){
 							var li_avatar = $('<li>');
-							var img4 = $('<img>').attr('src',rst.avatar);
+							var img4 = $('<img>').attr('src',item.urls+rst.avatar);
 							li_avatar.append(img5);
 							involved_ul.append(li_avatar);
 						})
