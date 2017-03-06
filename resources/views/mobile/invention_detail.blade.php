@@ -1,84 +1,82 @@
 @include('mobile.header')
 <div class='wrap1'>
 	<div class='painting'>
-		<img src="{{asset('/mobile/img/test.jpg')}}">
-		<span class='num'>4444</span>
+		<img src="{{$urls.$data->thumb}}">
+		<span class='num'>{{$data->id}}</span>
+		@if($data->isrec)
 		<span class='recommend'></span>
+		@endif
 	</div>
 	<div class='painting_author'>
-		<img src="{{asset('/mobile/img/test6.jpg')}}">
-		<p class='work'>啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</p>
+		<img src="{{$urls.$data->pic}}">
+		<p class='work'>{{$data->title}}</p>
 		<div class='author clearfix'>
-			<p class='name'>李小明 &nbsp;8岁 </p>
+			<p class='name'>{{$data->author}} &nbsp;
+				@if($data->age == 0)
+					保密
+				@else
+					{{$data->age}}岁
+				@endif
+			</p>
 			<p class='cate clearfix'>
-				<img src="{{asset('/mobile/img/test7.png')}}">
-				<span>家居</span>
+				<img src="{{$urls.$data->cate->pic}}">
+				<span>{{$data->cate->name}}</span>
 			</p>
 		</div>
 	</div>
 	<div class='painting_join clearfix'>
 		<span>创意征集</span>
 		<p class='clearfix'>
-			<img src="{{asset('/mobile/img/test8.png')}}">
-			<img src="{{asset('/mobile/img/test9.png')}}">
-			<img src="{{asset('/mobile/img/test10.png')}}">
+			@foreach($part as $v)
+			<img src="{{$urls.$v->user->avator}}">
+			@endforeach
 		</p>
 	</div>
 	<div class='painting_details'>
-		它是一个多功能雨伞，顶上的红白部分是指南针，如果迷失方向，手表上会显示东、南、西、北。黑色部分可以收缩，让雨伞变得可以给一至四人使用。蓝色的部分可以遮挡斜雨或风。即使戴在身上，人也不会觉得这把伞重。
+		{!!$data->contents!!}
 	</div>
 	<div class='painting_more'>
 		<p>更多发明</p>
 		<div class='cards_list'>
 			<ul>
+				@foreach($more as $v)
 				<li class='clearfix'>
-					<a href="javascript:;">
+					<a href="{{url('invention-detail',$v->id)}}">
 						<div class='img_holder'>
-							<img src="{{asset('/mobile/img/test.jpg')}}">
-							<span class='num'>4444</span>
+							<img src="{{$urls.$v->thumb}}">
+							<span class='num'>{{$v->id}}</span>
+							@if($v->isrec)
 							<span class='recommend'>
 								<img src="{{asset('/mobile/img/recommend.png')}}">
-							</span>							
+							</span>
+							@endif
 						</div>
-						<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-						<div class='name'>李小明&nbsp;&nbsp;8岁</div>
+						<div class='title'>{{$v->title}}</div>
+						<div class='name'>{{$v->author}}&nbsp;&nbsp;
+							@if($v->age == 0)
+								保密
+							@else
+								{{$v->age}}岁
+							@endif</div>
 						<div class='involved clearfix'>
-							<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-							<span class='none'>等待热心设计师加入</span> -->
-							<ul class='clearfix'>
-								<li class='inven'>创意实现:</li>
-								<li class='clearfix'>
-									<img src="{{asset('/mobile/img/test1.png')}}">
-								</li>
-								<li class="more">•••</li>
-							</ul>
+							@if($v->partin->count()==0)
+							<img src="{{asset('/mobile/img/nobody.png')}}">
+							<span class='none'>等待热心设计师加入</span>
+							@else
+								@foreach($v->partin->take(1) as $h)
+								<ul class='clearfix'>
+									<li class='inven'>创意实现:</li>
+									<li class='clearfix'>
+										<img src="{{$urls.$h->avatar}}">
+									</li>
+									<li class="more">•••</li>
+								</ul>
+								@endforeach
+							@endif
 						</div>
 					</a>
 				</li>
-				<li class='clearfix'>
-					<a href="javascript:;">
-						<div class='img_holder'>
-							<img src="{{asset('/mobile/img/test.jpg')}}">
-							<span class='num'>4444</span>
-							<span class='recommend'>
-								<img src="{{asset('/mobile/img/recommend.png')}}">
-							</span>							
-						</div>
-						<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-						<div class='name'>李小明&nbsp;&nbsp;8岁</div>
-						<div class='involved clearfix'>
-							<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-							<span class='none'>等待热心设计师加入</span> -->
-							<ul class='clearfix'>
-								<li class='inven'>创意实现:</li>
-								<li class='clearfix'>
-									<img src="{{asset('/mobile/img/test1.png')}}">
-								</li>
-								<li class="more">•••</li>
-							</ul>
-						</div>
-					</a>
-				</li>
+				@endforeach
 			</ul>
 		</div>
 	</div>

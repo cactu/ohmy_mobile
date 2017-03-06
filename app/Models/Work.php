@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Work extends Model
 {
     protected $guarded = ['id'];
-    //protected $table = 'works';
     use SoftDeletes;
     protected $dates = ['deleted_at'];
 
@@ -16,4 +15,10 @@ class Work extends Model
     {
         return $this->hasMany('App\Models\Partin','work_id', 'id');
     }
+
+    public function cate()
+    {
+        return $this->belongsTo('App\Models\WorkCate','cate_id','id');
+    }
+
 }

@@ -1,32 +1,14 @@
 @include('mobile.header')
 <div class='wrap1'>
 	<div class="swiper-container inventions_swiper">
-	    <div class="swiper-wrapper">            
+	    <div class="swiper-wrapper">
+			@foreach($news as $v)
 	        <div class="swiper-slide">
 	            <a href="javascript:;" target="_blank">
-	            <img src="{{asset('/mobile/img/test4.jpg')}}">
+	            <img src="{{$urls.$v->banner}}">
 	            </a>
 	        </div>
-	        <div class="swiper-slide">
-	            <a href="javascript:;" target="_blank">
-	            <img src="{{asset('/mobile/img/test4.jpg')}}">
-	            </a>
-	        </div>
-	        <div class="swiper-slide">
-	            <a href="javascript:;" target="_blank">
-	            <img src="{{asset('/mobile/img/test5.jpg')}}">
-	            </a>
-	        </div>
-	        <div class="swiper-slide">
-	            <a href="javascript:;" target="_blank">
-	            <img src="{{asset('/mobile/img/test4.jpg')}}">
-	            </a>
-	        </div>
-	        <div class="swiper-slide">
-	            <a href="javascript:;" target="_blank">
-	            <img src="{{asset('/mobile/img/test5.jpg')}}">
-	            </a>
-	        </div>
+			@endforeach
 	    </div>
 	    <!-- Add Pagination -->
 	    <div class="swiper-pagination"></div>
@@ -37,187 +19,64 @@
 
 	<div class="cate clearfix">
 	    <ul class='clearfix'>
-	        <li class="shixian active">
-				<a href="javascript:;">
-					<span></span><p>实现</p></a></li>
-	        <li class='tuijian'>
-				<a href="javascript:;">
-					<span></span><p>推荐</p></a></li>
-	    	<li class='zuixin'>
-				<a href="javascript:;">
-					<span></span><p>最新</p></a></li>
+	        <li class="shixian {{$order=='plan'?'active':''}}">
+				<a href="{{url('inventions'.'?order=plan')}}">
+					<span></span><p>实现</p>
+				</a>
+			</li>
+	        <li class='tuijian {{$order=='isrec'?'active':''}}'>
+				<a href="{{url('inventions'.'?order=isrec')}}">
+					<span></span><p>推荐</p>
+				</a>
+			</li>
+	    	<li class='zuixin {{$order=='new'?'active':''}}'>
+				<a href="{{url('inventions'.'?order=new')}}">
+					<span></span><p>最新</p>
+				</a>
+			</li>
 	    </ul>
 	</div>
 	<div class='cards_list'>
 		<ul>
+			@foreach($work as $v)
 			<li class='clearfix'>
-				<a href="{{url('invention-detail')}}">
+				<a href="{{url('invention-detail',$v->id)}}">
 					<div class='img_holder'>
-						<img src="{{asset('/mobile/img/test.jpg')}}">
-						<span class='num'>4444</span>
+						<img src="{{$urls.$v->thumb}}">
+						<span class='num'>{{$v->id}}</span>
+						@if($v->isrec)
 						<span class='recommend'>
 							<img src="{{asset('/mobile/img/recommend.png')}}">
-						</span>							
+						</span>
+						@endif
 					</div>
-					<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<div class='name'>李小明&nbsp;&nbsp;8岁</div>
+					<div class='title'>{{$v->title}}</div>
+					<div class='name'>{{$v->author}}&nbsp;&nbsp;
+						@if($v->age == 0)
+							保密
+						@else
+							{{$v->age}}岁
+						@endif
+					</div>
 					<div class='involved clearfix'>
-						<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-						<span class='none'>等待热心设计师加入</span> -->
-						<ul class='clearfix'>
-							<li class='inven'>创意实现:</li>
-							<li class='clearfix'>
-								<img src="{{asset('/mobile/img/test1.png')}}">
-							</li>
-							<li class="more">•••</li>
-						</ul>
-					</div>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="{{url('invention-detail')}}">
-					<div class='img_holder'>
-						<img src="{{asset('/mobile/img/test.jpg')}}">
-						<span class='num'>4444</span>
-						<span class='recommend'>
-							<img src="{{asset('/mobile/img/recommend.png')}}">
-						</span>							
-					</div>
-					<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<div class='name'>李小明&nbsp;&nbsp;8岁</div>
-					<div class='involved clearfix'>
-						<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-						<span class='none'>等待热心设计师加入</span> -->
-						<ul class='clearfix'>
-							<li class='inven'>创意实现:</li>
-							<li class='clearfix'>
-								<img src="{{asset('/mobile/img/test1.png')}}">
-							</li>
-							<li class="more">•••</li>
-						</ul>
-					</div>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="{{url('invention-detail')}}">
-					<div class='img_holder'>
-						<img src="{{asset('/mobile/img/test.jpg')}}">
-						<span class='num'>4444</span>
-						<span class='recommend'>
-							<img src="{{asset('/mobile/img/recommend.png')}}">
-						</span>							
-					</div>
-					<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<div class='name'>李小明&nbsp;&nbsp;8岁</div>
-					<div class='involved clearfix'>
+						@if($v->partin->count()==0)
 						<img src="{{asset('/mobile/img/nobody.png')}}">
 						<span class='none'>等待热心设计师加入</span>
-						<!-- <ul class='clearfix'>
-							<li class='inven'>创意实现:</li>
-							<li class='clearfix'>
-								<img src="{{asset('/mobile/img/test1.png')}}">
-							</li>
-							<li class="more">•••</li>
-						</ul> -->
+						@else
+							@foreach($v->partin->take(1) as $h)
+							<ul class='clearfix'>
+								<li class='inven'>创意实现:</li>
+								<li class='clearfix'>
+									<img src="{{$urls.$h->avatar}}">
+								</li>
+								<li class="more">•••</li>
+							</ul>
+							@endforeach
+						@endif
 					</div>
 				</a>
 			</li>
-			<li class='clearfix'>
-				<a href="{{url('invention-detail')}}">
-					<div class='img_holder'>
-						<img src="{{asset('/mobile/img/test.jpg')}}">
-						<span class='num'>4444</span>
-						<span class='recommend'>
-							<img src="{{asset('/mobile/img/recommend.png')}}">
-						</span>							
-					</div>
-					<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<div class='name'>李小明&nbsp;&nbsp;8岁</div>
-					<div class='involved clearfix'>
-						<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-						<span class='none'>等待热心设计师加入</span> -->
-						<ul class='clearfix'>
-							<li class='inven'>创意实现:</li>
-							<li class='clearfix'>
-								<img src="{{asset('/mobile/img/test1.png')}}">
-							</li>
-							<li class="more">•••</li>
-						</ul>
-					</div>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="{{url('invention-detail')}}">
-					<div class='img_holder'>
-						<img src="{{asset('/mobile/img/test.jpg')}}">
-						<span class='num'>4444</span>
-						<span class='recommend'>
-							<img src="{{asset('/mobile/img/recommend.png')}}">
-						</span>							
-					</div>
-					<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<div class='name'>李小明&nbsp;&nbsp;8岁</div>
-					<div class='involved clearfix'>
-						<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-						<span class='none'>等待热心设计师加入</span> -->
-						<ul class='clearfix'>
-							<li class='inven'>创意实现:</li>
-							<li class='clearfix'>
-								<img src="{{asset('/mobile/img/test1.png')}}">
-							</li>
-							<li class="more">•••</li>
-						</ul>
-					</div>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="{{url('invention-detail')}}">
-					<div class='img_holder'>
-						<img src="{{asset('/mobile/img/test.jpg')}}">
-						<span class='num'>4444</span>
-						<span class='recommend'>
-							<img src="{{asset('/mobile/img/recommend.png')}}">
-						</span>							
-					</div>
-					<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<div class='name'>李小明&nbsp;&nbsp;8岁</div>
-					<div class='involved clearfix'>
-						<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-						<span class='none'>等待热心设计师加入</span> -->
-						<ul class='clearfix'>
-							<li class='inven'>创意实现:</li>
-							<li class='clearfix'>
-								<img src="{{asset('/mobile/img/test1.png')}}">
-							</li>
-							<li class="more">•••</li>
-						</ul>
-					</div>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="{{url('invention-detail')}}">
-					<div class='img_holder'>
-						<img src="{{asset('/mobile/img/test.jpg')}}">
-						<span class='num'>4444</span>
-						<span class='recommend'>
-							<img src="{{asset('/mobile/img/recommend.png')}}">
-						</span>							
-					</div>
-					<div class='title'>哈哈哈哈哈哈哈哈哈哈哈哈</div>
-					<div class='name'>李小明&nbsp;&nbsp;8岁</div>
-					<div class='involved clearfix'>
-						<!-- <img src="{{asset('/mobile/img/nobody.png')}}">
-						<span class='none'>等待热心设计师加入</span> -->
-						<ul class='clearfix'>
-							<li class='inven'>创意实现:</li>
-							<li class='clearfix'>
-								<img src="{{asset('/mobile/img/test1.png')}}">
-							</li>
-							<li class="more">•••</li>
-						</ul>
-					</div>
-				</a>
-			</li>
+			@endforeach
 		</ul>
 	</div>
 	<div class='more_inventions'>
