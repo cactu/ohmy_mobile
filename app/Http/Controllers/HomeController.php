@@ -59,7 +59,7 @@ class HomeController extends Controller
      * @2017/3/5
      */
     public function postOthers(){
-        $work = Work::where('isrec',1)->take(6)->orderByRaw('RAND()')
+        $work = Work::where('isrec',1)->take(3)->orderByRaw('RAND()')
             ->get(['id','cate_id','title','author','age','thumb','isrec']);
         foreach($work as $v){
             $v->count = $v->partin->count();
