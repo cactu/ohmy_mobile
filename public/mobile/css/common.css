@@ -59,11 +59,11 @@ a:hover, a:visited, a:link, a:active{
 	border:none;
 	left:0;
 	top:0;
-	-webkit-transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
-	   -moz-transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
-	    -ms-transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
-	     -o-transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
-	        transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	-webkit-transition: left 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	   -moz-transition: left 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	    -ms-transition: left 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	     -o-transition: left 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	        transition: left 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
 }
 .navbar.animate{
 	left:5.5rem;
@@ -243,11 +243,11 @@ a:hover, a:visited, a:link, a:active{
 	position:relative;
 	left:0;
 	top:0;
-	-webkit-transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
-	   -moz-transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
-	    -ms-transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
-	     -o-transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
-	        transition: all 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	-webkit-transition: left 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	   -moz-transition: left 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	    -ms-transition: left 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	     -o-transition: left 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
+	        transition: left 500ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
 }
 .wrap1{
 	width:7.5rem;
@@ -444,7 +444,7 @@ a:hover, a:visited, a:link, a:active{
 	color:#4a4a4a;
 	font-size:14px;
 	margin-top:0.22rem;
-	margin-bottom:0.8rem;
+	margin-bottom:0.6rem;
 	width:2.8rem;
 	white-space: nowrap;
     text-overflow: ellipsis;
@@ -1062,5 +1062,10 @@ a:hover, a:visited, a:link, a:active{
 	}
 	.d_comments li .name{
 		margin-top:0;
+	}
+}
+@media (min-device-width:414px) {
+	.cards_list ul li .title{
+		margin-bottom:0.8rem;
 	}
 }
