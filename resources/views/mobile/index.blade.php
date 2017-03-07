@@ -172,7 +172,7 @@ $('.featured .other').on(click,function(){
 						$.each(item.part,function(index,rst){
 							var li_avatar = $('<li>');
 							var img4 = $('<img>').attr('src',item.urls+rst.avatar);
-							li_avatar.append(img5);
+							li_avatar.append(img4);
 							involved_ul.append(li_avatar);
 						})
 						if(item.count > 1){
