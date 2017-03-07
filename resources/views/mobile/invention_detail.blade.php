@@ -24,15 +24,15 @@
 			</p>
 		</div>
 	</div>
+	@foreach($part as $v)
 	<div class='painting_join clearfix'>
 		<span>创意征集</span>
 		<p class='clearfix'>
-			@foreach($part as $v)
-			<img src="{{$urls.$v->user->avator}}">
-			@endforeach
+			<img src="{{$urls.$v->user->avatar}}">
 		</p>
 		<!-- <span>等待热心设计师加入</span> -->
 	</div>
+	@endforeach
 	<div class='painting_details'>
 		{!!$data->contents!!}
 	</div>
