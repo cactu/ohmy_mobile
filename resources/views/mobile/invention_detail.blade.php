@@ -30,6 +30,7 @@
 		<p class='clearfix'>
 			<img src="{{$urls.$v->user->avatar}}">
 		</p>
+		<!-- <span>等待热心设计师加入</span> -->
 	</div>
 	@endforeach
 	<div class='painting_details'>

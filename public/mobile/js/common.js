@@ -17,7 +17,7 @@ $(function(){
 		}
 		
 	})
-	$wrap.find('.hide').on('touchend',function(){
+	$wrap.find('.hide').on('touchstart',function(e){
 		closeMenu();
 	})
 	$(document).on('touchmove',function (e){
