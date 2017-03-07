@@ -11,7 +11,7 @@
 			<ul>
 				@foreach($work as $v)
 				<li class='clearfix'>
-					<a href="{{url('invention-detail')}}">
+					<a href="{{url('invention-detail',$v->id)}}">
 						<div class='img_holder'>
 							<img src="{{$urls.$v->thumb}}">
 							<span class='num'>{{$v->id}}</span>
