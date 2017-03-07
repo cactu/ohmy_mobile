@@ -24,15 +24,19 @@
 			</p>
 		</div>
 	</div>
-	@foreach($part as $v)
 	<div class='painting_join clearfix'>
+	@if($part->count())
+		@foreach($part as $v)
 		<span>创意征集</span>
 		<p class='clearfix'>
 			<img src="{{$urls.$v->user->avatar}}">
 		</p>
-		<!-- <span>等待热心设计师加入</span> -->
+		@endforeach
+	@else
+		<span>等待热心设计师加入</span>
+	@endif
 	</div>
-	@endforeach
+
 	<div class='painting_details'>
 		{!!$data->contents!!}
 	</div>
