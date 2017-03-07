@@ -28,7 +28,7 @@
 		<span>创意征集</span>
 		<p class='clearfix'>
 			@foreach($part as $v)
-			<img src="{{$urls.$v->user->avator}}">
+			<img src="{{$urls.$v->user->avatar}}">
 			@endforeach
 		</p>
 	</div>
