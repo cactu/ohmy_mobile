@@ -67,7 +67,7 @@
 								<ul class='clearfix'>
 									<li class='inven'>创意实现:</li>
 									<li class='clearfix'>
-										<img src="{{$urls.$h->avatar}}">
+										<img src="{{$urls.$h->user->avatar}}">
 									</li>
 									<li class="more">•••</li>
 								</ul>
