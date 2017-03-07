@@ -24,14 +24,14 @@
 			</p>
 		</div>
 	</div>
+	@foreach($part as $v)
 	<div class='painting_join clearfix'>
 		<span>创意征集</span>
 		<p class='clearfix'>
-			@foreach($part as $v)
 			<img src="{{$urls.$v->user->avatar}}">
-			@endforeach
 		</p>
 	</div>
+	@endforeach
 	<div class='painting_details'>
 		{!!$data->contents!!}
 	</div>

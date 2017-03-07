@@ -156,7 +156,7 @@ class HomeController extends Controller
         $data['data'] = $detail;
         //创意征集
         $data['part'] = Partin::where('work_id',$id)
-            ->take(3)->get(['id']);
+            ->take(3)->get(['id','user_id']);
         //更多发明
         $data['more'] = Work::take(3)->whereNotIn('id',[$id])
             ->where(['cate_id'=>$detail->cate_id])->orderByRaw("RAND()")
