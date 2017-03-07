@@ -31,6 +31,7 @@
 			<img src="{{$urls.$v->user->avator}}">
 			@endforeach
 		</p>
+		<!-- <span>等待热心设计师加入</span> -->
 	</div>
 	<div class='painting_details'>
 		{!!$data->contents!!}
