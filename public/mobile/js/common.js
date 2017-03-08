@@ -71,7 +71,7 @@ $(function(){
 		}
 	}
 
-	$('.returnTop').on('click',function(){
+	$('.returnTop').on(click,function(){
 		smoothscroll()
 	})
 	function smoothscroll(){  

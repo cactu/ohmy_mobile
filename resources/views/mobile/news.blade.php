@@ -65,7 +65,7 @@
 			</ul>
 		</div>
 		<div class='more'>
-			<a href="javascript:;">查看更多</a>
+			<a href="{{url('newsList')}}">查看更多</a>
 		</div>
 	</div>
 	<div class='about'>

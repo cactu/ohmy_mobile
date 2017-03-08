@@ -84,32 +84,30 @@
 @include('mobile.footer')
 <script type="text/javascript" src="//cdn.bootcss.com/Swiper/3.1.2/js/swiper.min.js"></script>
 <script>
-/*轮播图配置*/
-$(document).ready(function(){
-	var swiper = new Swiper('.swiper-container', {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-        loop: true,
-        autoplay: 3000,
-        autoplayDisableOnInteraction : false	
-    });
-})
+	/*轮播图配置*/
+	$(document).ready(function(){
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        nextButton: '.swiper-button-next',
+	        prevButton: '.swiper-button-prev',
+	        loop: true,
+	        autoplay: 3000,
+	        autoplayDisableOnInteraction : false	
+	    });
+	})
 
-/*查看更多*/
-
-if ('ontouchstart' in window) {
-    var click = 'touchstart';
-} else {
-    var click = 'click';
-}
-
-var $more = $('.more_inventions');
-$more.on(click,function(){
-	console.log(111);
-	$more.find('span').css({'border':'none'}).empty();
-	$more.find('span').html("<img src='{{asset('/mobile/img/loading.gif')}}' style='height:0.5rem;'>");
-})
+	/*查看更多*/
+	if ('ontouchstart' in window) {
+	    var click = 'touchstart';
+	} else {
+	    var click = 'click';
+	}
+	var $more = $('.more_inventions');
+	$more.on(click,function(){
+		//console.log(111);
+		$more.find('span').css({'border':'none'}).empty();
+		$more.find('span').html("<img src='{{asset('/mobile/img/loading.gif')}}' style='height:0.5rem;'>");
+	})
 </script>
 
