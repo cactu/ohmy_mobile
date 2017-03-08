@@ -64,9 +64,9 @@ $(function(){
 　　	var scrollHeight = $(document).height();
 　　	var windowHeight = $(this).height();
 		//console.log(scrollTop)		
-		if(scrollTop>800){
+		if(scrollTop>500){
 			$('.returnTop').css({'opacity':'0.4'});
-		}else if(scrollTop<800){
+		}else if(scrollTop<500){
 			$('.returnTop').css({'opacity':'0'});
 		}
 	}
