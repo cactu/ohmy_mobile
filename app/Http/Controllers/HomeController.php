@@ -143,6 +143,45 @@ class HomeController extends Controller
     }
 
     /**
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * 小发明界面查看更多接口
+     * @2017/3/5
+     */
+    public function postMany(){
+        $order = Request::get('order');
+        $count = Request::get('count');
+        if($order == null){
+            return response()->json(['status'=>2,'info'=>'未传入分类类别']);
+        }
+        if($count == null){
+            return response()->json(['status'=>2,'info'=>'未传入加载的次数']);
+        }
+        $query = Work::take(8)->offset($count*8);
+        if($order == 'new'){
+
+        }elseif($order == 'isrec'){
+            $query = $query->orderby('isrec','desc');
+        }elseif($order == 'plan'){
+            $query = $query->orderby('type','desc');
+        }
+        $work = $query->orderby('id','desc')
+            ->get(['id','thumb','isrec','title','author','age']);
+        foreach($work as $v){
+            $v->count = $v->partin->count();
+            if($v->partin->count()){
+                $v->avatar = $v->partin->take(1)[0]->user->avatar;
+            }
+        }
+        $work = $work->toArray();
+        if($work){
+            return response()->json(['status'=>1,'info'=>'操作成功','data'=>$work]);
+        }else{
+            return response()->json(['status'=>2,'info'=>'操作失败']);
+        }
+
+    }
+
+    /**
      * @param $id
      * @return mixed
      * 小发明详情界面
