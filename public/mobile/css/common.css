@@ -1019,6 +1019,12 @@ a:hover, a:visited, a:link, a:active{
 	background:#fff;
 	margin-bottom:0.3rem;
 }
+.painting_details img{
+	width:100%;
+}
+.painting_details ul,.painting_details ol{
+	padding-left:0.2rem;
+}
 .painting_more{
 	background:#fff;
 	width:100%;
