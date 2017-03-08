@@ -17,8 +17,9 @@ $(function(){
 		}
 		
 	})
-	$wrap.find('.hide').on('touchstart',function(e){
+	$wrap.find('.door').on('touchstart',function(e){
 		closeMenu();
+		e.preventDefault();
 	})
 	$(document).on('touchmove',function (e){
 		if($nav.hasClass('animate')){
@@ -56,4 +57,28 @@ $(function(){
 		}
 		
 	})
+
+	/*回到顶部*/
+	window.onscroll = function(){
+		var scrollTop = $(this).scrollTop();
+　　	var scrollHeight = $(document).height();
+　　	var windowHeight = $(this).height();
+		//console.log(scrollTop)		
+		if(scrollTop>800){
+			$('.returnTop').css({'opacity':'0.4'});
+		}else if(scrollTop<800){
+			$('.returnTop').css({'opacity':'0'});
+		}
+	}
+
+	$('.returnTop').on('click',function(){
+		smoothscroll()
+	})
+	function smoothscroll(){  
+	    var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;  
+	    if (currentScroll > 0) {  
+	         window.requestAnimationFrame(smoothscroll);  
+	         window.scrollTo (0,currentScroll - (currentScroll/5));  
+	    }  
+	}
 })

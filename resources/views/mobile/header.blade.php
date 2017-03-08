@@ -63,7 +63,7 @@
                 <a href="{{url('inventions')}}">小发明</a>
             </li>
             <li class='{{$nav=='news'?'active':''}}'>
-                <a href="#">足迹</a>
+                <a href="{{url('news')}}">足迹</a>
             </li>
             <li class='{{$nav=='active'?'active':''}}'>
                 <a href="#">活动简介</a>
@@ -71,4 +71,4 @@
         </ul>
     </div>
     <div class='wrap'>
-    <div class='hide'></div>
+    <div class='door'></div>

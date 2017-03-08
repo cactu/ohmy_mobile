@@ -57,7 +57,7 @@
 			<img src="{{asset('/mobile/img/activity3.png')}}">
 		</div>
 		<span class='trip'>
-			<a href="javascript:;">足迹</a>
+			<a href="{{url('news')}}">足迹</a>
 		</span>
 		<span class='activity_left1'></span>
 		<span class='activity_left2'></span>
@@ -121,7 +121,7 @@
 			</ul>
 		</div>
 	</div>
-
+<div class='returnTop'></div>
 <script type="text/javascript" src="{{asset('/mobile/js/jquery.als-1.7.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('/mobile/js/index.js')}}"></script>
 @include('mobile.footer')

@@ -21,12 +21,12 @@
 					<span></span><p>实现</p>
 				</a>
 			</li>
-	        <li class='tuijian {{$order=='isrec'?'active':''}}'>
+	        <li class="tuijian {{$order=='isrec'?'active':''}}">
 				<a href="{{url('inventions'.'?order=isrec')}}">
 					<span></span><p>推荐</p>
 				</a>
 			</li>
-	    	<li class='zuixin {{$order=='new'?'active':''}}'>
+	    	<li class="zuixin {{$order=='new'?'active':''}}">
 				<a href="{{url('inventions'.'?order=new')}}">
 					<span></span><p>最新</p>
 				</a>
@@ -80,7 +80,7 @@
 		<span>查看更多</span>
 	</div>
 </div>
-
+<div class='returnTop'></div>
 @include('mobile.footer')
 <script type="text/javascript" src="//cdn.bootcss.com/Swiper/3.1.2/js/swiper.min.js"></script>
 <script>
