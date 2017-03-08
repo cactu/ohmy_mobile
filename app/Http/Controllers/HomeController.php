@@ -87,6 +87,14 @@ class HomeController extends Controller
         return view('mobile.about_us')->with($data);
     }
 
+    public  function getNewList(){
+        $data['webTitle'] = '新闻列表-LI小小发明家-把世界变成你想象的样子';
+        $data['nav'] = 'news';
+
+        return view('mobile.new_list',$data);
+
+    }
+
     public function getNews()
     {
         $data['webTitle'] = '足迹-LI小小发明家-把世界变成你想象的样子';
