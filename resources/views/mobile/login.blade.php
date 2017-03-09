@@ -87,7 +87,7 @@
 	                    <div class="input_group">
 	                        <div class="clearfix">
 	                            <input type="text" placeholder="输入验证码" id="register_code" name="code" class="form-control"><i class="nec">*</i>
-	                            <img src="" class="code_img" onclick="this.src=this.src+'?i='+Math.random()">
+	                            <img src="{{asset('Func/yzm.php')}}" class="code_img" onclick="this.src=this.src+'?i='+Math.random()">
 	                        </div>
 	                        <div class="error_info"></div>
 	                    </div>
