@@ -163,6 +163,8 @@
 							var inven = $('<li>').attr('class','inven').html('创意实现:');
 							involved_ul.append(inven);
 							var img4 = $('<img>').attr('src',item.urls+item.avatar);
+							var avatar = $('<li>').attr('class','clearfix').append(img4);
+							involved_ul.append(avatar);
 							if(item.count > 1){
 								var  more = $('<li>').attr('class','more').html('•••');
 								involved_ul.append(more);
