@@ -4,8 +4,8 @@
 	    <div class="swiper-wrapper">
 			@foreach($news as $v)
 	        <div class="swiper-slide">
-	            <a href="javascript:;" target="_blank">
-	            <img src="{{$urls.$v->banner}}">
+	            <a href="{{url('news-detail',1)}}">
+	            	<img src="{{$urls.$v->banner}}">
 	            </a>
 	        </div>
 			@endforeach

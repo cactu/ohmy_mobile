@@ -1273,6 +1273,14 @@ a:hover, a:visited, a:link, a:active{
 	     -o-transition: opacity 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
 	        transition: opacity 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);
 }
+/* 新闻详情 */
+.news_banner{
+	width:7.5rem;
+}
+.news_banner img{
+	width:100%;
+	height:auto;
+}
 @media (min-device-width:320px) and (max-device-width:374px){   
 	.menu {
 		font-size:14px;
