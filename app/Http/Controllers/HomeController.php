@@ -12,7 +12,7 @@ use App\Models\Work;
 use App\Services\qqService;
 use App\Services\weboService;
 use Validator;
-use View;
+use View,Hash;
 use Request;
 use Session;
 class HomeController extends Controller
@@ -108,11 +108,10 @@ class HomeController extends Controller
         return view('mobile.news',$data);
     }
 
-    public function getNewsDetail($id = '')
+    public function getNewsDetail($id = 10)
     {
-        /*$data['detail'] = Article::find($id);
-        $data['webTitle'] = $data['detail']->title . '-LI小小发明家-把世界变成你想象的样子';*/
-        $data['webTitle'] = '-LI小小发明家-把世界变成你想象的样子';
+        $data['detail'] = Article::find($id);
+        $data['webTitle'] = $data['detail']->title . '-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'news';
         return view('mobile.news_details',$data);
     }
