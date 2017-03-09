@@ -162,12 +162,7 @@
 							var involved_ul = $('<ul>').attr('class','clearfix')
 							var inven = $('<li>').attr('class','inven').html('创意实现:');
 							involved_ul.append(inven);
-							$.each(item.partin,function(index,rst){
-								var li_avatar = $('<li>');
-								var img4 = $('<img>').attr('src',item.urls+rst.avatar);
-								li_avatar.append(img4);
-								involved_ul.append(li_avatar);
-							})
+							var img4 = $('<img>').attr('src',item.urls+item.avatar);
 							if(item.count > 1){
 								var  more = $('<li>').attr('class','more').html('•••');
 								involved_ul.append(more);
