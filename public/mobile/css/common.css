@@ -1027,10 +1027,15 @@ a:hover, a:visited, a:link, a:active{
 	font-size:14px!important;
 }
 .painting_details img{
-	width:100%;
+	width:100%!important;
+	height:auto!important;
 }
 .painting_details ul,.painting_details ol{
 	padding-left:0.6rem;
+	margin-bottom:0;
+}
+.painting_details ul p,.painting_details ol p{
+	margin-bottom:0;
 }
 .painting_more{
 	background:#fff;
@@ -1237,23 +1242,29 @@ a:hover, a:visited, a:link, a:active{
 	background-position: center center;
 }
 .about .more {
+	text-align: center;   
+    padding-top:0.2rem;
+    padding-bottom: 0.4rem;   
+}
+.about .more span{
+	display:inline-block;
 	width: 1.7rem;
     height: 0.5rem;
     line-height: 0.5rem;
-    border: 1px solid #aaa9aa;
-    border-radius: 0.36rem;
-    margin: 0.4rem auto;
     text-align: center;
     font-size:12px;
     color:#888789;
+    border: 1px solid #aaa9aa;
+    border-radius: 0.36rem;
 }
 .returnTop{
-	width:0.5rem;
-	height:0.5rem;
+	width:0.8rem;
+	height:0.8rem;
 	background:url('../img/top.png') no-repeat;
-	background-size:0.5rem 0.5rem;
+	background-size:0.8rem 0.8rem;
 	position:fixed;
 	bottom:1.5rem;
+	z-index: 99;
 	right:0;
 	opacity: 0;
 	-webkit-transition: opacity 200ms cubic-bezier(0.000, 0.995, 0.990, 1.000);

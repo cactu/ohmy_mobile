@@ -109,7 +109,9 @@
 				</li>
 			</ul>
 		</div>
-		<div class='more'>查看更多</div>
+		<div class='more'>
+			<span>查看更多</span>
+		</div>
 	</div>
 </div>
 <div class='returnTop'></div>
