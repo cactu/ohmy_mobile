@@ -13,6 +13,7 @@ use View;
 use Request;
 class HomeController extends Controller
 {
+    protected $urls = 'http://littleinventors.cn';
 
     /**
      * HomeController constructor.
@@ -21,7 +22,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $urls = 'http://littleinventors.cn';
+        $urls = $this->urls;
         View::share('urls',$urls);
     }
 
@@ -62,7 +63,7 @@ class HomeController extends Controller
         $work = Work::where('isrec',1)->take(3)->orderByRaw('RAND()')
             ->get(['id','cate_id','title','author','age','thumb','isrec']);
         foreach($work as $v){
-            $v->urls = 'http://littleinventors.cn';
+            $v->urls = $this->urls;
             $v->count = $v->partin->count();
             if($v->partin->count()){
                 $v->part = $v->partin->take(1);
@@ -175,6 +176,7 @@ class HomeController extends Controller
         $work = $query->orderby('id','desc')
             ->get(['id','thumb','isrec','title','author','age']);
         foreach($work as $v){
+            $v->urls = $this->urls;
             $v->count = $v->partin->count();
             if($v->partin->count()){
                 $v->avatar = $v->partin->take(1)[0]->user->avatar;
