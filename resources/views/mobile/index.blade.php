@@ -105,7 +105,7 @@
 			</ul>
 		</div>
 		<div class='edu'>
-			<div class='title'>教育机构</div>
+			<div class='title'>教育机构及社会团体</div>
 			<ul class='clearfix'>
 				@foreach($links[1] as $v)
 					<li><img src="{{$urls.$v->logo}}"></li>
@@ -113,7 +113,7 @@
 			</ul>
 		</div>
 		<div class='soc'>
-			<div class='title'>社会团体</div>
+			<div class='title'>媒体支持</div>
 			<ul class='clearfix'>
 				@foreach($links[2] as $v)
 					<li><img src="{{$urls.$v->logo}}"></li>

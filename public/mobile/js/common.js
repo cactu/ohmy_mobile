@@ -40,12 +40,14 @@ $(function(){
 	}
 
 	$nav.find('.search').on(click,function(){
-		$nav.find('.search_div').css({'display':'block'})
-		//$nav.find('input').focus();
-		//$nav.find('input').css({'background':'red'})
+		var docHeight = $(document).height();
+		$nav.find('.search_div').css({'height':docHeight})
+		$('body').css({'overflow-y':'hidden'})
 	})
-	$nav.find('.del').on(click,function(){
-		$nav.find('.search_div').css({'display':'none'})
+	$nav.find('.del').on('touchend',function(){
+		$nav.find('.search_div').css({'height':'0'})
+		$('body').css({'overflow-y':'scroll'})
+
 	})
 	$nav.find('#sear').on(click,function(){
 		var _input = $nav.find('input').val()
@@ -65,14 +67,15 @@ $(function(){
 　　	var windowHeight = $(this).height();
 		//console.log(scrollTop)		
 		if(scrollTop>500){
-			$('.returnTop').css({'opacity':'0.4'});
+			$('.returnTop').css({'opacity':'0.4','width':'1rem'});
 		}else if(scrollTop<500){
-			$('.returnTop').css({'opacity':'0'});
+			$('.returnTop').css({'opacity':'0'}).delay(1000).css({'width':'0'});
 		}
 	}
 
-	$('.returnTop').on(click,function(){
-		smoothscroll()
+	$('.returnTop').on('touchend',function(e){
+		smoothscroll();
+		e.preventDefault();
 	})
 	function smoothscroll(){  
 	    var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;  
