@@ -13,8 +13,9 @@
 		<div class='title'>
 			<img src="{{asset('/mobile/img/announce_title.png')}}">
 		</div>
-		<img src="{{asset('/mobile/img/test11.png')}}">
-		<img src="{{asset('/mobile/img/test11.png')}}">
+		@foreach($preview as $v)
+		<img src="{{$urls.$v->pic}}">
+		@endforeach
 	</div>
 	<div class='news'>
 		<div class='title'>
@@ -22,46 +23,22 @@
 		</div>
 		<div class='newsList'>
 			<ul>
+				@foreach($report as $v)
 				<li class='clearfix'>
-					<a href="javascript:;" class='clearfix'>
-						<img src="{{asset('/mobile/img/test12.jpg')}}">
+					<a href="{{url('news-detail',$v->id)}}" class='clearfix'>
+						<img src="{{$urls.$v->pic}}">
 						<span class='work_cate'>
+							@if($v->cate_id == 2)
 							<img src="{{asset('/mobile/img/gongzuo.png')}}">
-						</span>
-						<span class='where'>上海长宁区育苗幼儿</span>
-						<span class='time'>2016年11月29日 上午9:30-11:00</span>
-					</a>
-				</li>
-				<li class='clearfix'>
-					<a href="javascript:;" class='clearfix'>
-						<img src="{{asset('/mobile/img/test12.jpg')}}">
-						<span class='work_cate'>
-							<img src="{{asset('/mobile/img/gongzuo.png')}}">
-						</span>
-						<span class='where'>上海长宁区育苗幼儿</span>
-						<span class='time'>2016年11月29日 上午9:30-11:00</span>
-					</a>
-				</li>
-				<li class='clearfix'>
-					<a href="javascript:;" class='clearfix'>
-						<img src="{{asset('/mobile/img/test12.jpg')}}">
-						<span class='work_cate'>
+							@elseif($v->cate_id == 3)
 							<img src="{{asset('/mobile/img/chuangyi.png')}}">
+							@endif
 						</span>
-						<span class='where'>上海长宁区育苗幼儿</span>
-						<span class='time'>2016年11月29日 上午9:30-11:00</span>
+						<span class='where'>{{$v->place}}</span>
+						<span class='time'>{{$v->time}}</span>
 					</a>
 				</li>
-				<li class='clearfix'>
-					<a href="javascript:;" class='clearfix'>
-						<img src="{{asset('/mobile/img/test12.jpg')}}">
-						<span class='work_cate'>
-							<img src="{{asset('/mobile/img/chuangyi.png')}}">
-						</span>
-						<span class='where'>上海长宁区育苗幼儿</span>
-						<span class='time'>2016年11月29日 上午9:30-11:00</span>
-					</a>
-				</li>
+				@endforeach
 			</ul>
 		</div>
 		<div class='more'>
@@ -74,39 +51,19 @@
 		</div>
 		<div class='aboutList'>
 			<ul>
+				@foreach($article as $v)
 				<li class='clearfix'>
-					<a href="javascript:;">
-						<img src="{{asset('/mobile/img/test13.png')}}">
-						<span class='name'>Little Inventors 创意工作坊，用废纸变出一只会动的“小动物”</span>
+					<a href="{{url('news-detail',$v->id)}}">
+						<img src="{{$urls.$v->pic}}">
+						<span class='name'>{{$v->title}}</span>
 						<p class='clearfix'>
 							<span class='clock'></span>
 							<span>发布时间:</span>
-							<span class='time'>2016/11/30</span>
+							<span class='time'>{{$v->created_at}}</span>
 						</p>
 					</a>
 				</li>
-				<li class='clearfix'>
-					<a href="javascript:;">
-						<img src="{{asset('/mobile/img/test13.png')}}">
-						<span class='name'>Little Inventors 创意工作坊，用废纸变出一只会动的“小动物”</span>
-						<p class='clearfix'>
-							<span class='clock'></span>
-							<span>发布时间:</span>
-							<span class='time'>2016/11/30</span>
-						</p>
-					</a>
-				</li>
-				<li class='clearfix'>
-					<a href="javascript:;">
-						<img src="{{asset('/mobile/img/test13.png')}}">
-						<span class='name'>Little Inventors 创意工作坊，用废纸变出一只会动的“小动物”</span>
-						<p class='clearfix'>
-							<span class='clock'></span>
-							<span>发布时间:</span>
-							<span class='time'>2016/11/30</span>
-						</p>
-					</a>
-				</li>
+				@endforeach
 			</ul>
 		</div>
 		<div class='more'>

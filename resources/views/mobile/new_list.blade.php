@@ -5,126 +5,22 @@
 	</div>
 	<div class='newsList'>
 		<ul>
+			@foreach($article as $v)
 			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
+				<a href="{{url('news-detail',$v->id)}}" class='clearfix'>
+					<img src="{{$urls.$v->pic}}">
 					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/gongzuo.png')}}">
+						@if($v->cate_id == 2)
+							<img src="{{asset('/mobile/img/gongzuo.png')}}">
+						@elseif($v->cate_id == 3)
+							<img src="{{asset('/mobile/img/chuangyi.png')}}">
+						@endif
 					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
+					<span class='where'>{{$v->place}}</span>
+					<span class='time'>{{$v->time}}</span>
 				</a>
 			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/gongzuo.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/chuangyi.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/chuangyi.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/chuangyi.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/chuangyi.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/chuangyi.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/chuangyi.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/chuangyi.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/chuangyi.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/chuangyi.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
-			<li class='clearfix'>
-				<a href="javascript:;" class='clearfix'>
-					<img src="{{asset('/mobile/img/test12.jpg')}}">
-					<span class='work_cate'>
-						<img src="{{asset('/mobile/img/chuangyi.png')}}">
-					</span>
-					<span class='where'>上海长宁区育苗幼儿</span>
-					<span class='time'>2016年11月29日 上午9:30-11:00</span>
-				</a>
-			</li>
+			@endforeach
 		</ul>
 	</div>
 	<div class='more'>
