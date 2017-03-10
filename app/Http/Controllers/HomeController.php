@@ -117,7 +117,7 @@ class HomeController extends Controller
             ->get(['id','cate_id','pic','place','time'])
             ->toArray();
         if($article){
-            return response()->json(['status'=>1,'info'=>'加载成功','data'=>$article]);
+            return response()->json(['status'=>1,'urls'=>$this->urls,'info'=>'加载成功','data'=>$article]);
         }else{
             return response()->json(['status'=>2,'info'=>'没有更多文章了']);
         }
@@ -141,7 +141,7 @@ class HomeController extends Controller
             ->orderby('published_at','desc')->take(4)->get(['id','cate_id','pic','place','time']);
         //活动相关
         $data['article'] = Article::where('cate_id',1)->orderby('sort','desc')
-            ->orderby('published_at','desc')->take(3)->get(['id','title','pic','created_at']);
+            ->orderby('published_at','desc')->take(4)->get(['id','title','pic','created_at']);
 
         return view('mobile.news',$data);
     }
@@ -159,11 +159,11 @@ class HomeController extends Controller
         $article = Article::where('cate_id',1)
             ->orderby('sort','desc')
             ->orderby('published_at','desc')
-            ->take(8)->offset($num*8)
+            ->take(4)->offset($num*4)
             ->get(['id','pic','title','created_at'])
             ->toArray();
         if($article){
-            return response()->json(['status'=>1,'info'=>'加载成功','data'=>$article]);
+            return response()->json(['status'=>1,'urls'=>$this->urls,'info'=>'加载成功','data'=>$article]);
         }else{
             return response()->json(['status'=>2,'info'=>'没有更多文章了']);
         }
