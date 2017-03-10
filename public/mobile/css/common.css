@@ -1315,6 +1315,57 @@ a:hover, a:visited, a:link, a:active{
 	padding-left:0.6rem;
 	margin-bottom:0;
 }
+/* 活动简介页 */
+.introduction .banner1{
+	width:7.5rem;
+	height:4.53rem;
+	background:url('../img/banner1.png') no-repeat;
+	background-size:7.5rem 4.53rem;
+	margin-top:0.4rem;
+}
+.introduction .banner2{
+	width:7.5rem;
+	height:9.33rem;
+	background:url('../img/banner2.png') no-repeat;
+	background-size:7.5rem 9.33rem;
+	margin-top:0.25rem;
+}
+.introduction .banner3{
+	width:7.5rem;
+	height:6.37rem;
+	background:url('../img/banner3.png') no-repeat;
+	background-size:6.85rem 6.37rem;
+	background-position: center center;
+	margin-top:0.4rem;
+}
+.introduction .banner4{
+	width:7.5rem;
+	height:2.11rem;
+	background:url('../img/banner4.png') no-repeat;
+	background-size:6.5rem 2.11rem;
+	background-position: center center;
+	margin-top:0.4rem;
+}
+.introduction .banner5{
+	width:7.5rem;
+	height:0.22rem;
+	background:url('../img/banner5.png') no-repeat;
+	background-size:4.85rem 0.22rem;
+	background-position: center center;
+	margin-top:0.4rem;
+}
+.introduction .more{
+	width:1.52rem;
+	font-size:12px;
+	color:#000;
+	height:0.4rem;
+	background:url('../img/other_bg.png') no-repeat;
+	background-size:1.52rem 0.4rem;
+	margin:0.4rem auto;
+	text-align: center;
+	line-height:0.4rem;
+	padding-left:0.2rem;
+}
 @media (min-device-width:320px) and (max-device-width:374px){   
 	.menu {
 		font-size:14px;

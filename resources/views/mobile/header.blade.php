@@ -66,7 +66,7 @@
                 <a href="{{url('news')}}">足迹</a>
             </li>
             <li class='{{$nav=='active'?'active':''}}'>
-                <a href="#">活动简介</a>
+                <a href="{{url('introduction')}}">活动简介</a>
             </li>
         </ul>
     </div>
