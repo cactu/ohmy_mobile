@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use App\Models\Article;
+use App\Models\ArticlePreview;
 use App\Models\Link;
 use App\Models\LinkCate;
 use App\Models\Partin;
@@ -85,27 +86,87 @@ class HomeController extends Controller
         }
     }
 
-    public function getAbout()
-    {
-        $data['webTitle'] = '关于我们-LI小小发明家-把世界变成你想象的样子';
-        $data['nav'] = ' ';
-        return view('mobile.about_us')->with($data);
-    }
-
-    public  function getNewList(){
+    /**
+     * @return View
+     * 新闻列表页
+     * @2017/3/10
+     */
+    public function getNewList(){
         $data['webTitle'] = '新闻列表-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'news';
-
+        $data['article'] = Article::whereIn('cate_id',array(2,3))->orderby('sort','desc')
+            ->orderby('published_at','desc')->take(8)->get(['id','cate_id','pic','place','time']);
         return view('mobile.new_list',$data);
 
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * 新闻列表页查看更多接口
+     * @2017/3/10
+     */
+    public function postLots(){
+        $num = Request::get('count');
+        if($num == null){
+            return response()->json(['status'=>2,'info'=>'未传入加载的次数']);
+        }
+        $article = Article::whereIn('cate_id',array(2,3))
+            ->orderby('sort','desc')
+            ->orderby('published_at','desc')
+            ->take(8)->offset($num*8)
+            ->get(['id','cate_id','pic','place','time'])
+            ->toArray();
+        if($article){
+            return response()->json(['status'=>1,'info'=>'加载成功','data'=>$article]);
+        }else{
+            return response()->json(['status'=>2,'info'=>'没有更多文章了']);
+        }
+    }
+
+    /**
+     * @return View
+     * 足迹页面
+     * @2017/3/10
+     */
     public function getNews()
     {
         $data['webTitle'] = '足迹-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'news';
 
+        //活动预告
+        $data['preview'] = ArticlePreview::next()->orderby('sort','desc')
+            ->orderby('published_at','asc')->get(['pic']);
+        //活动报道
+        $data['report'] = Article::whereIn('cate_id',array(2,3))->orderby('sort','desc')
+            ->orderby('published_at','desc')->take(4)->get(['id','cate_id','pic','place','time']);
+        //活动相关
+        $data['article'] = Article::where('cate_id',1)->orderby('sort','desc')
+            ->orderby('published_at','desc')->take(3)->get(['id','title','pic','created_at']);
+
         return view('mobile.news',$data);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * 足迹页面的活动相关查看更多接口
+     * @2017/3/10
+     */
+    public function postMores(){
+        $num = Request::get('count');
+        if($num == null){
+            return response()->json(['status'=>2,'info'=>'未传入加载的次数']);
+        }
+        $article = Article::where('cate_id',1)
+            ->orderby('sort','desc')
+            ->orderby('published_at','desc')
+            ->take(8)->offset($num*8)
+            ->get(['id','pic','title','created_at'])
+            ->toArray();
+        if($article){
+            return response()->json(['status'=>1,'info'=>'加载成功','data'=>$article]);
+        }else{
+            return response()->json(['status'=>2,'info'=>'没有更多文章了']);
+        }
     }
 
     public function getNewsDetail($id = 10)
@@ -330,9 +391,15 @@ class HomeController extends Controller
         $data['nav'] = ' ';
         /*$keyword = Request::get('keyword');
         $data['webTitle'] = '关于'.$keyword.'的搜索-LI小小发明家-把世界变成你想象的样子';*/
+        $data['webTitle'] = '关于haha的搜索-LI小小发明家-把世界变成你想象的样子';
         return view('mobile.search',$data);
     }
 
+    /**
+     * @return mixed
+     * 活动简介界面
+     * @2017/3/10
+     */
     public function getIntroduction()
     {
         $data['webTitle'] = '活动简介-LI小小发明家-把世界变成你想象的样子';
