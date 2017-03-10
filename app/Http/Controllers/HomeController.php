@@ -9,8 +9,12 @@ use App\Models\LinkCate;
 use App\Models\Partin;
 use App\Models\User;
 use App\Models\Work;
-use View;
+use App\Services\qqService;
+use App\Services\weboService;
+use Validator;
+use View,Hash;
 use Request;
+use Session;
 class HomeController extends Controller
 {
     protected $urls = 'http://littleinventors.cn';
@@ -104,18 +108,125 @@ class HomeController extends Controller
         return view('mobile.news',$data);
     }
 
-    public function getNewsDetail($id)
+    public function getNewsDetail($id = 10)
     {
-        /*$data['detail'] = Article::find($id);
-        $data['webTitle'] = $data['detail']->title . '-LI小小发明家-把世界变成你想象的样子';*/
+        $data['detail'] = Article::find($id);
+        $data['webTitle'] = $data['detail']->title . '-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'news';
         return view('mobile.news_details',$data);
     }
 
+    /**
+     * @return View
+     * 登录界面
+     * @2017/3/9
+     */
     public function getLogin()
     {
         $data['webTitle']    = '用户登录-LI小小发明家-把世界变成你想象的样子';
+
+        $webo = new weboService();
+        $webo_url = $webo->getAuthorizeURL();
+        $data['webo_url'] = $webo_url;
+
+        $qq = new qqService();
+        $qq_url = $qq->getAuthorizeURL();
+        $data['qq_url'] = $qq_url;
+
         return view('mobile.login',$data);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * 登录操作
+     * @2017/3/9
+     */
+    public function postLoginDo()
+    {
+        $rs = User::where('email',Request::get('email'))->first();
+        if(empty($rs))
+        {
+            return response()->json(['field' => 'email', 'info' => '邮箱不存在','status'=>0]);
+        }
+        if($rs && Hash::check(Request::get('password'), $rs->password))
+        {
+            Session::put('user', $rs);
+            return response()->json(['status'=>1]);
+        }else
+        {
+            return response()->json(['field'=>'password','info'=>'密码错误','status'=>0]);
+        }
+    }
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * 退出登录操作
+     * @2017/3/9
+     */
+    public function getLogout()
+    {
+        Session::flush();
+        return redirect('index');
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse|
+     * \Symfony\Component\HttpFoundation\Response
+     * 注册操作
+     * @2017/3/9
+     */
+    public function postRegSave()
+    {
+        session_start();
+        $clientCode = strtolower(Request::get('code'));     //用户填写的验证码
+        $serverCode = strtolower($_SESSION['code']);  //正确的验证码
+        //  1.判断用户填写的验证码是否正确，不正确则返回登录页面，正确则继续
+        if($clientCode != $serverCode){
+            return response()->json(['field'=>'code','info'=>'验证码不正确','status'=>0]);
+        }
+
+        $rules =[
+            'username'  => 'required|unique:users,username|max:100',
+            'email'      => 'required|email|unique:users,email',
+            'password'   => 'required',
+        ];
+        $msg = [
+            'username.required' =>'请输入用户名',
+            'username.unique'	 =>'用户名重复',
+            'username.max'	     =>'用户名过长',
+            'password.required'  =>'请输入密码',
+            'email.required'	 =>'请输入邮箱',
+            'email.email'	     =>'邮箱格式错误',
+            'email.unique'	     =>'邮箱已经注册过',
+        ];
+        $v = Validator::make(Request::all(), $rules, $msg);
+        if ($v->fails())
+        {
+            $errors = $v->getMessageBag()->toArray();
+            foreach ($errors as $k => $v)
+            {
+                $error = ['field' => $k, 'info' => $v[0],'status'=>0];
+            }
+            return response()->json($error);
+        }
+        $data['username'] = Request::get('username');
+        $data['email']    = Request::get('email');
+        $data['password'] = Request::get('password');
+        if(Request::has('password'))
+        {
+            $data['password'] = Hash::make(Request::get('password'));
+        }
+        $flag =  User::create($data);
+        unset($_SESSION['code']);
+
+        if($flag)
+        {
+            Session::put('user', $flag);
+            return response()->json(['status'=>1]);
+        }else
+        {
+            return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'注册失败']]);
+        }
     }
 
     /**
