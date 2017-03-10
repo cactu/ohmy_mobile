@@ -116,3 +116,28 @@
 </div>
 <div class='returnTop'></div>
 @include('mobile.footer')
+<script type="text/javascript">
+	/*活动相关查看更多*/
+	if ('ontouchstart' in window) {
+	    var click = 'touchstart';
+	} else {
+	    var click = 'click';
+	}
+
+	var $more = $('.about .more span')
+	var count = 1;
+	$more.on(click,function(){
+		$.ajax({
+			type:'post',
+			data:{count:count},
+			url:'{{url('mores')}}',
+			beforeSend:function(){
+				$more.css({'border':'none'}).empty();
+				$more.html("<img src='{{asset('/mobile/img/loading.gif')}}' style='height:0.5rem;'>");
+			},
+			success:function(rs){
+				console.log(rs);
+			}
+		})
+	})
+</script>

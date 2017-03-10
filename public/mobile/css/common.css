@@ -132,7 +132,7 @@ a:hover, a:visited, a:link, a:active{
 	outline: none;
 	border:none;
 	height:30px;
-	line-height:22px;
+	line-height:30px;
 	width:5rem;
 }
 .navbar .search_div .del {

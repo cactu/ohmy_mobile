@@ -122,7 +122,7 @@
 			new_count += 1;
 			count = new_count;
 		}
-		console.log(count);
+		//console.log(count);
 		$.ajax({
 			type:'post',
 			data:{count:count,order:order},
@@ -132,7 +132,7 @@
 				$more.find('span').html("<img src='{{asset('/mobile/img/loading.gif')}}' style='height:0.5rem;'>");
 			},
 			success:function(rs){
-				console.log(rs);
+				//console.log(rs);
 				$more.find('span').css({'border':'1px solid #aaa9aa'}).html('查看更多');
 				if(rs.status == 1){
 					$.each(rs.data,function(index,item){
