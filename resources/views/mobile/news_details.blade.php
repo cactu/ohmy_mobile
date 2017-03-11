@@ -1,15 +1,15 @@
 @include('mobile.header')
 <div class='wrap1'>
 	<div class='news_banner'>
-		<img src="{{asset('/mobile/img/test13.png')}}">
+		<img src="{{$urls.$detail->banner}}">
 	</div>
 	<div class='news_content'>
 		<div class='title'>
-			<p>8个轮子的「自动小汽车」，你敢来坐吗？—LI创意报告vol.8</p>
-			<span>时间：2017-02-16 14:42:40</span>
+			<p>{{$detail->title}}</p>
+			<span>时间：{{$detail->created_at}}</span>
 		</div>
 		<div class='content'>
-			
+			{!! $detail->contents !!}
 		</div>
 	</div>
 </div>
