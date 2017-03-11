@@ -202,20 +202,17 @@ class HomeController extends Controller
      * 登录操作
      * @2017/3/9
      */
-    public function postLoginDo()
+    public function postLoginDo(Request $request)
     {
-        $rs = User::where('email',Request::get('email'))->first();
-        if(empty($rs))
-        {
-            return response()->json(['field' => 'email', 'info' => '邮箱不存在','status'=>0]);
+        $rs = User::where('email', Request::get('email'))->first();
+        if (empty($rs)) {
+            return response()->json(['field' => 'email', 'info' => '邮箱不存在', 'status' => 0]);
         }
-        if($rs && Hash::check(Request::get('password'), $rs->password))
-        {
+        if ($rs && Hash::check(Request::get('password'), $rs->password)) {
             Session::put('user', $rs);
-            return response()->json(['status'=>1]);
-        }else
-        {
-            return response()->json(['field'=>'password','info'=>'密码错误','status'=>0]);
+            return response()->json(['status' => 1]);
+        } else {
+            return response()->json(['field' => 'password', 'info' => '密码错误', 'status' => 0]);
         }
     }
 

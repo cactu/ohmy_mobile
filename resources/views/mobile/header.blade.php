@@ -46,14 +46,17 @@
     </nav>
     <div class='menu'>
         <div class='login'>
-            <img src='{{asset('/mobile/img/nav_logo.png')}}' alt='Little Inventors'>
-            <div class='login_btn'>
-                <a href="{{url('login')}}">立即登录</a>
-            </div>
-            <div class='avatar'>
-                <div class='pic'><img src="{{asset('/mobile/img/avatar.jpg')}}"></div>
-                <div class='name'>洋葱zzz</div>
-            </div>
+            @if(Session::has('user'))
+                <div class='avatar'>
+                    <div class='pic'><img src="{{$urls.(Session::get('user')->avatar?Session::get('user')->avatar:'/dream/img/avatar.jpg')}}"></div>
+                    <div class='name'>{{Session::get('user')->username}}</div>
+                </div>
+            @else
+                <img src='{{asset('/mobile/img/nav_logo.png')}}' alt='Little Inventors'>
+                <div class='login_btn'>
+                    <a href="{{url('login')}}">立即登录</a>
+                </div>
+            @endif
         </div>
         <ul>
             <li class='{{$nav=='index'?'active':''}}'>
