@@ -16,6 +16,7 @@
 		@foreach($preview as $v)
 		<img src="{{$urls.$v->pic}}">
 		@endforeach
+		<!-- <img src="{{asset('/mobile/img/less.png')}}"> -->
 	</div>
 	<div class='news'>
 		<div class='title'>
@@ -42,7 +43,9 @@
 			</ul>
 		</div>
 		<div class='more'>
-			<a href="{{url('new-list')}}">查看更多</a>
+			<span>
+				<a href="{{url('new-list')}}">查看更多</a>
+			</span>
 		</div>
 	</div>
 	<div class='about'>
@@ -73,3 +76,49 @@
 </div>
 <div class='returnTop'></div>
 @include('mobile.footer')
+<script type="text/javascript">
+	/*活动相关查看更多*/
+	if ('ontouchstart' in window) {
+	    var click = 'touchstart';
+	} else {
+	    var click = 'click';
+	}
+
+	var $more = $('.about .more span')
+	var count = 0;
+	$more.on(click,function(){
+		count += 1;
+		//console.log(count)
+		$.ajax({
+			type:'post',
+			data:{count:count},
+			url:'{{url('mores')}}',
+			beforeSend:function(){
+				$more.css({'border':'none'}).empty();
+				$more.html("<img src='{{asset('/mobile/img/loading.gif')}}' style='height:0.5rem;'>");
+			},
+			success:function(rs){
+				//console.log(rs);
+				$more.css({'border':'1px solid #aaa9aa'}).html('查看更多');
+				if(rs.status == 1){
+					$.each(rs.data,function(index,item){
+						//console.log(item.id)
+						var img1 = $('<img>').attr('src',rs.urls+item.pic);
+						var name = $('<span>').attr('class','name').html(item.title)
+
+						var clock = $('<span>').attr('class','clock');
+						var span1 = $('<span>').html('发布时间:');
+						var time = $('<span>').attr('class','time').html(item.created_at);
+						var p = $('<p>').attr('class','clearfix').append(clock).append(span1).append(time);
+
+						var li = $('<li>').attr('class','clearfix').append(img1).append(name).append(p);
+						li.on(click,function(){
+							window.location.href = 'news-detail/'+item.id;
+						})
+						$('.aboutList ul').append(li);
+					})
+				}
+			}
+		})
+	})
+</script>
