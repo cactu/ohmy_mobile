@@ -1,5 +1,5 @@
 @include('mobile.header')
-<div class='news list'>
+<div class='news list wrap1'>
 	<div class='title'>
 		<img src="{{asset('/mobile/img/news_title.png')}}">
 	</div>

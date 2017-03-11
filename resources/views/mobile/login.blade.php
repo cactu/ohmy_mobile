@@ -26,7 +26,7 @@
 </head>
 <body>
 	<div class='wrap'>
-		<div class='login_bg'>
+		<div class='login_bg wrap1'>
 			<div class="logo clearfix">
 				<a href="{{url('index')}}" class='clearfix'>
 	                <img src="{{asset('/mobile/img/login_logo1.png')}}">
