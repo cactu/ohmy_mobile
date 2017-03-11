@@ -52,9 +52,8 @@ $(function(){
 	$nav.find('#sear').on(click,function(){
 		var _input = $nav.find('input').val()
 		if(_input){
-			console.log(_input);
+			$("#seaform").submit();
 		}else{
-			console.log('您没有输入任何内容')
 			return;
 		}
 		

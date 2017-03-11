@@ -58,8 +58,8 @@
                         <button type="button" id="login_submit">登录</button>
                         <div class="input_group third_login">
                             	<span>第三方登录</span>
-                            <a href="javascript:;" class="login_qq"><i class="iconfont">&#xe60b;</i></a>
-                            <a href="javascript:;" class="login_weibo"><i class="iconfont">&#xe60d;</i></a>
+                            <a href="{{$qq_url}}" class="login_qq"><i class="iconfont">&#xe60b;</i></a>
+                            <a href="{{$webo_url}}" class="login_weibo"><i class="iconfont">&#xe60d;</i></a>
 
                         </div>
                         <input type="hidden" name="_token" value="{{csrf_token()}}" />
@@ -155,23 +155,21 @@
 		    }
 		};
 		
-	    /*$('#login_submit').on('click',function(){
+	    $('#login_submit').on('click',function(){
 	        var data = $("#loginForm").serialize();
 	        var url  = "{{url('login-do')}}";
 	        $.post(url,data,function(rs){
 	            if(rs.status==0)
 	            {
-	                //console.info(rs.field);
 	                $("#login_"+rs.field).parent().find(".error_info").text(rs.info);
 	            }else{
-
 	                window.location.href ="{{url('index')}}";
 	            }
 	        });
 	        Save();
-	    })*/
+	    })
 	    
-	   /* $(document).keypress(function(e){
+	    $(document).keypress(function(e){
 	    	var e = window.event || e;
 	    	if(e.keyCode == 13){
 	    		var data = $("#loginForm").serialize();
@@ -209,7 +207,7 @@
 	                window.location.href ="{{url('user')}}";
 	            }
 	        });
-	    })*/
+	    })
 
 	    /*
 	    * 验证密码

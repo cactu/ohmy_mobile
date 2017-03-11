@@ -203,7 +203,6 @@ a:hover, a:visited, a:link, a:active{
 	position:absolute;
 	height:1.7rem;
 	bottom:0;
-	display:none;
 }
 .menu .login .avatar .pic{
 	width:1rem;

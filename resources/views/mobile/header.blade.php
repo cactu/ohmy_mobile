@@ -37,7 +37,7 @@
         <span class='logo'></span>
         <span class='search'></span>
         <div class='search_div clearfix'>
-            <form action=" " name="srcForm" id="seaform" class='clearfix'>
+            <form action="{{url('search')}}" name="srcForm" id="seaform" class='clearfix'>
                 <i class="iconfont" id="sear">&#xe600;</i>
                 <input type="text" name="keyword" placeholder="编号/作品名称/作者姓名" autofocus="autofocus">
             </form>

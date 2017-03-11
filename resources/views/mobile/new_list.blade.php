@@ -51,7 +51,7 @@
 			},
 			success:function(rs){
 				$more.css({'border':'1px solid #aaa9aa'}).html('查看更多');
-				console.log(rs);
+				//console.log(rs);
 				$.each(rs.data,function(index,item){
 					var img1 = $('<img>').attr('src',rs.urls+item.pic);
 					var work_cate = $('<span>').attr('class','work_cate')
