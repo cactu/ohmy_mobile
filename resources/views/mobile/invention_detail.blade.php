@@ -101,13 +101,13 @@
 	</div>
 	<div class='details_footer clearfix'>
 		<div class='footer_comment clearfix'>
-			<a href="javascript:;">
+			<a href="{{url('comment')}}">
 				<input type="text" disabled="disabled" placeholder="评论...">				
 			</a>
 		</div>
 		<div class='details_tab'>
 			<div class='footer_commenticon clearfix'>
-				<a href="javascript:;">
+				<a href="{{url('comment')}}">
 					<span class='icon'></span>
 					<span class='num'>11</span>
 					<!-- <span class='num'>•••</span> -->
