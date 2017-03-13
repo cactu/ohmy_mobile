@@ -86,11 +86,12 @@ $(function(){
 
 	/*详情页分享*/
 	var $footer = $('.details_footer');
-	$footer.find('.share').on(click,function(){
+	$footer.find('.share').on(click,function(e){
 		//console.log(window.innerHeight)
 		var height = window.innerHeight;
 		$footer.find('.share_div').css({'height':height,'display':'block'});
-		$('body').css({'overflow-y':'hidden'})
+		$('body').css({'overflow-y':'hidden'});
+		e.preventDefault();
 	});
 	$footer.find('.del').on('touchend',function(e){
 		$footer.find('.share_div').css({'display':'none'});
