@@ -114,7 +114,8 @@
 				</a>			
 			</div>
 			<div class='like clearfix'>
-				<span class='num'>•••</span>
+			<!-- <span class='num'>•••</span> -->
+				<span class='num'>0</span>
 			</div>
 			<div class='share'>
 				<span class='share_tab'></span>
@@ -127,7 +128,9 @@
 				<a class="jiathis_button_tsina"></a>
 				<a class="jiathis_button_cqq"></a>
 			</div>
-			<div class='del'><i class='iconfont' style='font-size:24px'>&#xe627;</i></div>
+			<div class='del'>
+				<span>取消</span>
+			</div>
 		</div>			
 		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
 		<!-- JiaThis Button END -->

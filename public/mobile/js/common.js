@@ -87,11 +87,14 @@ $(function(){
 	/*详情页分享*/
 	var $footer = $('.details_footer');
 	$footer.find('.share').on(click,function(){
-		console.log(111)
-		$footer.find('.share_div').css({'display':'block'});
+		//console.log(window.innerHeight)
+		var height = window.innerHeight;
+		$footer.find('.share_div').css({'height':height,'display':'block'});
+		$('body').css({'overflow-y':'hidden'})
 	});
 	$footer.find('.del').on('touchend',function(e){
 		$footer.find('.share_div').css({'display':'none'});
+		$('body').css({'overflow-y':'scroll'})
 		e.preventDefault();
 	})
 })
