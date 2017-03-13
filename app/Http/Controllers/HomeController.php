@@ -435,6 +435,6 @@ class HomeController extends Controller
     public function getComment(){
         $data['webTitle'] = '评论-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'idea';
-        return view('mobile.introduction')->with($data);
+        return view('mobile.comment')->with($data);
     }
 }
