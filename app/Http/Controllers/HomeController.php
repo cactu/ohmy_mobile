@@ -383,13 +383,35 @@ class HomeController extends Controller
         return view('mobile.invention_detail')->with($data);
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse|View
+     * 搜索界面
+     * @2017/3/10
+     */
+    /**
+     * todo
+     */
     public function getSearch()
     {
-
+        if(Request::get('keyword') == null){
+            return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'请输入关键字']]);
+        }
         $data['nav'] = ' ';
-        /*$keyword = Request::get('keyword');
-        $data['webTitle'] = '关于'.$keyword.'的搜索-LI小小发明家-把世界变成你想象的样子';*/
-        $data['webTitle'] = '关于haha的搜索-LI小小发明家-把世界变成你想象的样子';
+        $keyword = Request::get('keyword');
+        $data['webTitle'] = '关于'.$keyword.'的搜索-LI小小发明家-把世界变成你想象的样子';
+        if(Request::has('keyword'))
+        {
+            $keyword = Request::get('keyword');
+            $data['list']  = Work::with('cate')->where('id','like','%'.$keyword.'%')
+                ->orwhere('title','like','%'.$keyword.'%')
+                ->orwhere('author','like','%'.$keyword.'%')->paginate(9);
+            foreach($data['list'] as $k=>$v){
+                if($v['deleted_at']){
+                    unset($data['list'][$k]);
+                }
+            }
+            $data['keyword'] = $keyword;
+        }
         return view('mobile.search',$data);
     }
 
@@ -403,5 +425,16 @@ class HomeController extends Controller
         $data['webTitle'] = '活动简介-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'active';
         return view('mobile.introduction')->with($data);
+    }
+
+    /**
+     * @return mixed
+     * 作品详情的评论页面
+     * @2017/3/13
+     */
+    public function getComment(){
+        $data['webTitle'] = '评论-LI小小发明家-把世界变成你想象的样子';
+        $data['nav'] = 'idea';
+        return view('mobile.comment')->with($data);
     }
 }
