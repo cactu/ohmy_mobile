@@ -1006,7 +1006,6 @@ a:hover, a:visited, a:link, a:active{
 }
 .painting_join span{
 	height:0.4rem;
-	float:left;
 	line-height:0.4rem;
 	color:#888789;
 	font-size:14px;
@@ -1121,7 +1120,8 @@ a:hover, a:visited, a:link, a:active{
 }
 .announce .title,.news .title,.about .title{
 	text-align: center;
-	margin:0.4rem auto;
+	padding:0.4rem 0;
+	margin:0 auto;
 }
 .announce .title img,.news .title img,.about .title img{
 	width:1.84rem;
@@ -1327,6 +1327,10 @@ a:hover, a:visited, a:link, a:active{
 .news_content .content ul,.news_content .content ol{
 	padding-left:0.6rem;
 	margin-bottom:0;
+}
+.news_content .content video{
+	width:7.5rem!important;
+	height:auto!important;
 }
 /* 活动简介页 */
 .introduction .banner1{

@@ -117,6 +117,9 @@
 						})
 						$('.aboutList ul').append(li);
 					})
+				}else if(rs.status == 2){
+					$more.css({'display':'none'});
+					return;
 				}
 			}
 		})

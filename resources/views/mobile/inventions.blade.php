@@ -178,6 +178,9 @@
 						var _li = $('<li>').append(work_a);
 						$('.cards_list>ul').append(_li);
 					})
+				}else if(rs.status == 2){
+					$more.find('span').css({'display':'none'});
+					return;
 				}
 			}
 		})
