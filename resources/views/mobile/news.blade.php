@@ -110,13 +110,13 @@
 						var span1 = $('<span>').html('发布时间:');
 						var time = $('<span>').attr('class','time').html(item.created_at);
 						var p = $('<p>').attr('class','clearfix').append(clock).append(span1).append(time);
-
-						var li = $('<li>').attr('class','clearfix').append(img1).append(name).append(p);
-						li.on(click,function(){
-							window.location.href = 'news-detail/'+item.id;
-						})
+						var news_a = $('<a>').attr('href','news-detail/'+item.id).append(img1).append(name).append(p);
+						var li = $('<li>').attr('class','clearfix').append(news_a);
 						$('.aboutList ul').append(li);
 					})
+				}else if(rs.status == 2){
+					$more.css({'display':'none'});
+					return;
 				}
 			}
 		})

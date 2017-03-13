@@ -63,9 +63,6 @@
 				</li>
 			</ul>
 		</div>
-		<div class='more_inventions'>
-			<span>查看更多</span>
-		</div>
 	</div>
 </div>
 @include('mobile.footer')

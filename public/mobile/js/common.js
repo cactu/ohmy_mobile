@@ -83,4 +83,15 @@ $(function(){
 	         window.scrollTo (0,currentScroll - (currentScroll/5));  
 	    }  
 	}
+
+	/*详情页分享*/
+	var $footer = $('.details_footer');
+	$footer.find('.share').on(click,function(){
+		console.log(111)
+		$footer.find('.share_div').css({'display':'block'});
+	});
+	$footer.find('.del').on('touchend',function(e){
+		$footer.find('.share_div').css({'display':'none'});
+		e.preventDefault();
+	})
 })

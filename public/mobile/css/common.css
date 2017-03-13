@@ -35,11 +35,11 @@ a:hover, a:visited, a:link, a:active{
 }
 @font-face {
   font-family: 'iconfont';  /* project id 135369 */
-  src: url('//at.alicdn.com/t/font_nxxgzpmkxrhsq0k9.eot');
-  src: url('//at.alicdn.com/t/font_nxxgzpmkxrhsq0k9.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_nxxgzpmkxrhsq0k9.woff') format('woff'),
-  url('//at.alicdn.com/t/font_nxxgzpmkxrhsq0k9.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_nxxgzpmkxrhsq0k9.svg#iconfont') format('svg');
+  src: url('//at.alicdn.com/t/font_ilnvhmxf3c70hpvi.eot');
+  src: url('//at.alicdn.com/t/font_ilnvhmxf3c70hpvi.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_ilnvhmxf3c70hpvi.woff') format('woff'),
+  url('//at.alicdn.com/t/font_ilnvhmxf3c70hpvi.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_ilnvhmxf3c70hpvi.svg#iconfont') format('svg');
 }
 .iconfont{
     font-family:"iconfont";
@@ -1006,7 +1006,6 @@ a:hover, a:visited, a:link, a:active{
 }
 .painting_join span{
 	height:0.4rem;
-	float:left;
 	line-height:0.4rem;
 	color:#888789;
 	font-size:14px;
@@ -1044,6 +1043,7 @@ a:hover, a:visited, a:link, a:active{
 .painting_more{
 	background:#fff;
 	width:100%;
+	padding-bottom:50px;
 }
 .painting_more>p{
 	height:0.9rem;
@@ -1051,6 +1051,137 @@ a:hover, a:visited, a:link, a:active{
 	line-height:0.4rem;
 	font-size:14px;
 	margin-bottom:0;
+}
+.details_footer{
+	height:50px;
+	padding:0 0.5rem;
+	background:#f9f9fa;
+	position:fixed;
+	bottom:0;
+	width:7.5rem;
+	z-index: 10;
+	border-top:1px solid #d8d8d8;
+}
+.footer_comment{
+	float:left;
+}
+.footer_comment a{
+	display:inline-block;
+	width:100%;
+	height:100%;
+}
+.footer_comment input{
+	float:left;
+	width:2.4rem;
+	height:30px;
+	outline:none;
+	border:2px solid #d3d3d3;
+	border-radius: 2px;
+	margin-top:10px;
+	font-size: 12px;
+	line-height:26px;
+	padding-left:0.1rem;
+	background:none;
+}
+.details_tab{
+	float:right;
+	display:flex;
+	justify-content: space-between;
+	width:3.6rem;
+}
+.footer_commenticon {
+	margin-top:10px;
+	height:30px;
+	width:30px;
+	position: relative;
+}
+.footer_commenticon .icon{
+	float:left;
+	height:30px;
+	width:30px;
+	background:url('../img/comment.png') no-repeat;
+	background-size:25px 25px;
+	background-position: center center;
+}
+.footer_commenticon a{
+	display:inline-block;
+	width:100%;
+	height:100%;
+}
+.footer_commenticon .num{
+	display:inline-block;
+	position: absolute;
+	width:20px;
+	height:20px;
+	bottom:-5px;
+	right:-5px;	
+	border-radius: 100%;
+	border:2px solid #d3d3d3;
+	background:#d0d0d0;
+	line-height:16px;
+	text-align: left;
+	color:#fff;
+	z-index: 2;
+}
+.details_footer .like{
+	position: relative;
+	margin-top:10px;
+	width:30px;
+	height:30px;
+	background:url('../img/like.png') no-repeat;
+	background-size:25px 25px;
+	background-position: center center;
+}
+.details_footer .like .num{
+	display:inline-block;
+	position: absolute;
+	width:20px;
+	height:20px;
+	bottom:-5px;
+	right:-5px;	
+	border-radius: 100%;
+	border:2px solid #d3d3d3;
+	background:#d0d0d0;
+	line-height:16px;
+	text-align: left;
+	color:#fff;
+	z-index: 2;
+}
+.details_footer .share{
+	position: relative;
+	margin-top:10px;	
+}
+.details_footer .share .share_tab{
+	float:left;
+	width:30px;
+	height:30px;
+	background:url('../img/share.png') no-repeat;
+	background-size:25px 25px;
+	background-position: center center;
+}
+.details_footer .share_div{
+	position:absolute;
+	width:7.5rem;
+	height:110px;
+	top:-60px;
+	left:0;
+	z-index: 10;
+	padding:0 0.5rem;
+	background:rgba(153,153,153,1);
+	display:none;
+}
+.details_footer .share_div .tab{
+	width:100%;
+	height:60px;
+	display:flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.details_footer .share_div .del{
+	text-align: center;
+	height:50px;
+	line-height:50px;
+	color:#fff;
 }
 /* 足迹页面 */
 .map{
@@ -1121,7 +1252,8 @@ a:hover, a:visited, a:link, a:active{
 }
 .announce .title,.news .title,.about .title{
 	text-align: center;
-	margin:0.4rem auto;
+	padding:0.4rem 0;
+	margin:0 auto;
 }
 .announce .title img,.news .title img,.about .title img{
 	width:1.84rem;
@@ -1327,6 +1459,10 @@ a:hover, a:visited, a:link, a:active{
 .news_content .content ul,.news_content .content ol{
 	padding-left:0.6rem;
 	margin-bottom:0;
+}
+.news_content .content video{
+	width:7.5rem!important;
+	height:auto!important;
 }
 /* 活动简介页 */
 .introduction .banner1{

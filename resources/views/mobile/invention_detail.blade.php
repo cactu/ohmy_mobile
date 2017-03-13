@@ -1,4 +1,18 @@
 @include('mobile.header')
+<style type="text/css">
+.jiathis_style_32x32 .jtico_qzone{
+	background:url('{{asset('/mobile/img/qzone.png')}}') no-repeat left;
+	background-size:32px 32px;
+}
+.jiathis_style_32x32 .jtico_tsina{
+	background:url('{{asset('/mobile/img/weibo.png')}}') no-repeat left;
+	background-size:32px 32px;
+}
+.jiathis_style_32x32 .jtico_cqq{
+	background:url('{{asset('/mobile/img/qq.png')}}') no-repeat left;
+	background-size:32px 32px;
+}
+</style>
 <div class='wrap1'>
 	<div class='painting'>
 		<img src="{{$urls.$data->thumb}}">
@@ -85,8 +99,38 @@
 			</ul>
 		</div>
 	</div>
-	<div class='painting_footer'>
-		
+	<div class='details_footer clearfix'>
+		<div class='footer_comment clearfix'>
+			<a href="javascript:;">
+				<input type="text" disabled="disabled" placeholder="评论...">				
+			</a>
+		</div>
+		<div class='details_tab'>
+			<div class='footer_commenticon clearfix'>
+				<a href="javascript:;">
+					<span class='icon'></span>
+					<span class='num'>11</span>
+					<!-- <span class='num'>•••</span> -->
+				</a>			
+			</div>
+			<div class='like clearfix'>
+				<span class='num'>•••</span>
+			</div>
+			<div class='share'>
+				<span class='share_tab'></span>
+			</div>
+		</div>
+		<div class='share_div'>
+			<!-- JiaThis Button BEGIN -->
+			<div class="jiathis_style_32x32 tab">
+				<a class="jiathis_button_qzone"></a>
+				<a class="jiathis_button_tsina"></a>
+				<a class="jiathis_button_cqq"></a>
+			</div>
+			<div class='del'><i class='iconfont' style='font-size:24px'>&#xe627;</i></div>
+		</div>			
+		<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+		<!-- JiaThis Button END -->
 	</div>
 </div>
 </div>
