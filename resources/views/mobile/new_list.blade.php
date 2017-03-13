@@ -66,11 +66,8 @@
 						work_cate.append(img2);
 						var where = $('<span>').attr('class','where').html(item.place);
 						var time = $('<span>').attr('class','time').html(item.time);
-
-						var li = $('<li>').attr('class','clearfix').append(img1).append(work_cate).append(where).append(time);
-						li.on(click,function(){
-							window.location.href = 'news-detail/'+item.id;
-						})
+						var news_a = $('<a>').attr('href','news-detail/'+item.id).attr('class','clearfix').append(img1).append(work_cate).append(where).append(time);
+						var li = $('<li>').attr('class','clearfix').append(news_a);
 
 						$('.list .newsList ul').append(li);
 					})
