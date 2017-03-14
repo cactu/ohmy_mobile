@@ -4,7 +4,7 @@
 			<img class='footer_logo1' src="{{asset('/mobile/img/footer_logo1.png')}}">
 			<img class='footer_logo2' src="{{asset('/mobile/img/footer_logo2.png')}}">
 			<div class='tab clearfix'>
-				<a class='choose active' href="javascript:;">移动版</a>|<a class='choose' href="javascript:;">电脑版</a>
+				<a class='choose active' href="javascript:;">移动版</a>|<a class='choose' href="{{$computer}}">电脑版</a>
 			</div>
 		</div>
 		<span>&copy;Copyright 2017 沪ICP备15057410号-4</span>
