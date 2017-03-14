@@ -28,9 +28,8 @@ class HomeController extends Controller
     public function __construct()
     {
         $urls = $this->urls;
-        $host = $_SERVER['HTTP_HOST'];
         $uri = $_SERVER['REQUEST_URI'];
-        $computer = 'http://'.$host.$uri.'?&from=mobile';
+        $computer = 'http://littleinventors.cn'.$uri.'?&from=mobile';
         View::share('urls',$urls);
         View::share('computer',$computer);
     }
