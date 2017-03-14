@@ -28,7 +28,10 @@ class HomeController extends Controller
     public function __construct()
     {
         $urls = $this->urls;
+        $uri = $_SERVER['REQUEST_URI'];
+        $computer = 'http://littleinventors.cn'.$uri.'?&from=mobile';
         View::share('urls',$urls);
+        View::share('computer',$computer);
     }
 
     /**
@@ -404,7 +407,7 @@ class HomeController extends Controller
             $keyword = Request::get('keyword');
             $data['list']  = Work::with('cate')->where('id','like','%'.$keyword.'%')
                 ->orwhere('title','like','%'.$keyword.'%')
-                ->orwhere('author','like','%'.$keyword.'%')->paginate(9);
+                ->orwhere('author','like','%'.$keyword.'%')->take(8)->get();
             foreach($data['list'] as $k=>$v){
                 if($v['deleted_at']){
                     unset($data['list'][$k]);
@@ -412,6 +415,7 @@ class HomeController extends Controller
             }
             $data['keyword'] = $keyword;
         }
+        $data['work'] = Work::take(3)->orderByRaw("RAND()")->get();
         return view('mobile.search',$data);
     }
 

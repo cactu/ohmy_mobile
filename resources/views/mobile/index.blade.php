@@ -22,22 +22,27 @@
 							@endif
 						</div>
 						<div class='title'>{{$v->title}}</div>
-						<div class='name'>{{$v->author}}&nbsp;&nbsp;{{$v->age}}岁</div>
+						<div class='name'>{{$v->author}}&nbsp;&nbsp;
+							@if($v->age == 0)
+								保密
+							@else
+								{{$v->age}}岁
+							@endif
+						</div>
 						<div class='involved clearfix'>
-
 							@if($v->partin->count()==0)
 								<img src="{{asset('/mobile/img/nobody.png')}}">
 								<span class='none'>等待热心设计师加入</span>
 							@else
-								@foreach($v->partin->take(1) as $h)
 								<ul class='clearfix'>
 									<li class='inven'>创意实现:</li>
+									@foreach($v->partin->take(1) as $h)
 									<li class='clearfix'>
 										<img src="{{$urls.$h->user->avatar}}">
 									</li>
+									@endforeach
 									<li class="more">•••</li>
 								</ul>
-								@endforeach
 							@endif
 						</div>
 					</a>
