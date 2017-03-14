@@ -138,6 +138,7 @@
 </div>
 </div>
 <div class='returnTop'></div>
+<input name="user_id" id="user_id" type="hidden" value="{{Session::has('user')?Session::get('user')->id:''}}" />
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{{asset('/mobile/js/common.js')}}"></script>
 </body>

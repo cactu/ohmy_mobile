@@ -26,7 +26,7 @@
 					<!-- <span class='num'>•••</span> -->
 				</a>			
 			</div>
-			<div class='like clearfix'>
+			<div class='like clearfix' data-id=" ">
 			<!-- <span class='num'>•••</span> -->
 				<span class='num'>0</span>
 			</div>
