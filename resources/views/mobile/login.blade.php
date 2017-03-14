@@ -19,9 +19,9 @@
 	<link rel="stylesheet" href="{{asset('/mobile/css/login.css')}}">
 	<script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
     <script>
-    $(document).ready(function(){
+    (function resizeFont(){
         document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+'px';
-    })
+    })();    	    
     </script>
 </head>
 <body>
@@ -135,6 +135,7 @@
 		    $("#login_email").val($.cookie("username"));
 		    //$("#login_password").val($.cookie("password"));
 		    }
+
 		});
 		 
 		    
@@ -157,12 +158,18 @@
 	    $('#login_submit').on('click',function(){
 	        var data = $("#loginForm").serialize();
 	        var url  = "{{url('login-do')}}";
+	        var saveurl = localStorage.getItem('saveurl');
 	        $.post(url,data,function(rs){
 	            if(rs.status==0)
 	            {
 	                $("#login_"+rs.field).parent().find(".error_info").text(rs.info);
 	            }else{
-	                window.location.href ="{{url('index')}}";
+	            	if(saveurl){
+	            		window.location.href = saveurl;
+	            		localStorage.removeItem('saveurl');
+	            	}else{
+	            		 window.location.href ="{{url('index')}}";
+	            	}	               
 	            }
 	        });
 	        Save();

@@ -59,6 +59,16 @@ $(function(){
 		
 	})
 
+	/*登陆后跳回原页面*/
+	var saveurl;
+	$menu.find('.login_btn').on(click,function(){
+		saveurl = window.location.href;
+		localStorage.setItem('saveurl', saveurl);
+	})
+	$('.reply_content .login_text span').on(click,function(){
+		saveurl = window.location.href;
+		localStorage.setItem('saveurl', saveurl);
+	})
 	/*回到顶部*/
 	window.onscroll = function(){
 		var scrollTop = $(this).scrollTop();
@@ -97,5 +107,50 @@ $(function(){
 		$footer.find('.share_div').css({'display':'none'});
 		$('body').css({'overflow-y':'scroll'})
 		e.preventDefault();
+	});
+
+	/*评论页面*/
+	var $reply = $('.reply_content');
+	var $comment = $('.comment_item');
+	$reply.find('textarea').focus(function(){
+		var height = window.innerHeight;
+		$(this).addClass('focus');
+		$(this).siblings('.sub_comment').css({'display':'block'})
+		$reply.siblings('.hide_bg').css({'height':height});
+		$('body').css({'overflow-y':'hidden'})
+	});
+	$comment.find('.reply').on(click,function(){
+		var height = window.innerHeight;
+		$comment.find('form').css({'display':'block'});
+		$comment.parent('ul').siblings('.hide_bg').css({'height':height});
+		$('body').css({'overflow-y':'hidden'})
+	});
+	$('.hide_bg').on(click,function(){
+		$reply.find('textarea').removeClass('focus');
+		$reply.find('textarea').siblings('.sub_comment').css({'display':'none'});
+		$reply.siblings('.hide_bg').css({'height':0});
+		$comment.find('form').css({'display':'none'});
+		$comment.parent('ul').siblings('.hide_bg').css({'height':0});
+		$('body').css({'overflow-y':'auto'});
+	});
+	$reply.find('.sub_comment').on(click,function(){
+		var val = $('.reply_content .text').val();
+		val = val.replace(/(^\s*)|(\s*$)/g, '')
+		if(val != ''){
+			$('#commentForm').submit();
+		}else{
+			return;
+		}
+	});
+	$comment.find('.sub_reply').on(click,function(){
+		var val = $(this).siblings('.text').val();
+		val = val.replace(/(^\s*)|(\s*$)/g, '')
+		if(val != ''){
+			$('#replyForm').submit();
+		}else{
+			return;
+		}
 	})
+	
+	
 })
