@@ -1209,10 +1209,12 @@ a:hover, a:visited, a:link, a:active{
 }
 .map .title{
 	width:3.69rem;
-	height:0.25rem;
-	margin:0.25rem auto;
+	height:0.75rem;
+	padding:0.25rem 0;
 	background:url('../img/map_title.png') no-repeat;
 	background-size:3.69rem 0.25rem;
+	background-position: center center;
+	margin:0 auto;
 }
 .map .map_img{
 	width:6.49rem;
@@ -1476,7 +1478,7 @@ a:hover, a:visited, a:link, a:active{
 	height:auto!important;
 }
 .news_content .content ul,.news_content .content ol{
-	padding-left:0.6rem;
+	padding-left:0.4rem;
 	margin-bottom:0;
 }
 .news_content .content video{
@@ -1486,10 +1488,11 @@ a:hover, a:visited, a:link, a:active{
 /* 活动简介页 */
 .introduction .banner1{
 	width:7.5rem;
-	height:4.53rem;
+	height:4.93rem;
 	background:url('../img/banner1.png') no-repeat;
 	background-size:7.5rem 4.53rem;
-	margin-top:0.4rem;
+	padding-top:0.4rem;
+	background-position: center bottom;
 }
 .introduction .banner2{
 	width:7.5rem;
@@ -1615,6 +1618,7 @@ a:hover, a:visited, a:link, a:active{
 	line-height:24px;
 	padding:3px 0.2rem 3px 0.2rem;
 	font-size:12px;
+	text-align: center;
 }
 .comment .reply_content .login_text a{
 	text-decoration:underline;

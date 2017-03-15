@@ -162,7 +162,7 @@
 	$(document).ready(function(){
 		if(!checklogin()){
 			var id = $(".like").data('id');
-			if(localStorage.getItem('works'+id)){
+			if(localStorage.getItem('work'+id)){
 				$(".like").addClass('active');    	            
 			}
 		}
@@ -191,10 +191,10 @@
             });
 		}else{
         	/*判断如果作品id存在于localstorage中，那么就表示已经点赞了，否则就进入另外一条路径*/
-        	if(localStorage.getItem('works'+id)){
+        	if(localStorage.getItem('work'+id)){
         		return;
         	}else{       		                    
-                localStorage.setItem('works'+id,id);
+                localStorage.setItem('work'+id,id);
         		//如果未点赞，则需要将数据传到后台,
         		$.get(url,{id:id},function(rs){
 	                if(rs.status==1)

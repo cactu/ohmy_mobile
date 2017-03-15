@@ -63,6 +63,7 @@
 <div class='returnTop'></div>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{{asset('/mobile/js/common.js')}}"></script>
+<input name="user_id" id="user_id" type="hidden" value="{{Session::has('user')?Session::get('user')->id:''}}" />
 <script type="text/javascript">
 	//判断移动端还是pc端点击事件
     if ('ontouchstart' in window) {
@@ -83,9 +84,9 @@
 	$('.details_tab .like').on(click,function(){
 			var id     = $(this).data('id');
             var url    = '{{url('savezan')}}';
-
+            //console.log(id)
 		if(checklogin()){
-            
+            //console.log(id)
             $.get(url,{id:id},function(rs){
             	//点赞
                 if(rs.status==1)
@@ -107,12 +108,12 @@
         	/*判断如果作品id存在于localstorage中，那么就表示已经点赞了，否则就进入另外一条路径*/
         	if(localStorage.getItem('news'+id)){
         		return;
-
         	}else{     		                    
                 localStorage.setItem('news'+id,id);
-
+                //console.log(id)
         		//如果未点赞，则需要将数据传到后台,
         		$.get(url,{id:id},function(rs){
+        			//console.log(rs)
 	                if(rs.status==1)
 	                {
 	                    $('.like .num').html(rs.data);
