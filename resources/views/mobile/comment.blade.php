@@ -20,7 +20,9 @@
 					@endif
 					{{$v->contents}}
 				</p>
+				@if(Session::has('user'))
 				<div class='reply clearfix'><i class="iconfont">&#xe618;</i><span>回复</span></div>
+				@endif
 				<form id="replyForm" method="post" action="{{url('comment-save')}}">
 					<textarea autofocus="autofocus" name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
 					<input type="hidden" name="work_id" value="{{$v->work_id}}" />
@@ -31,15 +33,19 @@
 		</li>
 		@endforeach
 	</ul>
+
 	<div class="reply_content">
-		<form id="commentForm" method="post" action="{{url('comment-save')}}">
-			<textarea name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
-			<input type="hidden" name="work_id" value="{{$id}}" />
-			<div class="sub_comment">发送</div>
-		</form>
-		<!-- <div class='login_text'>
-			别默默的看了，快<span><a href="{{url('login')}}">登录</a></span>帮我点评一下吧！
-		</div> -->
+		@if(Session::has('user'))
+			<form id="commentForm" method="post" action="{{url('comment-save')}}">
+				<textarea name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
+				<input type="hidden" name="work_id" value="{{$id}}" />
+				<div class="sub_comment">发送</div>
+			</form>
+		@else
+			<div class='login_text'>
+				别默默的看了，快<span><a href="{{url('login')}}">登录</a></span>帮我点评一下吧！
+			</div>
+		@endif
 	</div>
 </div>
 </div>
