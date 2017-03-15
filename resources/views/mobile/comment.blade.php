@@ -3,71 +3,38 @@
 	<div class='title'>评论</div>	
 	<div class='hide_bg'></div>
 	<ul>
+		@foreach($comments as $v)
 		<li class='comment_item clearfix'>
 			<div class='people clearfix'>
 				<div class="avatar">
 					<!--用户头像，如果没有就设置为默认头像-->
-					<img src="{{asset('/mobile/img/test14.jpg')}}" width="100%">
+					<img src="{{$urls.($v->user->avatar?$v->user->avatar:'/dream/img/avatar.jpg')}}" width="100%">
 				</div>
-				<span class='name'>洋葱zzz</span>
-				<span class='time'>2017年10月13日</span>
+				<span class='name'>{{$v->user->username or ''}}</span>
+				<span class='time'>{{$v->created_at}}</span>
 			</div>
 			<div class='voice'>
-				<p>用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像</p>
+				<p>
+					@if($v->reply)
+						<span>@ {{ $v->reply->username or ''}}：</span>
+					@endif
+					{{$v->contents}}
+				</p>
 				<div class='reply clearfix'><i class="iconfont">&#xe618;</i><span>回复</span></div>
-				<form id="replyForm" method="post" action="">
+				<form id="replyForm" method="post" action="{{url('comment-save')}}">
 					<textarea autofocus="autofocus" name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
-					<input type="hidden" name="work_id" value="" />
-					<input type="hidden" name="_token" value="" />
+					<input type="hidden" name="work_id" value="{{$v->work_id}}" />
+					<input type="hidden" name="pid" value="{{$v->user_id}}" />
 					<div class="sub_reply" id="btnReply">回复</div>
 				</form>
 			</div>
 		</li>
-		<li class='comment_item clearfix'>
-			<div class='people clearfix'>
-				<div class="avatar">
-					<!--用户头像，如果没有就设置为默认头像-->
-					<img src="{{asset('/mobile/img/test14.jpg')}}" width="100%">
-				</div>
-				<span class='name'>洋葱zzz</span>
-				<span class='time'>2017年10月13日</span>
-			</div>
-			<div class='voice'>
-				<p>用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像</p>
-				<div class='reply clearfix'><i class="iconfont">&#xe618;</i><span>回复</span></div>
-				<form id="replyForm" method="post" action="">
-					<textarea autofocus="autofocus" name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
-					<input type="hidden" name="work_id" value="" />
-					<input type="hidden" name="_token" value="" />
-					<div class="sub_reply" id="btnReply">回复</div>
-				</form>
-			</div>
-		</li>
-		<li class='comment_item clearfix'>
-			<div class='people clearfix'>
-				<div class="avatar">
-					<!--用户头像，如果没有就设置为默认头像-->
-					<img src="{{asset('/mobile/img/test14.jpg')}}" width="100%">
-				</div>
-				<span class='name'>洋葱zzz</span>
-				<span class='time'>2017年10月13日</span>
-			</div>
-			<div class='voice'>
-				<p>用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像用户头像，如果没有就设置为默认头像</p>
-				<div class='reply clearfix'><i class="iconfont">&#xe618;</i><span>回复</span></div>
-				<form id="replyForm" method="post" action="">
-					<textarea autofocus="autofocus" name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
-					<input type="hidden" name="work_id" value="" />
-					<input type="hidden" name="_token" value="" />
-					<div class="sub_reply" id="btnReply">回复</div>
-				</form>
-			</div>
-		</li>
+		@endforeach
 	</ul>
 	<div class="reply_content">
-		<form id="commentForm" method="post" action="">
+		<form id="commentForm" method="post" action="{{url('comment-save')}}">
 			<textarea name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
-			<input type="hidden" name="work_id" value="" />
+			<input type="hidden" name="work_id" value="{{$id}}" />
 			<div class="sub_comment">发送</div>
 		</form>
 		<!-- <div class='login_text'>

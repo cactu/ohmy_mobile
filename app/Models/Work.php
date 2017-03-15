@@ -21,4 +21,14 @@ class Work extends Model
         return $this->belongsTo('App\Models\WorkCate','cate_id','id');
     }
 
+    public function comment()
+    {
+        return $this->hasMany('App\Models\Comment','work_id', 'id');
+    }
+
+    public function favorite()
+    {
+        return $this->hasMany('App\Models\Favorite','work_id', 'id');
+    }
+
 }

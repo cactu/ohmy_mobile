@@ -101,7 +101,7 @@
 	</div>
 	<div class='details_footer clearfix'>
 		<div class='footer_comment clearfix'>
-			<a href="{{url('comment')}}">
+			<a href="{{url('comment',$data->id)}}">
 				<input type="text" disabled="disabled" placeholder="评论...">				
 			</a>
 		</div>
@@ -109,13 +109,23 @@
 			<div class='footer_commenticon clearfix'>
 				<a href="{{url('comment')}}">
 					<span class='icon'></span>
-					<span class='num'>11</span>
-					<!-- <span class='num'>•••</span> -->
+					<span class='num'>
+						@if($data->comment->count() > 99)
+							•••
+						@else
+							{{$data->comment->count()}}
+						@endif
+					</span>
 				</a>			
 			</div>
-			<div class='like clearfix' data-id="{{$data->id}}">
-			<!-- <span class='num'>•••</span> -->
-				<span class='num'>0</span>
+			<div class='like clearfix'>
+				<span class='num'>
+					@if($data->likes > 99)
+						•••
+					@else
+						{{$data->likes}}
+					@endif
+				</span>
 			</div>
 			<div class='share'>
 				<span class='share_tab'></span>

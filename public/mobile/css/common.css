@@ -1661,6 +1661,9 @@ a:hover, a:visited, a:link, a:active{
 	font-size:14px;
 	margin-bottom:5px;
 }
+.comment .comment_item .voice p span{
+	color:#888789;
+}
 .comment .comment_item .voice .reply{
 	float:left;
 	height:18px;
