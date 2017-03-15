@@ -101,13 +101,13 @@
         	}else{       		                    
                 localStorage.setItem(id,id);
         		//如果未点赞，则需要将数据传到后台,
-        		/*$.get(url,{id:id},function(rs){
+        		$.get(url,{id:id},function(rs){
 	                if(rs.status==1)
 	                {
 	                    $('.like .num').html(rs.data);
 	                    $(".like").addClass('active');
 	                }
-	            });*/
+	            });
         	}
 		}
 	})

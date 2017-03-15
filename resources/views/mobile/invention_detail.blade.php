@@ -107,7 +107,7 @@
 		</div>
 		<div class='details_tab'>
 			<div class='footer_commenticon clearfix'>
-				<a href="{{url('comment')}}">
+				<a href="{{url('comment',$data->id)}}">
 					<span class='icon'></span>
 					<span class='num'>
 						@if($data->comment->count() > 99)
@@ -118,7 +118,7 @@
 					</span>
 				</a>			
 			</div>
-			<div class='like clearfix'>
+			<div class='like clearfix' data-id="{{$data->id}}">
 				<span class='num'>
 					@if($data->likes > 99)
 						•••
@@ -169,10 +169,9 @@
 	})
 
 	$('.details_tab .like').on(click,function(){
-		if(checklogin()){
-			var id     = $(this).data('id');
-            var url    = '{{url('savezan')}}';
-            
+		var id     = $(this).data('id');
+        var url    = '{{url('savezan')}}';
+		if(checklogin()){			            
             $.get(url,{id:id},function(rs){
             	//点赞
                 if(rs.status==1)
@@ -191,21 +190,19 @@
             	}
             });
 		}else{
-			var id     = $(this).data('id');
-	      	var url    = '{{url('savezan')}}';
         	/*判断如果作品id存在于localstorage中，那么就表示已经点赞了，否则就进入另外一条路径*/
         	if(localStorage.getItem(id)){
         		return;
         	}else{       		                    
                 localStorage.setItem(id,id);
         		//如果未点赞，则需要将数据传到后台,
-        		/*$.get(url,{id:id},function(rs){
+        		$.get(url,{id:id},function(rs){
 	                if(rs.status==1)
 	                {
 	                    $('.like .num').html(rs.data);
 	                    $(".like").addClass('active');
 	                }
-	            });*/
+	            });
         	}
 		}
 	})

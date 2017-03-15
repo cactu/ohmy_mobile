@@ -152,7 +152,7 @@ $(function(){
 		val = val.replace(/(^\s*)|(\s*$)/g, '')
 		var _this = $(this);
 		if(val != ''){
-			$('#replyForm').submit();
+			$(this).parent('#replyForm').submit();
 		}else{
 			return;
 		}
