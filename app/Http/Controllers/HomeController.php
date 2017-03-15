@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\Models\Article;
 use App\Models\ArticlePreview;
+use App\Models\Comment;
 use App\Models\Link;
 use App\Models\LinkCate;
 use App\Models\Partin;
@@ -436,9 +437,28 @@ class HomeController extends Controller
      * 作品详情的评论页面
      * @2017/3/13
      */
-    public function getComment(){
+    public function getComment($id){
+        $data['comments'] = Comment::where(['work_id'=>$id])->orderby('id','desc')->get();
         $data['webTitle'] = '评论-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'idea';
         return view('mobile.comment')->with($data);
+    }
+
+    public function postCommentSave()
+    {
+        if(!Session::get('user'))
+        {
+            return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'请先登录']]);
+        }
+        $data = Request::all();
+        $data['user_id'] = Session::get('user')->id;
+        $flag = Comment::create($data);
+        if($flag)
+        {
+            return redirect()->back();
+        }else
+        {
+            return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'提交失败']]);
+        }
     }
 }
