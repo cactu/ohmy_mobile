@@ -1546,6 +1546,7 @@ a:hover, a:visited, a:link, a:active{
 }
 .searchDiv .search_title span{
 	color:#aaa9aa;
+	margin:0 3px;
 }
 .searchDiv .search_none{
 	font-size:14px;

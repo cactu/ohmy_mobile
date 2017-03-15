@@ -101,3 +101,80 @@
 	@endif
 </div>
 @include('mobile.footer')
+<script type="text/javascript">
+	//判断移动端还是pc端点击事件
+    if ('ontouchstart' in window) {
+        var click = 'touchstart';
+    } else {
+        var click = 'click';
+    }
+
+    var count = 0;
+    var $more = $('.more_inventions span');    
+    $more.on(click,function(){
+    	var keyword = $('.search_title span').html()
+    	
+    	count += 1;
+    	console.log(keyword+' '+count)
+    	$.ajax({
+			type:'post',
+			data:{count:count,keyword:keyword},
+			url:'{{url('much')}}',
+			beforeSend:function(){
+				$more.css({'border':'none'}).empty();
+				$more.html("<img src='{{asset('/mobile/img/loading.gif')}}' style='height:0.5rem;'>");
+			},
+			success:function(rs){
+				console.log(rs);				
+				if(rs.status == 1){
+					$more.css({'border':'1px solid #aaa9aa'}).html('查看更多');
+					$.each(rs.data,function(index,item){
+						var img1 = $('<img>').attr('src',item.urls+item.thumb);
+						var num = $('<span>').attr('class','num').html(item.id);					
+						var img2 = $('<img>').attr('src','{{asset('/mobile/img/recommend.png')}}');
+						var recommend = $('<span>').attr('class','recommend').append(img2);
+						var img_holder = $('<div>').attr('class','img_holder');
+						img_holder.append(img1).append(num).append(recommend);
+
+						var title = $('<div>').attr('class','title').html(item.title);
+
+						var name = $('<div>').attr('class','name');
+						if(item.age == 0){
+							name.html(item.author + '&nbsp;&nbsp;' + '保密')
+						}else{
+							name.html(item.author + '&nbsp;&nbsp;' + item.age + '岁')
+						}
+
+						var involved = $('<div>').attr('class','involved clearfix');
+						if(item.count == 0){
+							var img3 = $('<img>').attr('src','{{asset('/mobile/img/nobody.png')}}');
+							var none = $('<span>').attr('class','none').html('等待热心设计师加入');
+							involved.append(img3).append(none);
+						}else if(item.count > 0){
+							var involved_ul = $('<ul>').attr('class','clearfix')
+							var inven = $('<li>').attr('class','inven').html('创意实现:');
+							involved_ul.append(inven);
+							var img4 = $('<img>').attr('src',item.urls+item.avatar);
+							var avatar = $('<li>').attr('class','clearfix').append(img4);
+							involved_ul.append(avatar);
+							if(item.count > 1){
+								var  more = $('<li>').attr('class','more').html('•••');
+								involved_ul.append(more);
+								involved.append(involved_ul);
+							}else if(item.count == 1){
+								involved.append(involved_ul)
+							}
+						}
+						var work_a = $('<a>').attr('href','invention-detail/'+item.id);
+						work_a.append(img_holder).append(title).append(name).append(involved);
+						var _li = $('<li>').append(work_a);
+						$('.cards_list>ul').append(_li);
+					})
+				}else if(rs.status == 2){
+					$more.css({'display':'none'});
+					return;
+				}
+			}
+		})
+    })
+</script>

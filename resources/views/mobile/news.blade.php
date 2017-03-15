@@ -99,8 +99,9 @@
 			},
 			success:function(rs){
 				//console.log(rs);
-				$more.css({'border':'1px solid #aaa9aa'}).html('查看更多');
+				
 				if(rs.status == 1){
+					$more.css({'border':'1px solid #aaa9aa'}).html('查看更多');
 					$.each(rs.data,function(index,item){
 						//console.log(item.id)
 						var img1 = $('<img>').attr('src',rs.urls+item.pic);
