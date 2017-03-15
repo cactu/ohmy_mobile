@@ -16,7 +16,7 @@
 			<div class='voice'>
 				<p>
 					@if($v->reply)
-						@ {{ $v->reply->username or ''}} :
+						<span>@ {{ $v->reply->username or ''}}：</span>
 					@endif
 					{{$v->contents}}
 				</p>

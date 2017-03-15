@@ -123,8 +123,8 @@ $(function(){
 	/*回复他人评论*/
 	$comment.find('.reply').on(click,function(){
 		var height = window.innerHeight;
-		$comment.find('form').css({'display':'block'});
-		$comment.parent('ul').siblings('.hide_bg').css({'height':height});
+		$(this).siblings('form').css({'display':'block'});
+		$(this).parents('ul').siblings('.hide_bg').css({'height':height});
 		$('body').css({'overflow-y':'hidden'})
 	});
 	/*点击蒙层输入框消失*/
@@ -150,23 +150,13 @@ $(function(){
 	$comment.find('.sub_reply').on(click,function(){
 		var val = $(this).siblings('.text').val();
 		val = val.replace(/(^\s*)|(\s*$)/g, '')
+		var _this = $(this);
 		if(val != ''){
-			$('#replyForm').submit();
+			$(this).parent('#replyForm').submit();
 		}else{
 			return;
 		}
 	})
 	
-	/*点赞*/
 	
-
-
-	/*判断是否登录状态*/
-	function checklogin() {
-		if($("#user_id").val() == '') {
-			return false;
-		} else {
-			return true;
-		}
-	}
 })
