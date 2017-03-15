@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Models\Article;
 use App\Models\ArticlePreview;
 use App\Models\Comment;
+use App\Models\Favorite;
 use App\Models\Link;
 use App\Models\LinkCate;
 use App\Models\Partin;
@@ -445,6 +446,11 @@ class HomeController extends Controller
         return view('mobile.comment')->with($data);
     }
 
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * 评论页面的评论请求
+     * @2017/3/15
+     */
     public function postCommentSave()
     {
         if(!Session::get('user'))
@@ -452,6 +458,7 @@ class HomeController extends Controller
             return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'请先登录']]);
         }
         $data = Request::all();
+        dd($data);
         $data['user_id'] = Session::get('user')->id;
         $flag = Comment::create($data);
         if($flag)
@@ -460,6 +467,50 @@ class HomeController extends Controller
         }else
         {
             return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'提交失败']]);
+        }
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * 作品详情界面点赞的ajax请求
+     * @2017/3/15
+     */
+    public function getSavelike()
+    {
+        if( Session::has('user') && Request::get('id'))
+        {
+            $work_id = Request::get('id');
+            $user_id = Session::get('user')->id;
+            $where = ['work_id'=>$work_id,'user_id'=>$user_id,'type'=>2];
+            $liked = Favorite::where($where)->first();
+            if($liked)
+            {
+                $res = Favorite::destroy($liked->id);
+                if($res){
+                    $work = Work::find($work_id);
+                    $work->likes = $work->likes-1;
+                    if(!$work->save()){
+                        return response()->json(['status'=>'2','msg'=>'点赞数量修改失败','data'=>$work->likes]);
+                    }
+                    return response()->json(['status' => '2','msg'=>'取消点赞成功','data'=>$work->likes]);
+                }
+            }else{
+                $flag = Favorite::create($where);
+                $work = Work::find($work_id);
+                $work->likes = $work->likes+1;
+                if($work->save())
+                {
+                    return response()->json(['status' => '1','data'=>$work->likes]);
+                }
+            }
+        }
+        if(!Session::has('user') && Request::get('id')){
+            $work_id = Request::get('id');
+            $work = Work::find($work_id);
+            $work->likes = $work->likes+1;
+            if($work->save()){
+                return response()->json(['status'=>1,'data'=>$work->likes]);
+            }
         }
     }
 }
