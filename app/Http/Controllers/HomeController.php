@@ -39,6 +39,7 @@ class HomeController extends Controller
         View::share('urls',$urls);
         View::share('computer',$computer);
     }
+
 /***********************************
 * 首页相关
 ***********************************/
@@ -504,7 +505,6 @@ class HomeController extends Controller
         return view('mobile.invention_detail')->with($data);
     }
 
-
     /**
      * @return mixed
      * 小发明详情的评论页面
@@ -618,6 +618,45 @@ class HomeController extends Controller
         }
         $data['work'] = Work::take(3)->orderByRaw("RAND()")->get();
         return view('mobile.search',$data);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * 搜索界面的查看更多ajax接口
+     * @2017/3/15
+     */
+    public function postMuch(){
+        $keyword = Request::get('keyword');
+        $count = Request::get('count');
+        if($keyword == null){
+            return response()->json(['status'=>2,'info'=>'未传入关键字']);
+        }
+        if($count == null){
+            return response()->json(['status'=>2,'info'=>'未传入加载的次数']);
+        }
+        $work = Work::where('id','like','%'.$keyword.'%')
+            ->orwhere('title','like','%'.$keyword.'%')
+            ->orwhere('author','like','%'.$keyword.'%')
+            ->take(8)->offset($count*8)
+            ->get(['id','thumb','isrec','title','author','age']);
+        foreach($work as $k=>$v){
+            if($v['deleted_at']){
+                unset($work[$k]);
+            }
+        }
+        foreach($work as $v){
+            $v->urls = $this->urls;
+            $v->count = $v->partin->count();
+            if($v->partin->count()){
+                $v->avatar = $v->partin->take(1)[0]->user->avatar;
+            }
+        }
+        $work = $work->toArray();
+        if($work){
+            return response()->json(['status'=>1,'info'=>'操作成功','data'=>$work]);
+        }else{
+            return response()->json(['status'=>2,'info'=>'操作失败']);
+        }
     }
 
 /***********************************
