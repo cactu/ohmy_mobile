@@ -115,7 +115,7 @@
     	var keyword = $('.search_title span').html()
     	
     	count += 1;
-    	console.log(keyword+' '+count)
+    	//console.log(keyword+' '+count)
     	$.ajax({
 			type:'post',
 			data:{count:count,keyword:keyword},
