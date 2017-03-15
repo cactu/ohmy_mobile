@@ -26,7 +26,7 @@
 					<!-- <span class='num'>•••</span> -->
 				</a>			
 			</div>
-			<div class='like clearfix' data-id=" ">
+			<div class='like clearfix' data-id="{{$detail->id}}">
 			<!-- <span class='num'>•••</span> -->
 				<span class='num'>0</span>
 			</div>
@@ -53,5 +53,73 @@
 <div class='returnTop'></div>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{{asset('/mobile/js/common.js')}}"></script>
+<script type="text/javascript">
+	//判断移动端还是pc端点击事件
+    if ('ontouchstart' in window) {
+        var click = 'touchstart';
+    } else {
+        var click = 'click';
+    }
+	/*点赞*/
+	$(document).ready(function(){
+		if(!checklogin()){
+			var id = $(".like").data('id');
+			if(localStorage.getItem(id)){
+				$(".like").addClass('active');    	            
+			}
+		}
+	})
+
+	$('.details_tab .like').on(click,function(){
+		if(checklogin()){
+			var id     = $(this).data('id');
+            var url    = '{{url('savezan')}}';
+            
+            $.get(url,{id:id},function(rs){
+            	//点赞
+                if(rs.status==1)
+                {
+                    $('.like .num').html(rs.data);
+                    
+                    $(".like").addClass('active');    
+                
+                //取消点赞
+                }else if(rs.status==2){
+            		
+            		$('.like .num').html(rs.data);
+            		
+                    $(".like").removeClass('active');    
+                    
+            	}
+            });
+		}else{
+			var id     = $(this).data('id');
+	      	var url    = '{{url('savezan')}}';
+        	/*判断如果作品id存在于localstorage中，那么就表示已经点赞了，否则就进入另外一条路径*/
+        	if(localStorage.getItem(id)){
+        		return;
+        	}else{       		                    
+                localStorage.setItem(id,id);
+        		//如果未点赞，则需要将数据传到后台,
+        		/*$.get(url,{id:id},function(rs){
+	                if(rs.status==1)
+	                {
+	                    $('.like .num').html(rs.data);
+	                    $(".like").addClass('active');
+	                }
+	            });*/
+        	}
+		}
+	})
+
+	/*判断是否登录状态*/
+	function checklogin() {
+		if($("#user_id").val() == '') {
+			return false;
+		} else {
+			return true;
+		}
+	}
+</script>
 </body>
 </html>

@@ -68,7 +68,6 @@
 		<form id="commentForm" method="post" action="">
 			<textarea name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
 			<input type="hidden" name="work_id" value="" />
-			<input type="hidden" name="_token" value="" />
 			<div class="sub_comment">发送</div>
 		</form>
 		<!-- <div class='login_text'>
