@@ -439,6 +439,7 @@ class HomeController extends Controller
      */
     public function getComment($id){
         $data['comments'] = Comment::where(['work_id'=>$id])->orderby('id','desc')->get();
+        $data['id'] = $id;
         $data['webTitle'] = '评论-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'idea';
         return view('mobile.comment')->with($data);

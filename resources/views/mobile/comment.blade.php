@@ -34,7 +34,7 @@
 	<div class="reply_content">
 		<form id="commentForm" method="post" action="{{url('comment-save')}}">
 			<textarea name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
-			<input type="hidden" name="work_id" value="{{$v->work_id}}" />
+			<input type="hidden" name="work_id" value="{{$id}}" />
 			<div class="sub_comment">发送</div>
 		</form>
 		<!-- <div class='login_text'>
