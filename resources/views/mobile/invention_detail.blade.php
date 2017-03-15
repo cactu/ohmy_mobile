@@ -170,7 +170,7 @@
 
 	$('.details_tab .like').on(click,function(){
 		var id     = $(this).data('id');
-        var url    = '{{url('savezan')}}';
+        var url    = '{{url('savelike')}}';
 		if(checklogin()){			            
             $.get(url,{id:id},function(rs){
             	//点赞

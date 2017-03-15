@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArticleComment;
+use PhpSpec\Exception\Exception;
 use App\Http\Requests;
 use App\Models\Article;
 use App\Models\ArticlePreview;
+use App\Models\ArticleZan;
 use App\Models\Comment;
 use App\Models\Favorite;
 use App\Models\Link;
@@ -18,6 +21,7 @@ use Validator;
 use View,Hash;
 use Request;
 use Session;
+use DB;
 class HomeController extends Controller
 {
     protected $urls = 'http://littleinventors.cn';
@@ -35,7 +39,9 @@ class HomeController extends Controller
         View::share('urls',$urls);
         View::share('computer',$computer);
     }
-
+/***********************************
+* 首页相关
+***********************************/
     /**
      * @return View
      * 首页
@@ -91,6 +97,32 @@ class HomeController extends Controller
         }
     }
 
+/***********************************
+* 足迹(新闻,文章)相关
+***********************************/
+    /**
+     * @return View
+     * 足迹页面
+     * @2017/3/10
+     */
+    public function getNews()
+    {
+        $data['webTitle'] = '足迹-LI小小发明家-把世界变成你想象的样子';
+        $data['nav'] = 'news';
+
+        //活动预告
+        $data['preview'] = ArticlePreview::next()->orderby('sort','desc')
+            ->orderby('published_at','asc')->get(['pic']);
+        //活动报道
+        $data['report'] = Article::whereIn('cate_id',array(2,3))->orderby('sort','desc')
+            ->orderby('published_at','desc')->take(4)->get(['id','cate_id','pic','place','time']);
+        //活动相关
+        $data['article'] = Article::where('cate_id',1)->orderby('sort','desc')
+            ->orderby('published_at','desc')->take(4)->get(['id','title','pic','created_at']);
+
+        return view('mobile.news',$data);
+    }
+
     /**
      * @return View
      * 新闻列表页
@@ -129,29 +161,6 @@ class HomeController extends Controller
     }
 
     /**
-     * @return View
-     * 足迹页面
-     * @2017/3/10
-     */
-    public function getNews()
-    {
-        $data['webTitle'] = '足迹-LI小小发明家-把世界变成你想象的样子';
-        $data['nav'] = 'news';
-
-        //活动预告
-        $data['preview'] = ArticlePreview::next()->orderby('sort','desc')
-            ->orderby('published_at','asc')->get(['pic']);
-        //活动报道
-        $data['report'] = Article::whereIn('cate_id',array(2,3))->orderby('sort','desc')
-            ->orderby('published_at','desc')->take(4)->get(['id','cate_id','pic','place','time']);
-        //活动相关
-        $data['article'] = Article::where('cate_id',1)->orderby('sort','desc')
-            ->orderby('published_at','desc')->take(4)->get(['id','title','pic','created_at']);
-
-        return view('mobile.news',$data);
-    }
-
-    /**
      * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
      * 足迹页面的活动相关查看更多接口
      * @2017/3/10
@@ -174,14 +183,120 @@ class HomeController extends Controller
         }
     }
 
-    public function getNewsDetail($id = 10)
+    /**
+     * @param int $id
+     * @return View
+     * 文章详情页面
+     * @2017/3/15
+     */
+    public function getNewsDetail($id)
     {
         $data['detail'] = Article::find($id);
         $data['webTitle'] = $data['detail']->title . '-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'news';
+        $data['click'] = false;
+        if(Session::has('user')){
+            $user_id = Session::get('user')->id;
+            $zan = ArticleZan::where(['user_id'=>$user_id,'article_id'=>$id])->first();
+            if($zan){
+                $data['click'] = true;
+            }
+        }
+        $data['comments'] = ArticleComment::where('article_id',$id)
+            ->orderby('id','desc')->get();
         return view('mobile.news_details',$data);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     * 文章详情的评论界面
+     */
+    public function getCommentArticle($id){
+        $data['comments'] = ArticleComment::where(['article_id'=>$id])->orderby('id','desc')->get();
+        $data['id'] = $id;
+        $data['webTitle'] = '评论-LI小小发明家-把世界变成你想象的样子';
+        $data['nav'] = 'idea';
+        return view('mobile.comment_article')->with($data);
+    }
+
+
+    /**
+     * @return \Illuminate\Http\RedirectResponse
+     * 文章详情评论界面的评论请求
+     * @2017/3/15
+     */
+    public function postArticleComment(){
+        if(!Session::has('user')){
+            return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'请先登录']]);
+        }
+        $data = Request::all();
+        $data['user_id'] = Session::get('user')->id;
+
+        DB::beginTransaction();
+        try{
+            ArticleComment::create($data);
+            DB::commit();
+            return redirect()->back();
+        }catch(Exception $e){
+            DB::rollback();
+            return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'评论失败']]);
+        }
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * 文章详情界面的点赞的ajax请求
+     * @2017/3/15
+     */
+    public function getSavezan(){
+        //登录时候的点赞/取消点赞
+        if(Session::has('user') && Request::has('id')){
+            $article_id = Request::get('id');
+            $user_id = Session::get('user')->id;
+            $zan = ArticleZan::where(['user_id'=>$user_id,'article_id'=>$article_id])->first();
+            if($zan){
+                DB::beginTransaction();
+                try{
+                    ArticleZan::destroy($zan->id);
+                    Article::where('id',$article_id)->decrement('zan');
+                    DB::commit();
+                }catch(Exception $e){
+                    DB::rollback();
+                }
+                $num = Article::where('id',$article_id)->first()->zan;
+                return response()->json(['status'=>2,'data'=>$num]);
+            }else{
+                DB::beginTransaction();
+                try{
+                    ArticleZan::create(['user_id'=>$user_id,'article_id'=>$article_id]);
+                    Article::where('id',$article_id)->increment('zan');
+                    DB::commit();
+                }catch(Exception $e){
+                    DB::rollback();
+                }
+                $num = Article::where('id',$article_id)->first()->zan;
+                return response()->json(['status'=>1,'data'=>$num]);
+            }
+        }
+        //未登录时候的点赞
+        if(!Session::has('user') && Request::has('id')){
+            $article_id = Request::get('id');
+            DB::beginTransaction();
+            try{
+                Article::where('id',$article_id)->increment('zan');
+                DB::commit();
+            }catch(Exception $e){
+                DB::rollback();
+            }
+            $num = Article::where('id',$article_id)->first()->zan;
+            return response()->json(['status'=>1,'data'=>$num]);
+        }
+    }
+
+/***********************************
+* 登录,注册相关
+***********************************/
     /**
      * @return View
      * 登录界面
@@ -248,7 +363,6 @@ class HomeController extends Controller
         if($clientCode != $serverCode){
             return response()->json(['field'=>'code','info'=>'验证码不正确','status'=>0]);
         }
-
         $rules =[
             'username'  => 'required|unique:users,username|max:100',
             'email'      => 'required|email|unique:users,email',
@@ -293,6 +407,9 @@ class HomeController extends Controller
         }
     }
 
+/***********************************
+ * 小发明相关
+***********************************/
     /**
      * @return mixed
      * 小发明界面
@@ -363,7 +480,6 @@ class HomeController extends Controller
         }else{
             return response()->json(['status'=>2,'info'=>'操作失败']);
         }
-
     }
 
     /**
@@ -388,54 +504,10 @@ class HomeController extends Controller
         return view('mobile.invention_detail')->with($data);
     }
 
-    /**
-     * @return \Illuminate\Http\RedirectResponse|View
-     * 搜索界面
-     * @2017/3/10
-     */
-    /**
-     * todo
-     */
-    public function getSearch()
-    {
-        if(Request::get('keyword') == null){
-            return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'请输入关键字']]);
-        }
-        $data['nav'] = ' ';
-        $keyword = Request::get('keyword');
-        $data['webTitle'] = '关于'.$keyword.'的搜索-LI小小发明家-把世界变成你想象的样子';
-        if(Request::has('keyword'))
-        {
-            $keyword = Request::get('keyword');
-            $data['list']  = Work::with('cate')->where('id','like','%'.$keyword.'%')
-                ->orwhere('title','like','%'.$keyword.'%')
-                ->orwhere('author','like','%'.$keyword.'%')->take(8)->get();
-            foreach($data['list'] as $k=>$v){
-                if($v['deleted_at']){
-                    unset($data['list'][$k]);
-                }
-            }
-            $data['keyword'] = $keyword;
-        }
-        $data['work'] = Work::take(3)->orderByRaw("RAND()")->get();
-        return view('mobile.search',$data);
-    }
 
     /**
      * @return mixed
-     * 活动简介界面
-     * @2017/3/10
-     */
-    public function getIntroduction()
-    {
-        $data['webTitle'] = '活动简介-LI小小发明家-把世界变成你想象的样子';
-        $data['nav'] = 'active';
-        return view('mobile.introduction')->with($data);
-    }
-
-    /**
-     * @return mixed
-     * 作品详情的评论页面
+     * 小发明详情的评论页面
      * @2017/3/13
      */
     public function getComment($id){
@@ -448,7 +520,7 @@ class HomeController extends Controller
 
     /**
      * @return \Illuminate\Http\RedirectResponse
-     * 评论页面的评论请求
+     * 小发明详情的评论页面的评论请求
      * @2017/3/15
      */
     public function postCommentSave()
@@ -458,7 +530,6 @@ class HomeController extends Controller
             return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'请先登录']]);
         }
         $data = Request::all();
-        dd($data);
         $data['user_id'] = Session::get('user')->id;
         $flag = Comment::create($data);
         if($flag)
@@ -472,11 +543,12 @@ class HomeController extends Controller
 
     /**
      * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
-     * 作品详情界面点赞的ajax请求
+     * 小发明详情界面点赞的ajax请求
      * @2017/3/15
      */
     public function getSavelike()
     {
+        //登录时候的点赞/取消点赞
         if( Session::has('user') && Request::get('id'))
         {
             $work_id = Request::get('id');
@@ -504,6 +576,7 @@ class HomeController extends Controller
                 }
             }
         }
+        //未登录时候的点赞
         if(!Session::has('user') && Request::get('id')){
             $work_id = Request::get('id');
             $work = Work::find($work_id);
@@ -512,5 +585,53 @@ class HomeController extends Controller
                 return response()->json(['status'=>1,'data'=>$work->likes]);
             }
         }
+    }
+
+/***********************************
+ * 搜索相关
+***********************************/
+    /**
+     * @return \Illuminate\Http\RedirectResponse|View
+     * 搜索界面
+     * @2017/3/10
+     */
+    public function getSearch()
+    {
+        if(Request::get('keyword') == null){
+            return redirect()->back()->with(['msg'=>['type'=>'danger','txt'=>'请输入关键字']]);
+        }
+        $data['nav'] = ' ';
+        $keyword = Request::get('keyword');
+        $data['webTitle'] = '关于'.$keyword.'的搜索-LI小小发明家-把世界变成你想象的样子';
+        if(Request::has('keyword'))
+        {
+            $keyword = Request::get('keyword');
+            $data['list']  = Work::with('cate')->where('id','like','%'.$keyword.'%')
+                ->orwhere('title','like','%'.$keyword.'%')
+                ->orwhere('author','like','%'.$keyword.'%')->take(8)->get();
+            foreach($data['list'] as $k=>$v){
+                if($v['deleted_at']){
+                    unset($data['list'][$k]);
+                }
+            }
+            $data['keyword'] = $keyword;
+        }
+        $data['work'] = Work::take(3)->orderByRaw("RAND()")->get();
+        return view('mobile.search',$data);
+    }
+
+/***********************************
+ * 活动简介相关
+***********************************/
+    /**
+     * @return mixed
+     * 活动简介界面
+     * @2017/3/10
+     */
+    public function getIntroduction()
+    {
+        $data['webTitle'] = '活动简介-LI小小发明家-把世界变成你想象的样子';
+        $data['nav'] = 'active';
+        return view('mobile.introduction')->with($data);
     }
 }
