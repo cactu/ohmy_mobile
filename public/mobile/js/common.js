@@ -112,6 +112,7 @@ $(function(){
 	/*评论页面*/
 	var $reply = $('.reply_content');
 	var $comment = $('.comment_item');
+	/*评论功能*/
 	$reply.find('textarea').focus(function(){
 		var height = window.innerHeight;
 		$(this).addClass('focus');
@@ -119,12 +120,14 @@ $(function(){
 		$reply.siblings('.hide_bg').css({'height':height});
 		$('body').css({'overflow-y':'hidden'})
 	});
+	/*回复他人评论*/
 	$comment.find('.reply').on(click,function(){
 		var height = window.innerHeight;
 		$comment.find('form').css({'display':'block'});
 		$comment.parent('ul').siblings('.hide_bg').css({'height':height});
 		$('body').css({'overflow-y':'hidden'})
 	});
+	/*点击蒙层输入框消失*/
 	$('.hide_bg').on(click,function(){
 		$reply.find('textarea').removeClass('focus');
 		$reply.find('textarea').siblings('.sub_comment').css({'display':'none'});
@@ -133,6 +136,7 @@ $(function(){
 		$comment.parent('ul').siblings('.hide_bg').css({'height':0});
 		$('body').css({'overflow-y':'auto'});
 	});
+	/*评论提交*/
 	$reply.find('.sub_comment').on(click,function(){
 		var val = $('.reply_content .text').val();
 		val = val.replace(/(^\s*)|(\s*$)/g, '')
@@ -142,6 +146,7 @@ $(function(){
 			return;
 		}
 	});
+	/*回复提交*/
 	$comment.find('.sub_reply').on(click,function(){
 		var val = $(this).siblings('.text').val();
 		val = val.replace(/(^\s*)|(\s*$)/g, '')
@@ -152,5 +157,16 @@ $(function(){
 		}
 	})
 	
+	/*点赞*/
 	
+
+
+	/*判断是否登录状态*/
+	function checklogin() {
+		if($("#user_id").val() == '') {
+			return false;
+		} else {
+			return true;
+		}
+	}
 })

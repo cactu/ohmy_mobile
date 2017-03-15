@@ -1132,6 +1132,11 @@ a:hover, a:visited, a:link, a:active{
 	background-size:25px 25px;
 	background-position: center center;
 }
+.details_footer .like.active{
+	background:url('../img/liked.png') no-repeat;
+	background-size:25px 25px;
+	background-position: center center;
+}
 .details_footer .like .num{
 	display:inline-block;
 	position: absolute;
@@ -1140,12 +1145,15 @@ a:hover, a:visited, a:link, a:active{
 	bottom:-5px;
 	right:-5px;	
 	border-radius: 100%;
-	border:2px solid #d3d3d3;
+	border:2px solid #f9f9fa;
 	background:#d0d0d0;
 	line-height:16px;
 	text-align: center;
 	color:#fff;
 	z-index: 2;
+}
+.details_footer .like.active .num{
+	background:#e9a81d;
 }
 .details_footer .share{
 	position: relative;
