@@ -21,6 +21,7 @@ use Validator;
 use View,Hash;
 use Request;
 use Session;
+use Cookie;
 use DB;
 class HomeController extends Controller
 {
