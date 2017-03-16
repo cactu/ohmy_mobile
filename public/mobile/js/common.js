@@ -69,7 +69,7 @@ $(function(){
 	$('.reply_content .login_text span').on(click,function(){
 		saveurl = window.location.href.split('littleinventors.cn');
 		saveurl = saveurl[1];
-		console.log(saveurl);
+		//console.log(saveurl);
 		$.cookie('saveurl', saveurl, { expires: 7, path: '/',raw: true });
 	})
 	/*回到顶部*/
@@ -133,9 +133,11 @@ $(function(){
 	/*点击蒙层输入框消失*/
 	$('.hide_bg').on(click,function(){
 		$reply.find('textarea').removeClass('focus');
+		$reply.find('textarea').blur();
 		$reply.find('textarea').siblings('.sub_comment').css({'display':'none'});
 		$reply.siblings('.hide_bg').css({'height':0});
 		$comment.find('form').css({'display':'none'});
+		$comment.find('form').find('textarea').blur();
 		$comment.parent('ul').siblings('.hide_bg').css({'height':0});
 		$('body').css({'overflow-y':'auto'});
 	});
