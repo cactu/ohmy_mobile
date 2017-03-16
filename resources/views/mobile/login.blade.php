@@ -108,8 +108,8 @@
 <script type="text/javascript">
 	$(function(){
 
-		if ('ontouchstart' in window) {
-	        var click = 'touchstart';
+		if ('ontouchend' in window) {
+	        var click = 'touchend';
 	    } else {
 	        var click = 'click';
 	    }

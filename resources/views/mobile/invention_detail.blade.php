@@ -153,8 +153,8 @@
 <script type="text/javascript" src="{{asset('/mobile/js/common.js')}}"></script>
 <script type="text/javascript">
 	//判断移动端还是pc端点击事件
-    if ('ontouchstart' in window) {
-        var click = 'touchstart';
+    if ('ontouchend' in window) {
+        var click = 'touchend';
     } else {
         var click = 'click';
     }

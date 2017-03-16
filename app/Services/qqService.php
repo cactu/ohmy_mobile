@@ -41,7 +41,7 @@ class qqService {
      * 注意需要将url进行URLEncode
      * @var string
      */
-    protected $redirect_uri = 'http://littleinventors.cn';
+    protected $redirect_uri = 'http://littleinventors.cn/invention-detail/926';
 
     /**
      * client端的状态值.用于第三方应用防止CSRF攻击,成功授权后回调时会原样带回

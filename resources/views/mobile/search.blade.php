@@ -103,8 +103,8 @@
 @include('mobile.footer')
 <script type="text/javascript">
 	//判断移动端还是pc端点击事件
-    if ('ontouchstart' in window) {
-        var click = 'touchstart';
+    if ('ontouchend' in window) {
+        var click = 'touchend';
     } else {
         var click = 'click';
     }
@@ -125,7 +125,7 @@
 				$more.html("<img src='{{asset('/mobile/img/loading.gif')}}' style='height:0.5rem;'>");
 			},
 			success:function(rs){
-				console.log(rs);				
+				//console.log(rs);				
 				if(rs.status == 1){
 					$more.css({'border':'1px solid #aaa9aa'}).html('查看更多');
 					$.each(rs.data,function(index,item){
