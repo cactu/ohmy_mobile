@@ -34,15 +34,16 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $hostory = $_COOKIE['saveurl'];
-        //qq第三方登录
-        $q = new qqService($hostory);
-        $q->autoLogin();
+        if(isset($_COOKIE['saveurl'])){
+            $hostory = $_COOKIE['saveurl'];
+            //qq第三方登录
+            $q = new qqService($hostory);
+            $q->autoLogin();
 
-        //微博第三方登录
-        $o = new weboService($hostory);
-        $o->autoLogin();
-
+            //微博第三方登录
+            $o = new weboService($hostory);
+            $o->autoLogin();
+        }
         $urls = $this->urls;
         $uri = $_SERVER['REQUEST_URI'];
         $computer = 'http://littleinventors.cn'.$uri.'?&from=mobile';
@@ -317,7 +318,10 @@ class HomeController extends Controller
     {
         $data['webTitle']    = '用户登录-LI小小发明家-把世界变成你想象的样子';
 
-        $hostory = $_COOKIE['saveurl'];
+        $hostory = '';
+        if(isset($_COOKIE['saveurl'])){
+            $hostory = $_COOKIE['saveurl'];
+        }
         
         $webo = new weboService($hostory);
         $webo_url = $webo->getAuthorizeURL();
