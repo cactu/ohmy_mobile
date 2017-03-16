@@ -66,8 +66,8 @@
 <input name="user_id" id="user_id" type="hidden" value="{{Session::has('user')?Session::get('user')->id:''}}" />
 <script type="text/javascript">
 	//判断移动端还是pc端点击事件
-    if ('ontouchstart' in window) {
-        var click = 'touchstart';
+    if ('ontouchend' in window) {
+        var click = 'touchend';
     } else {
         var click = 'click';
     }

@@ -98,11 +98,11 @@
 	})
 
 	/*查看更多*/
-	if ('ontouchstart' in window) {
-	    var click = 'touchstart';
-	} else {
-	    var click = 'click';
-	}
+	if ('ontouchend' in window) {
+        var click = 'touchend';
+    } else {
+        var click = 'click';
+    }
 	var $more = $('.more_inventions');
 	var $cate = $('.cate');
 	var plan_count = 0;

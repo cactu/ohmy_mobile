@@ -43,7 +43,7 @@
 			</form>
 		@else
 			<div class='login_text'>
-				别默默的看了，快<span><a href="{{url('login')}}">登录</a></span>帮我点评一下吧！
+				别默默的看了，快<span><a href="javascript:;">登录</a></span>帮我点评一下吧！
 			</div>
 		@endif
 	</div>

@@ -1,7 +1,7 @@
 $(function(){
 	//判断移动端还是pc端点击事件
-    if ('ontouchstart' in window) {
-        var click = 'touchstart';
+    if ('ontouchend' in window) {
+        var click = 'touchend';
     } else {
         var click = 'click';
     }
@@ -62,11 +62,14 @@ $(function(){
 	/*登陆后跳回原页面*/
 	var saveurl;
 	$menu.find('.login_btn').on(click,function(){
-		saveurl = window.location.href;
+		saveurl = window.location.href.split('littleinventors.cn');
+		saveurl = saveurl[1];
 		localStorage.setItem('saveurl', saveurl);
 	})
 	$('.reply_content .login_text span').on(click,function(){
-		saveurl = window.location.href;
+		saveurl = window.location.href.split('littleinventors.cn');
+		saveurl = saveurl[1];
+		//console.log(saveurl);
 		localStorage.setItem('saveurl', saveurl);
 	})
 	/*回到顶部*/

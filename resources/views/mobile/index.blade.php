@@ -132,11 +132,11 @@
 @include('mobile.footer')
 <script type="text/javascript">
 
-if ('ontouchstart' in window) {
-    var click = 'touchstart';
-} else {
-    var click = 'click';
-}
+	if ('ontouchend' in window) {
+        var click = 'touchend';
+    } else {
+        var click = 'click';
+    }
 
 $('.featured .other').on(click,function(){
 	//console.log(111)
