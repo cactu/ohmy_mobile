@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{asset('/mobile/css/common.css')}}"> 	
 	    
     <script type="text/javascript" src="//cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jquery-cookie/1.0/jquery.cookie.min.js"></script>
     <script type="text/javascript">
     (function resizeFont(){
         document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+'px';

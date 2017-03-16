@@ -64,13 +64,13 @@ $(function(){
 	$menu.find('.login_btn').on(click,function(){
 		saveurl = window.location.href.split('littleinventors.cn');
 		saveurl = saveurl[1];
-		sessionStorage.setItem('saveurl', saveurl);
+		$.cookie('saveurl', saveurl, { expires: 7, path: '/',raw: true });
 	})
 	$('.reply_content .login_text span').on(click,function(){
 		saveurl = window.location.href.split('littleinventors.cn');
 		saveurl = saveurl[1];
-		//console.log(saveurl);
-		sessionStorage.setItem('saveurl', saveurl);
+		console.log(saveurl);
+		$.cookie('saveurl', saveurl, { expires: 7, path: '/',raw: true });
 	})
 	/*回到顶部*/
 	window.onscroll = function(){

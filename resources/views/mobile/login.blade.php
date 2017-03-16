@@ -158,7 +158,7 @@
 	    $('#login_submit').on('click',function(){
 	        var data = $("#loginForm").serialize();
 	        var url  = "{{url('login-do')}}";
-	        var saveurl = sessionStorage.getItem('saveurl');
+	        var saveurl = $.cookie('saveurl');
 	        $.post(url,data,function(rs){
 	            if(rs.status==0)
 	            {
@@ -166,7 +166,7 @@
 	            }else{
 	            	if(saveurl){
 	            		window.location.href = 'http://mobile.littleinventors.cn'+saveurl;
-	            		sessionStorage.removeItem('saveurl');
+	            		$.cookie('saveurl', '', { expires: -1});
 	            	}else{
 	            		 window.location.href ="{{url('index')}}";
 	            	}	               
