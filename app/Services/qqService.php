@@ -67,6 +67,15 @@ class qqService {
     protected $grant_type = 'authorization_code';
 
     /**
+     * 改变成功授权后的回调地址,变成跳转到登录页面之前的网页
+     * qqService constructor.
+     * @param string $url
+     */
+    public function __construct($url = ''){
+        $this->redirect_uri = 'http://littleinventors.cn'.$url;
+    }
+
+    /**
      * Authorization Code请求的接口(不包含参数)
      * @return string
      */
