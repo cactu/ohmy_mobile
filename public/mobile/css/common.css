@@ -1009,6 +1009,7 @@ a:hover, a:visited, a:link, a:active{
 	line-height:0.4rem;
 	color:#888789;
 	font-size:14px;
+	float: left;
 }
 .painting_join p{
 	float:right;
