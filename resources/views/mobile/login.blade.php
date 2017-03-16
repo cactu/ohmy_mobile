@@ -158,15 +158,15 @@
 	    $('#login_submit').on('click',function(){
 	        var data = $("#loginForm").serialize();
 	        var url  = "{{url('login-do')}}";
-	        var saveurl = localStorage.getItem('saveurl');
+	        var saveurl = sessionStorage.getItem('saveurl');
 	        $.post(url,data,function(rs){
 	            if(rs.status==0)
 	            {
 	                $("#login_"+rs.field).parent().find(".error_info").text(rs.info);
 	            }else{
 	            	if(saveurl){
-	            		window.location.href = saveurl;
-	            		localStorage.removeItem('saveurl');
+	            		window.location.href = 'http://mobile.littleinventors.cn'+saveurl;
+	            		sessionStorage.removeItem('saveurl');
 	            	}else{
 	            		 window.location.href ="{{url('index')}}";
 	            	}	               

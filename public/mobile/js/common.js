@@ -64,13 +64,13 @@ $(function(){
 	$menu.find('.login_btn').on(click,function(){
 		saveurl = window.location.href.split('littleinventors.cn');
 		saveurl = saveurl[1];
-		localStorage.setItem('saveurl', saveurl);
+		sessionStorage.setItem('saveurl', saveurl);
 	})
 	$('.reply_content .login_text span').on(click,function(){
 		saveurl = window.location.href.split('littleinventors.cn');
 		saveurl = saveurl[1];
 		//console.log(saveurl);
-		localStorage.setItem('saveurl', saveurl);
+		sessionStorage.setItem('saveurl', saveurl);
 	})
 	/*回到顶部*/
 	window.onscroll = function(){
