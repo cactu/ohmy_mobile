@@ -306,13 +306,14 @@ class HomeController extends Controller
      */
     public function getLogin()
     {
+        $url = $_COOKIE['saveurl'];
         $data['webTitle']    = '用户登录-LI小小发明家-把世界变成你想象的样子';
 
-        $webo = new weboService();
+        $webo = new weboService($url);
         $webo_url = $webo->getAuthorizeURL();
         $data['webo_url'] = $webo_url;
 
-        $qq = new qqService();
+        $qq = new qqService($url);
         $qq_url = $qq->getAuthorizeURL();
         $data['qq_url'] = $qq_url;
 

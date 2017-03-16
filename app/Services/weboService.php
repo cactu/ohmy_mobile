@@ -49,6 +49,15 @@ class weboService {
     protected $grant_type = 'authorization_code';
 
     /**
+     * 改变成功授权后的回调地址,变成跳转到登录页面之前的网页
+     * qqService constructor.
+     * @param string $url
+     */
+    public function __construct($url = ''){
+        $this->redirect_uri = 'http://littleinventors.cn'.$url;
+    }
+
+    /**
      * Authorization Code请求的接口(不包含参数)
      * @return string
      */
@@ -151,7 +160,7 @@ class weboService {
     }
 
     /**
-     * 根据腾讯返回的用户信息去相应的创建用户
+     * 根据微博返回的用户信息去相应的创建用户
      * @param $obj
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
