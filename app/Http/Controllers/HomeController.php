@@ -45,9 +45,10 @@ class HomeController extends Controller
             $o->autoLogin();
         }
         $urls = $this->urls;
+        View::share('urls',$urls);
+
         $uri = $_SERVER['REQUEST_URI'];
         $computer = 'http://littleinventors.cn'.$uri.'?&from=mobile';
-        View::share('urls',$urls);
         View::share('computer',$computer);
     }
 
@@ -322,7 +323,7 @@ class HomeController extends Controller
         if(isset($_COOKIE['saveurl'])){
             $hostory = $_COOKIE['saveurl'];
         }
-        
+
         $webo = new weboService($hostory);
         $webo_url = $webo->getAuthorizeURL();
         $data['webo_url'] = $webo_url;

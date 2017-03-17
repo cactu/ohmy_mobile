@@ -24,7 +24,7 @@
                         <div class='reply clearfix'><i class="iconfont">&#xe618;</i><span>回复</span></div>
                     @endif
                     <form id="replyForm" method="post" action="{{url('article-comment')}}">
-                        <textarea autofocus="autofocus" name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
+                        <textarea autofocus="autofocus" name="contents" style="resize:none;" placeholder="@ {{$v->user->username}}:" class="text"></textarea>
                         <input type="hidden" name="article_id" value="{{$v->article_id}}" />
                         <input type="hidden" name="pid" value="{{$v->user_id}}" />
                         <div class="sub_reply" id="btnReply">回复</div>
@@ -33,7 +33,12 @@
             </li>
         @endforeach
     </ul>
-
+    @if($comments->count() == 0)
+        <div class='comment_less'>
+            <img src="{{asset('/mobile/img/comment_less.png')}}">
+            <span>还没评论，快来说两句!</span>
+        </div>
+    @endif
     <div class="reply_content">
         @if(Session::has('user'))
             <form id="commentForm" method="post" action="{{url('article-comment')}}">
