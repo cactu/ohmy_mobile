@@ -102,7 +102,7 @@
 	<div class='details_footer clearfix'>
 		<div class='footer_comment clearfix'>
 			<a href="{{url('comment',$data->id)}}">
-				<input type="text" disabled="disabled" placeholder="评论...">				
+				<input type="text" disabled="disabled" placeholder="快来评论两句吧!">				
 			</a>
 		</div>
 		<div class='details_tab'>

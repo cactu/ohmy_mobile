@@ -1061,8 +1061,8 @@ a:hover, a:visited, a:link, a:active{
 	bottom:0;
 	width:7.5rem;
 	z-index: 10;
-	border-top:1px solid #d8d8d8;
-}
+	box-shadow: 0 -1px 1px rgba(135,135,135,0.5);
+} 
 .footer_comment{
 	float:left;
 }
@@ -1073,22 +1073,22 @@ a:hover, a:visited, a:link, a:active{
 }
 .footer_comment input{
 	float:left;
-	width:2.4rem;
+	width:3.2rem;
 	height:30px;
 	outline:none;
-	border:2px solid #d3d3d3;
-	border-radius: 2px;
+	background: #ececec;
+	border-radius: 15px;
 	margin-top:10px;
 	font-size: 12px;
-	line-height:26px;
-	padding-left:0.1rem;
-	background:none;
+	line-height:30px;
+	padding-left:0.3rem;
+	border:none;
 }
 .details_tab{
 	float:right;
 	display:flex;
 	justify-content: space-between;
-	width:3.6rem;
+	width:3rem;
 }
 .footer_commenticon {
 	margin-top:10px;
@@ -1112,13 +1112,13 @@ a:hover, a:visited, a:link, a:active{
 .footer_commenticon .num{
 	display:inline-block;
 	position: absolute;
-	width:20px;
+	width:30px;
 	height:20px;
 	bottom:-5px;
-	right:-5px;	
-	border-radius: 100%;
-	border:2px solid #d3d3d3;
-	background:#d0d0d0;
+	right:-15px;	
+	border-radius: 10px;
+	border:2px solid #f9f9fa;
+	background:#f8c013;
 	line-height:16px;
 	text-align: center;
 	color:#fff;
@@ -1141,20 +1141,17 @@ a:hover, a:visited, a:link, a:active{
 .details_footer .like .num{
 	display:inline-block;
 	position: absolute;
-	width:20px;
+	width:30px;
 	height:20px;
 	bottom:-5px;
-	right:-5px;	
-	border-radius: 100%;
+	right:-15px;	
+	border-radius: 10px;
 	border:2px solid #f9f9fa;
-	background:#d0d0d0;
+	background:#f8c013;
 	line-height:16px;
 	text-align: center;
 	color:#fff;
 	z-index: 2;
-}
-.details_footer .like.active .num{
-	background:#e9a81d;
 }
 .details_footer .share{
 	position: relative;
@@ -1564,16 +1561,28 @@ a:hover, a:visited, a:link, a:active{
 	line-height:20px;
 	color:#323232;
 	letter-spacing: 5px;
-	border-bottom:1px solid #d8d8d8;
+	font-weight: bold;
 }
 .comment .reply_content{
 	position: fixed;
 	bottom:0;
 	width:100%;
 	padding:5px 0.3rem;
-	border-top:1px solid #d8d8d8;
+	box-shadow: 0 -1px 1px rgba(135,135,135,0.5);
 	background:#fff;
 	z-index: 29;
+}
+.comment .comment_less{
+	width:100%;
+	text-align: center;
+}
+.comment .comment_less img{
+	width:1.55rem;
+}
+.comment .comment_less span{
+	display:inline-block;
+	width:100%;
+	margin-top:20px;
 }
 .comment .reply_content textarea{
 	width:100%;
@@ -1584,25 +1593,26 @@ a:hover, a:visited, a:link, a:active{
 	outline: none;
 	border-radius: 15px;
 	overflow-y: hidden;
-	border:1px solid #d8d8d8;
+	border:none;
+	background:#ededed;
 	float:left;
 }
 .comment .reply_content .sub_comment{
-	width:40px;
-	height:20px;
-	line-height:20px;
+	width:50px;
+	height:24px;
+	line-height:24px;
 	float:right;
 	margin-top:0.2rem;
-	background:#e9a81d;
+	background:#f8c013;
 	color:#fff;
 	text-align: center;
 	font-size: 12px;
-	letter-spacing: 0.05rem;
 	display:none;
+	margin-bottom:0.2rem;
 }
 .comment .hide_bg{
 	width:7.5rem;
-	background:rgba(0,0,0,0.6);
+	background:rgba(0,0,0,0.2);
 	height:0;
 	position:fixed;
 	left:0;
@@ -1614,6 +1624,8 @@ a:hover, a:visited, a:link, a:active{
 	border-radius: 0;
 	padding:3px 0.2rem 3px 0.2rem;
 	overflow-y:scroll;
+	border:1px solid #d8d8d8;
+	background:#fff;
 }
 .comment .reply_content .login_text{
 	height:30px;
@@ -1716,7 +1728,7 @@ a:hover, a:visited, a:link, a:active{
 	color:#fff;
 	text-align: center;
 	font-size: 12px;
-	letter-spacing: 0.05rem;
+	margin-bottom:0.2rem;
 }
 @media (min-device-width:320px) and (max-device-width:374px){   
 	.menu {
