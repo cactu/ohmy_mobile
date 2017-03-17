@@ -51,8 +51,14 @@
             <img src="{{asset('/mobile/img/nav_logo.png')}}" alt='Little Inventors'>
             @if(Session::has('user'))
                 <div class='avatar'>
-                    <div class='pic'><img src="{{$urls.(Session::get('user')->avatar?Session::get('user')->avatar:'/dream/img/avatar.jpg')}}"></div>
-                    <div class='name'>{{Session::get('user')->username}}</div>
+                    <div class='pic'>
+                        @if($users->webo || $users->qq)
+                            <img src="{{$users->avatar}}">
+                        @else
+                            <img src="{{$urls.($users->avatar?$users->avatar:'/dream/img/avatar.jpg')}}">
+                        @endif
+                    </div>
+                    <div class='name'>{{$users->username}}</div>
                 </div>
             @else                
                 <div class='login_btn'>

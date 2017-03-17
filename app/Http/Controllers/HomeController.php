@@ -50,6 +50,11 @@ class HomeController extends Controller
         $uri = $_SERVER['REQUEST_URI'];
         $computer = 'http://littleinventors.cn'.$uri.'?&from=mobile';
         View::share('computer',$computer);
+
+        if(Session::has('user')){
+            $users = Session::get('user');
+            View::share('users',$users);
+        }
     }
 
 /***********************************
