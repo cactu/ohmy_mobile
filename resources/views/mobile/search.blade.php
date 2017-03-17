@@ -100,6 +100,7 @@
 	</div>
 	@endif
 </div>
+<div class='returnTop'></div>
 @include('mobile.footer')
 <script type="text/javascript">
 	//判断移动端还是pc端点击事件

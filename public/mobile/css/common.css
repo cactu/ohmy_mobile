@@ -1537,7 +1537,7 @@ a:hover, a:visited, a:link, a:active{
 }
 /* 搜索页面 */
 .searchDiv .search_title {
-	margin:0.4rem auto;
+	padding:0.4rem 0;
 	text-align: center;
 	font-size:16px;
 	line-height:20px;	
