@@ -33,6 +33,9 @@ a:hover, a:visited, a:link, a:active{
 .hide{
 	display:none;
 }
+input{
+	-webkit-appearance: none;
+}
 @font-face {
   font-family: 'iconfont';  /* project id 135369 */
   src: url('//at.alicdn.com/t/font_ilnvhmxf3c70hpvi.eot');
@@ -1568,7 +1571,7 @@ a:hover, a:visited, a:link, a:active{
 	bottom:0;
 	width:100%;
 	padding:5px 0.3rem;
-	box-shadow: 0 -1px 1px rgba(135,135,135,0.5);
+	box-shadow: 0 -1px 1px rgba(135,135,135,0.3);
 	background:#fff;
 	z-index: 29;
 }
