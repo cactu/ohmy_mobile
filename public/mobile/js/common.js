@@ -118,11 +118,21 @@ $(function(){
 	/*评论功能*/
 	$reply.find('textarea').focus(function(){
 		var height = window.innerHeight;
+		
 		$(this).addClass('focus');
-		$(this).siblings('.sub_comment').css({'display':'block'})
+		$(this).siblings('.sub_comment').css({'display':'block'});
 		$reply.siblings('.hide_bg').css({'height':height});
 		$('body').css({'overflow-y':'hidden'})
 	});
+	$reply.find('textarea').on('input',function(){
+		var val = $(this).val();
+		//console.log(1111)
+		if(val != ''){
+			$(this).siblings('.sub_comment').css({'background':'#e9a81d'});
+		}else{
+			$(this).siblings('.sub_comment').css({'background':'#888789'});
+		}		
+	})
 	/*回复他人评论*/
 	$comment.find('.reply').on(click,function(){
 		var height = window.innerHeight;
@@ -130,6 +140,15 @@ $(function(){
 		$(this).parents('ul').siblings('.hide_bg').css({'height':height});
 		$('body').css({'overflow-y':'hidden'})
 	});
+	$comment.find('.voice textarea').on('input',function(){
+		var val = $(this).val();
+		//console.log(1111)
+		if(val != ''){
+			$(this).siblings('.sub_reply').css({'background':'#e9a81d'});
+		}else{
+			$(this).siblings('.sub_reply').css({'background':'#888789'});
+		}		
+	})
 	/*点击蒙层输入框消失*/
 	$('.hide_bg').on(click,function(){
 		$reply.find('textarea').removeClass('focus');
