@@ -33,11 +33,14 @@
 		</li>
 		@endforeach
 	</ul>
-
+	<div class='comment_less'>
+		<img src="{{asset('/mobile/img/comment_less.png')}}">
+		<span>还没评论，快来说两句!</span>
+	</div>
 	<div class="reply_content">
 		@if(Session::has('user'))
 			<form id="commentForm" method="post" action="{{url('comment-save')}}">
-				<textarea name="contents" style="resize:none;" placeholder="写评论" class="text"></textarea>
+				<textarea name="contents" style="resize:none;" placeholder="快来评论两句吧!" class="text"></textarea>
 				<input type="hidden" name="work_id" value="{{$id}}" />
 				<div class="sub_comment">发送</div>
 			</form>
