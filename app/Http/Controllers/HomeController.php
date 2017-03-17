@@ -25,7 +25,7 @@ use Cookie;
 use DB;
 class HomeController extends Controller
 {
-    protected $urls = 'http://littleinventors.cn';
+    protected $urls = 'http://littleinventors.cn/';
 
     /**
      * HomeController constructor.
