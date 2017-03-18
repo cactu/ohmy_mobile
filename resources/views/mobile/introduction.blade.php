@@ -9,5 +9,5 @@
 		<a href="{{url('inventions')}}">立即查看</a>
 	</div>
 </div>
-<div class='returnTop'></div>
+<!-- <div class='returnTop'></div> -->
 @include('mobile.footer')

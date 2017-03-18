@@ -96,7 +96,7 @@ $(function(){
 	         window.scrollTo (0,currentScroll - (currentScroll/5));  
 	    }  
 	}
-
+	
 	/*详情页分享*/
 	var $footer = $('.details_footer');
 	$footer.find('.share').on(click,function(e){
