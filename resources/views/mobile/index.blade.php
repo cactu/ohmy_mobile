@@ -126,7 +126,7 @@
 			</ul>
 		</div>
 	</div>
-<div class='returnTop'></div>
+<!-- <div class='returnTop'></div> -->
 <script type="text/javascript" src="{{asset('/mobile/js/jquery.als-1.7.min.js')}}"></script>
 <script type="text/javascript" src="{{asset('/mobile/js/index.js')}}"></script>
 @include('mobile.footer')

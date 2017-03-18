@@ -80,7 +80,7 @@
 		<span>查看更多</span>
 	</div>
 </div>
-<div class='returnTop'></div>
+<!-- <div class='returnTop'></div> -->
 @include('mobile.footer')
 <script type="text/javascript" src="//cdn.bootcss.com/Swiper/3.1.2/js/swiper.min.js"></script>
 <script>

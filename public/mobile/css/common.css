@@ -377,11 +377,11 @@ input{
 	line-height:24px;
 	font-size:12px;
 	margin-left:0.22rem;
-	margin-right:0.22rem;
-	color:#a6a6a6;
+	margin-right:0.22rem;	
+	color:#6f6f6f;
 }
 .footer .tab a.active{
-	color:#6f6f6f;
+	color:#a6a6a6;
 }
 .footer .tab a:last-child{
 	margin-right:0;

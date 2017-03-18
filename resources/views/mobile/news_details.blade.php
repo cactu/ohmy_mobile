@@ -1,4 +1,18 @@
 @include('mobile.header')
+<style type="text/css">
+.jiathis_style_32x32 .jtico_qzone{
+	background:url('{{asset('/mobile/img/qzone.png')}}') no-repeat left;
+	background-size:32px 32px;
+}
+.jiathis_style_32x32 .jtico_tsina{
+	background:url('{{asset('/mobile/img/weibo.png')}}') no-repeat left;
+	background-size:32px 32px;
+}
+.jiathis_style_32x32 .jtico_cqq{
+	background:url('{{asset('/mobile/img/qq.png')}}') no-repeat left;
+	background-size:32px 32px;
+}
+</style>
 <div class='wrap1'>
 	<div class='news_banner'>
 		<img src="{{$urls.$detail->banner}}">
@@ -60,7 +74,7 @@
 	</div>
 </div>
 </div>
-<div class='returnTop'></div>
+<!-- <div class='returnTop'></div> -->
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="{{asset('/mobile/js/common.js')}}"></script>
 <input name="user_id" id="user_id" type="hidden" value="{{Session::has('user')?Session::get('user')->id:''}}" />

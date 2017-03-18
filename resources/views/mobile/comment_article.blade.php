@@ -1,5 +1,5 @@
 @include('mobile.header')
-<div class='wrap1 comment'>
+<div class='wrap comment'>
     <div class='title'>评论</div>
     <div class='hide_bg'></div>
     <ul>

@@ -74,7 +74,7 @@
 		</div>
 	</div>
 </div>
-<div class='returnTop'></div>
+<!-- <div class='returnTop'></div> -->
 @include('mobile.footer')
 <script type="text/javascript">
 	/*活动相关查看更多*/

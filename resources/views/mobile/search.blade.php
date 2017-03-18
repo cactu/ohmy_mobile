@@ -1,5 +1,5 @@
 @include('mobile.header')
-<div class='wrap1 searchDiv'>
+<div class='wrap searchDiv'>
 	<p class='search_title'>关于“<span>{{$keyword}}</span>”的搜索结果</p>
 	@if($list->count() > 0)
 	<div class='cards_list'>
@@ -103,7 +103,7 @@
 	</div>
 	@endif
 </div>
-<div class='returnTop'></div>
+<!-- <div class='returnTop'></div> -->
 @include('mobile.footer')
 <script type="text/javascript">
 	//判断移动端还是pc端点击事件
@@ -112,7 +112,16 @@
     } else {
         var click = 'click';
     }
-
+    $(document).ready(function(){    	
+    	var height = window.innerHeight;
+    	var body_height = $('.bodybg').height();    	
+    	var wrap_height = height -100;
+    	console.log(wrap_height)
+    	if(body_height < height){
+    		$('.bodybg').css({'height':height});
+    		$('.wrap').css({'height':wrap_height})
+    	}    	
+    })
     var count = 0;
     var $more = $('.more_inventions span');    
     $more.on(click,function(){

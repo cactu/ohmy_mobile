@@ -29,7 +29,7 @@
 		</div>
 	</div>
 </div>
-<div class='returnTop'></div>
+<!-- <div class='returnTop'></div> -->
 @include('mobile.footer')
 <script type="text/javascript">
 	/*活动报道查看更多*/
