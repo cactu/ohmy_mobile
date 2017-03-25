@@ -210,6 +210,9 @@ class HomeController extends Controller
     public function getNewsDetail($id)
     {
         $data['detail'] = Article::find($id);
+        if($data['detail'] == null){
+            abort(404);
+        }
         $data['webTitle'] = $data['detail']->title . '-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'news';
         $data['click'] = false;
@@ -513,8 +516,11 @@ class HomeController extends Controller
      */
     public function getInventionDetail($id)
     {
-        $data['nav'] = 'idea';
         $detail = Work::with('cate')->find($id);
+        if($detail == null){
+            abort(404);
+        }
+        $data['nav'] = 'idea';
         $data['webTitle'] = $detail->title.'-LI小小发明家-把世界变成你想象的样子';
         $data['data'] = $detail;
         //创意征集
