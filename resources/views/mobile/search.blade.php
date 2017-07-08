@@ -45,6 +45,9 @@
 			@endforeach
 		</ul>
 	</div>
+	@endif
+
+	@if($num > 8)
 	<div class='more_inventions'>
 		<span>查看更多</span>
 	</div>

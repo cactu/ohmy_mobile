@@ -628,9 +628,11 @@ class HomeController extends Controller
         if(Request::has('keyword'))
         {
             $keyword = Request::get('keyword');
-            $data['list']  = Work::with('cate')->where('id','like','%'.$keyword.'%')
+            $list  = Work::with('cate')->where('id','like','%'.$keyword.'%')
                 ->orwhere('title','like','%'.$keyword.'%')
-                ->orwhere('author','like','%'.$keyword.'%')->take(8)->get();
+                ->orwhere('author','like','%'.$keyword.'%');
+            $data['num'] = $list->get(['id'])->count();
+            $data['list'] = $list->take(8)->get();
             foreach($data['list'] as $k=>$v){
                 if($v['deleted_at']){
                     unset($data['list'][$k]);
