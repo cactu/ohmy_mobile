@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArticleCate;
 use App\Models\ArticleComment;
 use PhpSpec\Exception\Exception;
 use App\Http\Requests;
@@ -132,10 +133,12 @@ class HomeController extends Controller
         $data['preview'] = ArticlePreview::next()->orderby('sort','desc')
             ->orderby('published_at','asc')->get(['pic']);
         //活动报道
-        $data['report'] = Article::whereIn('cate_id',array(2,3))->orderby('sort','desc')
+        $status = ArticleCate::where('status',1)->lists('id');
+        $data['report'] = Article::whereIn('cate_id',$status)->orderby('sort','desc')
             ->orderby('published_at','desc')->take(4)->get(['id','cate_id','pic','place','time']);
         //活动相关
-        $data['article'] = Article::where('cate_id',1)->orderby('sort','desc')
+        $statu = ArticleCate::where('status',0)->lists('id');
+        $data['article'] = Article::whereIn('cate_id',$statu)->orderby('sort','desc')
             ->orderby('published_at','desc')->take(4)->get(['id','title','pic','created_at']);
 
         return view('mobile.news',$data);
@@ -149,7 +152,8 @@ class HomeController extends Controller
     public function getNewList(){
         $data['webTitle'] = '新闻列表-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'news';
-        $data['article'] = Article::whereIn('cate_id',array(2,3))->orderby('sort','desc')
+        $status = ArticleCate::where('status',1)->lists('id');
+        $data['article'] = Article::whereIn('cate_id',$status)->orderby('sort','desc')
             ->orderby('published_at','desc')->take(8)->get(['id','cate_id','pic','place','time']);
         return view('mobile.new_list',$data);
 
@@ -165,7 +169,8 @@ class HomeController extends Controller
         if($num == null){
             return response()->json(['status'=>2,'info'=>'未传入加载的次数']);
         }
-        $article = Article::whereIn('cate_id',array(2,3))
+        $status = ArticleCate::where('status',1)->lists('id');
+        $article = Article::whereIn('cate_id',$status)
             ->orderby('sort','desc')
             ->orderby('published_at','desc')
             ->take(8)->offset($num*8)
@@ -188,7 +193,8 @@ class HomeController extends Controller
         if($num == null){
             return response()->json(['status'=>2,'info'=>'未传入加载的次数']);
         }
-        $article = Article::where('cate_id',1)
+        $status = ArticleCate::where('status',0)->lists('id');
+        $article = Article::whereIn('cate_id',$status)
             ->orderby('sort','desc')
             ->orderby('published_at','desc')
             ->take(4)->offset($num*4)
