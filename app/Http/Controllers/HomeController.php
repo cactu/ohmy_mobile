@@ -709,4 +709,99 @@ class HomeController extends Controller
         $data['nav'] = 'active';
         return view('mobile.introduction')->with($data);
     }
+
+/***********************************
+ * 手机验证码相关
+***********************************/
+    /**
+     * @param null $phoneNumber
+     * @param null $code
+     * 手机验证码的发送
+     * @2017-7-24
+     */
+    public function send($phoneNumber = null,$code = null)
+    {
+        $accessKeyId = "LTAItuIHJ4E0mhTf";
+        $accessKeySecret = "8pyeXSlFUQV5he7F9AbY6Vyww6UtcE";
+        $sms = new SmsController($accessKeyId,$accessKeySecret);
+        $signName = '小小发明家';
+        $templateCode = 'SMS_78760151';
+        $phoneNumbers = $phoneNumber;
+        $acsResponse = $sms->sendSms(
+            $signName,
+            $templateCode,
+            $phoneNumbers,
+            // 短信模板中字段的值
+            Array(
+                "code"=>$code,
+            )
+        );
+        // 打印请求结果
+        //dd($acsResponse);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * 手机验证码发送接口
+     * @2017-7-25
+     */
+    public function getSendSms()
+    {
+        if(Request::has('phone')){
+            $phone = Request::get('phone');
+            if(Session::has($phone)){
+                $info = Session::get($phone);
+                $result = $info['time']-time();
+                if($result < 60){
+                    return response()->json(['status'=>2,'info'=>'一分钟内不能重复发送短信']);
+                }
+                $info['time'] = time();
+                $info['code'] = $this->code();
+                $this->send($info['phone'],$info['code']);
+                Session::put($phone,$info);
+                return response()->json(['status'=>1,'info'=>'发送成功']);
+            }else{
+                $info['phone'] = $phone;
+                $info['time'] = time();
+                $info['code'] = $this->code();
+                $this->send($info['phone'],$info['code']);
+                Session::put($phone,$info);
+                return response()->json(['status'=>1,'info'=>'发送成功']);
+            }
+        }else{
+            return response()->json(['status'=>2,'info'=>'未传入手机号码']);
+        }
+    }
+
+    /**
+     * @return string
+     * 随机产生六位数的验证码
+     * @2017-7-25
+     */
+    public function code()
+    {
+        $randStr = str_shuffle('123456789012345678901234567890123456789012345678901234567890');
+        $num = mt_rand(0,53);
+        $code = substr($randStr,$num,6);
+        return $code;
+    }
+
+/***********************************
+ * H5签到页面
+***********************************/
+    /**
+     * @return View
+     * 手机签到页面
+     * @2017-7-25
+     */
+    public function getSign()
+    {
+        return view('mobile.sign');
+    }
+
+    public function getSignSave()
+    {
+
+    }
+
 }
