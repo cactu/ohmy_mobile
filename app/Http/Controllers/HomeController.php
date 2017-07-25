@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ArticleCate;
 use App\Models\ArticleComment;
 use PhpSpec\Exception\Exception;
 use App\Http\Requests;
@@ -132,10 +133,12 @@ class HomeController extends Controller
         $data['preview'] = ArticlePreview::next()->orderby('sort','desc')
             ->orderby('published_at','asc')->get(['pic']);
         //活动报道
-        $data['report'] = Article::whereIn('cate_id',array(2,3))->orderby('sort','desc')
+        $status = ArticleCate::where('status',1)->lists('id');
+        $data['report'] = Article::whereIn('cate_id',$status)->orderby('sort','desc')
             ->orderby('published_at','desc')->take(4)->get(['id','cate_id','pic','place','time']);
         //活动相关
-        $data['article'] = Article::where('cate_id',1)->orderby('sort','desc')
+        $statu = ArticleCate::where('status',0)->lists('id');
+        $data['article'] = Article::whereIn('cate_id',$statu)->orderby('sort','desc')
             ->orderby('published_at','desc')->take(4)->get(['id','title','pic','created_at']);
 
         return view('mobile.news',$data);
@@ -149,7 +152,8 @@ class HomeController extends Controller
     public function getNewList(){
         $data['webTitle'] = '新闻列表-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'news';
-        $data['article'] = Article::whereIn('cate_id',array(2,3))->orderby('sort','desc')
+        $status = ArticleCate::where('status',1)->lists('id');
+        $data['article'] = Article::whereIn('cate_id',$status)->orderby('sort','desc')
             ->orderby('published_at','desc')->take(8)->get(['id','cate_id','pic','place','time']);
         return view('mobile.new_list',$data);
 
@@ -165,7 +169,8 @@ class HomeController extends Controller
         if($num == null){
             return response()->json(['status'=>2,'info'=>'未传入加载的次数']);
         }
-        $article = Article::whereIn('cate_id',array(2,3))
+        $status = ArticleCate::where('status',1)->lists('id');
+        $article = Article::whereIn('cate_id',$status)
             ->orderby('sort','desc')
             ->orderby('published_at','desc')
             ->take(8)->offset($num*8)
@@ -188,7 +193,8 @@ class HomeController extends Controller
         if($num == null){
             return response()->json(['status'=>2,'info'=>'未传入加载的次数']);
         }
-        $article = Article::where('cate_id',1)
+        $status = ArticleCate::where('status',0)->lists('id');
+        $article = Article::whereIn('cate_id',$status)
             ->orderby('sort','desc')
             ->orderby('published_at','desc')
             ->take(4)->offset($num*4)
@@ -210,6 +216,9 @@ class HomeController extends Controller
     public function getNewsDetail($id)
     {
         $data['detail'] = Article::find($id);
+        if($data['detail'] == null){
+            abort(404);
+        }
         $data['webTitle'] = $data['detail']->title . '-LI小小发明家-把世界变成你想象的样子';
         $data['nav'] = 'news';
         $data['click'] = false;
@@ -513,8 +522,11 @@ class HomeController extends Controller
      */
     public function getInventionDetail($id)
     {
-        $data['nav'] = 'idea';
         $detail = Work::with('cate')->find($id);
+        if($detail == null){
+            abort(404);
+        }
+        $data['nav'] = 'idea';
         $data['webTitle'] = $detail->title.'-LI小小发明家-把世界变成你想象的样子';
         $data['data'] = $detail;
         //创意征集
@@ -697,4 +709,99 @@ class HomeController extends Controller
         $data['nav'] = 'active';
         return view('mobile.introduction')->with($data);
     }
+
+/***********************************
+ * 手机验证码相关
+***********************************/
+    /**
+     * @param null $phoneNumber
+     * @param null $code
+     * 手机验证码的发送
+     * @2017-7-24
+     */
+    public function send($phoneNumber = null,$code = null)
+    {
+        $accessKeyId = "LTAItuIHJ4E0mhTf";
+        $accessKeySecret = "8pyeXSlFUQV5he7F9AbY6Vyww6UtcE";
+        $sms = new SmsController($accessKeyId,$accessKeySecret);
+        $signName = '小小发明家';
+        $templateCode = 'SMS_78760151';
+        $phoneNumbers = $phoneNumber;
+        $acsResponse = $sms->sendSms(
+            $signName,
+            $templateCode,
+            $phoneNumbers,
+            // 短信模板中字段的值
+            Array(
+                "code"=>$code,
+            )
+        );
+        // 打印请求结果
+        //dd($acsResponse);
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * 手机验证码发送接口
+     * @2017-7-25
+     */
+    public function getSendSms()
+    {
+        if(Request::has('phone')){
+            $phone = Request::get('phone');
+            if(Session::has($phone)){
+                $info = Session::get($phone);
+                $result = $info['time']-time();
+                if($result < 60){
+                    return response()->json(['status'=>2,'info'=>'一分钟内不能重复发送短信']);
+                }
+                $info['time'] = time();
+                $info['code'] = $this->code();
+                $this->send($info['phone'],$info['code']);
+                Session::put($phone,$info);
+                return response()->json(['status'=>1,'info'=>'发送成功']);
+            }else{
+                $info['phone'] = $phone;
+                $info['time'] = time();
+                $info['code'] = $this->code();
+                $this->send($info['phone'],$info['code']);
+                Session::put($phone,$info);
+                return response()->json(['status'=>1,'info'=>'发送成功']);
+            }
+        }else{
+            return response()->json(['status'=>2,'info'=>'未传入手机号码']);
+        }
+    }
+
+    /**
+     * @return string
+     * 随机产生六位数的验证码
+     * @2017-7-25
+     */
+    public function code()
+    {
+        $randStr = str_shuffle('123456789012345678901234567890123456789012345678901234567890');
+        $num = mt_rand(0,53);
+        $code = substr($randStr,$num,6);
+        return $code;
+    }
+
+/***********************************
+ * H5签到页面
+***********************************/
+    /**
+     * @return View
+     * 手机签到页面
+     * @2017-7-25
+     */
+    public function getSign()
+    {
+        return view('mobile.sign');
+    }
+
+    public function getSignSave()
+    {
+
+    }
+
 }
