@@ -843,7 +843,7 @@ class HomeController extends Controller
             $errors = $v->getMessageBag()->toArray();
             foreach ($errors as $k => $v)
             {
-                $error = ['info' => $v[0],'status'=>2];
+                $error = ['field' => $k, 'info' => $v[0],'status'=>2];
             }
             return response()->json($error);
         }
