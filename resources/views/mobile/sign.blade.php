@@ -17,14 +17,14 @@
 <body>
 	<div class='wrap'>
         <form id='qrForm'>
-            <div>
+            <div id='sign_name'>
                 <div class='input_group name'>
                     <span class='title'>小朋友姓名：</span>
                     <input type="text" name="name">
                 </div>                
                 <div class='error'></div>
             </div>
-            <div>
+            <div id='sign_age'>
                 <div class='input_group'>
                     <div class='age'>
                         <p class='title'>年龄：</p>
@@ -39,14 +39,14 @@
                 </div>
                 <div class='error'></div>
             </div>
-            <div>
+            <div id='sign_phone'>
                 <div class='input_group phone'>
                     <p class='title'>手机：</p>
                     <input type="tel" name="phone">
                 </div>
                 <div class='error'></div>
             </div>
-            <div>
+            <div id='sign_check'>
                 <div class=' check'>
                     <p class='title'>验证码：</p>
                     <input type="text" name="check">

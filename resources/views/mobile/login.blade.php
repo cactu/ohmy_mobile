@@ -200,9 +200,10 @@
 	        var data = $("#regForm").serialize();
 	        var url  = "{{url('reg-save')}}";
 	        $.post(url,data,function(rs){
+	        	//console.info(rs);
 	            if(rs.status==0)
 	            {
-	                //console.info(rs);
+	                
 	                if(rs.field == 'code'){
 	                    $("#register_"+rs.field).parent().parent().find(".error_info").text(rs.info);
 	                }else{

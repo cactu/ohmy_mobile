@@ -58,14 +58,11 @@ $(function(){
 
     //签到提交
     $('#qrSubmit').on(click,function(){
-    	console.log(11)
-    	//var data = $("#qrForm").serialize();
+    	//console.log(11)
+    	var data = $("#qrForm").serialize();
     	var url = "http://localhost/ohmy_mobile/public/sign-save";
-    	var _token = '{{ csrf_token() }}';
-    	$.post(url, {
-			//data: data,
-			_token: _token
-		}, function(rs) {
+    	//var _token = '{{ csrf_token() }}';
+    	$.post(url,data, function(rs) {
 			console.log(rs)				
 		})
     })
