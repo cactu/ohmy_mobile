@@ -753,17 +753,19 @@ class HomeController extends Controller
             if(!preg_match('/^1\d{10}$/',$phone)){
                 return response()->json(['status'=>2,'info'=>'您输入的不是手机号码']);
             }
-            if(Session::has($phone)){
-                $info = Session::get($phone);
+            if(Session::has('sms')){
+                $info = Session::get('sms');
                 $result = time()-$info['limit_time'];
-                if($result < 60){
+                $tel = $info['phone'];
+                if($tel == $phone && $result < 60){
                     return response()->json(['status'=>2,'info'=>'一分钟内不能重复发送短信']);
                 }
+                $info['phone'] = $phone;
                 $info['limit_time'] = time();
                 $info['over_time'] = time()+60*10;
                 $info['code'] = $this->code();
                 $this->send($info['phone'],$info['code']);
-                Session::put($phone,$info);
+                Session::put('sms',$info);
                 return response()->json(['status'=>1,'info'=>'发送成功']);
             }else{
                 $info['phone'] = $phone;
@@ -771,7 +773,7 @@ class HomeController extends Controller
                 $info['over_time'] = time()+60*10;
                 $info['code'] = $this->code();
                 $this->send($info['phone'],$info['code']);
-                Session::put($phone,$info);
+                Session::put('sms',$info);
                 return response()->json(['status'=>1,'info'=>'发送成功']);
             }
         }else{
@@ -848,8 +850,12 @@ class HomeController extends Controller
             return response()->json($error);
         }
 
-        if(Session::has($data['phone'])){
-            $info = Session::get($data['phone']);
+        if(Session::has('sms')){
+            $info = Session::get('sms');
+            if($info['phone'] != $data['phone']){
+                return response()->json(['field'=>'check','status'=>2,'info'=>'该手机号码没有发送验证码']);
+            }
+
             if($data['check'] != $info['code']){
                 return response()->json(['field'=>'check','status'=>2,'info'=>'您输入的验证码不正确']);
             }
@@ -860,6 +866,7 @@ class HomeController extends Controller
             return response()->json(['field'=>'check','status'=>2,'info'=>'该手机号码没有发送验证码']);
         }
         $data['tel'] = $data['phone'];
+        unset($data['phone']);
         unset($data['check']);
         $res = Sign::create($data);
         if($res){
