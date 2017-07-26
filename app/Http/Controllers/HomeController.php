@@ -870,6 +870,7 @@ class HomeController extends Controller
         unset($data['check']);
         $res = Sign::create($data);
         if($res){
+            Session::forget('sms');
             return response()->json(['status'=>1,'info'=>'签到成功']);
         }else{
             return response()->json(['status'=>2,'info'=>'签到失败']);
