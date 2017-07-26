@@ -49,7 +49,7 @@
             <div id='sign_check'>
                 <div class=' check'>
                     <p class='title'>验证码：</p>
-                    <input type="text" name="check">
+                    <input type="tel" name="check">
                     <div>
                         <input type="button" name="send" class='send' value='发送验证码'>
                         <div class='door'></div>
