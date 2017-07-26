@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ArticleCate;
 use App\Models\ArticleComment;
+use App\Models\Sign;
 use PhpSpec\Exception\Exception;
 use App\Http\Requests;
 use App\Models\Article;
@@ -725,7 +726,7 @@ class HomeController extends Controller
         $accessKeySecret = "8pyeXSlFUQV5he7F9AbY6Vyww6UtcE";
         $sms = new SmsController($accessKeyId,$accessKeySecret);
         $signName = '小小发明家';
-        $templateCode = 'SMS_78760151';
+        $templateCode = 'SMS_78685161';
         $phoneNumbers = $phoneNumber;
         $acsResponse = $sms->sendSms(
             $signName,
@@ -745,24 +746,29 @@ class HomeController extends Controller
      * 手机验证码发送接口
      * @2017-7-25
      */
-    public function getSendSms()
+    public function postSendSms()
     {
         if(Request::has('phone')){
             $phone = Request::get('phone');
+            if(!preg_match('/^1\d{10}$/',$phone)){
+                return response()->json(['status'=>2,'info'=>'您输入的不是手机号码']);
+            }
             if(Session::has($phone)){
                 $info = Session::get($phone);
-                $result = $info['time']-time();
+                $result = time()-$info['limit_time'];
                 if($result < 60){
                     return response()->json(['status'=>2,'info'=>'一分钟内不能重复发送短信']);
                 }
-                $info['time'] = time();
+                $info['limit_time'] = time();
+                $info['over_time'] = time()+60*10;
                 $info['code'] = $this->code();
                 $this->send($info['phone'],$info['code']);
                 Session::put($phone,$info);
                 return response()->json(['status'=>1,'info'=>'发送成功']);
             }else{
                 $info['phone'] = $phone;
-                $info['time'] = time();
+                $info['limit_time'] = time();
+                $info['over_time'] = time()+60*10;
                 $info['code'] = $this->code();
                 $this->send($info['phone'],$info['code']);
                 Session::put($phone,$info);
@@ -799,8 +805,32 @@ class HomeController extends Controller
         return view('mobile.sign');
     }
 
-    public function getSignSave()
+    public function getSignEnd(){
+        return view('mobile.sign_end');
+    }
+
+    public function postSignSave()
     {
+        $data = Request::except('_token','check');
+        $code = Request::get('check');
+        if(Session::has($data['phone'])){
+            $info = Session::get($data['phone']);
+            if($code != $info['code']){
+                return response()->json(['status'=>2,'info'=>'您输入的验证码不正确']);
+            }
+            if(time()>$info['over_time']){
+                return response()->json(['status'=>2,'info'=>'您输入的验证码已过有效期']);
+            }
+        }else{
+            return response()->json(['status'=>2,'info'=>'该手机号码没有发送验证码']);
+        }
+        $data['tel'] = $data['phone'];
+        $res = Sign::create($data);
+        if($res){
+            return response()->json(['status'=>1,'info'=>'签到成功']);
+        }else{
+            return response()->json(['status'=>2,'info'=>'签到失败']);
+        }
 
     }
 
