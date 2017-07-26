@@ -67,6 +67,6 @@
     
 </body>
 <script type="text/javascript" src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
-<script type="text/javascript" src="{{asset('/mobile/css/qrCode.js')}}"></script>
+<script type="text/javascript" src="{{asset('/mobile/js/qrCode.js')}}"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </html>
