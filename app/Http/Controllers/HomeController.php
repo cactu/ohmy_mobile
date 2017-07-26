@@ -805,17 +805,52 @@ class HomeController extends Controller
         return view('mobile.sign');
     }
 
+    /**
+     * @return View
+     * 手机签到成功页面
+     * @2017-7-26
+     */
     public function getSignEnd(){
         return view('mobile.sign_end');
     }
 
+    /**
+     * @return \Illuminate\Http\JsonResponse|\Symfony\Component\HttpFoundation\Response
+     * 手机签到提交操作
+     * @2017-7-26
+     */
     public function postSignSave()
     {
-        $data = Request::except('_token','check');
-        $code = Request::get('check');
+        $data = Request::except('_token');
+        $rules =[
+            'name'      => 'required|max:100',
+            'age'       => 'required',
+            'sex'       => 'required',
+            'phone'     => 'required',
+            'check'     => 'required',
+        ];
+        $msg = [
+            'name.required'     =>'请输入姓名',
+            'name.max'	        =>'姓名过长',
+            'age.required'      =>'请输入年龄',
+            'sex.required'	    =>'请输入性别',
+            'phone.required'	=>'请输入手机号码',
+            'check.required'	=>'请输入验证码',
+        ];
+        $v = Validator::make($data, $rules, $msg);
+        if ($v->fails())
+        {
+            $errors = $v->getMessageBag()->toArray();
+            foreach ($errors as $k => $v)
+            {
+                $error = ['info' => $v[0],'status'=>2];
+            }
+            return response()->json($error);
+        }
+
         if(Session::has($data['phone'])){
             $info = Session::get($data['phone']);
-            if($code != $info['code']){
+            if($data['check'] != $info['code']){
                 return response()->json(['status'=>2,'info'=>'您输入的验证码不正确']);
             }
             if(time()>$info['over_time']){
@@ -825,13 +860,13 @@ class HomeController extends Controller
             return response()->json(['status'=>2,'info'=>'该手机号码没有发送验证码']);
         }
         $data['tel'] = $data['phone'];
+        unset($data['check']);
         $res = Sign::create($data);
         if($res){
             return response()->json(['status'=>1,'info'=>'签到成功']);
         }else{
             return response()->json(['status'=>2,'info'=>'签到失败']);
         }
-
     }
 
 }
