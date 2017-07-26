@@ -19,7 +19,7 @@ $(function(){
 		//console.log(1)
 		if(reg.test(num)){
 			var id = num;
-			var url = "http://localhost/ohmy_mobile/public/send-sms";
+			var url = "http://m.littleinventors.cn/send-sms";
 			var _token = '{{ csrf_token() }}';
 			$.post(url, {
 				phone: id,
@@ -60,10 +60,18 @@ $(function(){
     $('#qrSubmit').on(click,function(){
     	//console.log(11)
     	var data = $("#qrForm").serialize();
-    	var url = "http://localhost/ohmy_mobile/public/sign-save";
+    	var url = "http://m.littleinventors.cn/sign-save";
     	//var _token = '{{ csrf_token() }}';
     	$.post(url,data, function(rs) {
-			console.log(rs)				
+			console.log(rs);
+			if(rs.status == 2){
+				$("#sign_"+rs.field).find(".error").text(rs.info);
+				setTimeout(function(){
+					$("#sign_"+rs.field).find(".error").text('')
+				},3000)
+			}else if(rs.status == 1){
+				window.location.href ="http://m.littleinventors.cn/sign-end";
+			}				
 		})
     })
 })
