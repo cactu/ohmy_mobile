@@ -851,13 +851,13 @@ class HomeController extends Controller
         if(Session::has($data['phone'])){
             $info = Session::get($data['phone']);
             if($data['check'] != $info['code']){
-                return response()->json(['status'=>2,'info'=>'您输入的验证码不正确']);
+                return response()->json(['field'=>'check','status'=>2,'info'=>'您输入的验证码不正确']);
             }
             if(time()>$info['over_time']){
-                return response()->json(['status'=>2,'info'=>'您输入的验证码已过有效期']);
+                return response()->json(['field'=>'check','status'=>2,'info'=>'您输入的验证码已过有效期']);
             }
         }else{
-            return response()->json(['status'=>2,'info'=>'该手机号码没有发送验证码']);
+            return response()->json(['field'=>'check','status'=>2,'info'=>'该手机号码没有发送验证码']);
         }
         $data['tel'] = $data['phone'];
         unset($data['check']);
