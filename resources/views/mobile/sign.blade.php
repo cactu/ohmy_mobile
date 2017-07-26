@@ -59,8 +59,9 @@
                 <div class='error'></div>
             </div>            
             <div class='submit'>
-                <input id='qrSubmit' type="image" src="{{asset('/mobile/img/qr_send.png')}}" alt="Submit"/>
+                <img src="{{asset('/mobile/img/qr_send.png')}}" id="qrSubmit"/>
             </div>
+            <input type="hidden" name="_token" value="{{csrf_token()}}" />
         </form>
     </div>
 
@@ -69,4 +70,7 @@
 <script type="text/javascript" src="//cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <script type="text/javascript" src="{{asset('/mobile/js/qrCode.js')}}"></script>
 <script src="//cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    
+</script>
 </html>

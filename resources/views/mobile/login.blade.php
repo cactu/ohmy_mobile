@@ -160,6 +160,7 @@
 	        var url  = "{{url('login-do')}}";
 	        var saveurl = $.cookie('saveurl');
 	        $.post(url,data,function(rs){
+	        	//console.log(rs)
 	            if(rs.status==0)
 	            {
 	                $("#login_"+rs.field).parent().find(".error_info").text(rs.info);
@@ -201,7 +202,7 @@
 	        $.post(url,data,function(rs){
 	            if(rs.status==0)
 	            {
-	                console.info(rs);
+	                //console.info(rs);
 	                if(rs.field == 'code'){
 	                    $("#register_"+rs.field).parent().parent().find(".error_info").text(rs.info);
 	                }else{

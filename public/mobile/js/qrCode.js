@@ -15,10 +15,19 @@ $(function(){
 	
 	$qrForm.find('.send').on(click,function(){
 		var num = $qrForm.find('.phone input').val();
+		var _this = this;
 		//console.log(1)
 		if(reg.test(num)){
-			//console.log('ok')
-			time(this);
+			var id = num;
+			var url = "http://localhost/ohmy_mobile/public/send-sms";
+			var _token = '{{ csrf_token() }}';
+			$.post(url, {
+				phone: id,
+				_token: _token
+			}, function(rs) {
+				//console.log(rs)				
+			})
+			time(_this);
 		}else{
 			$qrForm.find('.phone').next('.error').text('请输入有效手机号码;');
 			setTimeout(clearError,3000);
@@ -49,6 +58,15 @@ $(function(){
 
     //签到提交
     $('#qrSubmit').on(click,function(){
-    	var data = $("#qrForm").serialize();
+    	console.log(11)
+    	//var data = $("#qrForm").serialize();
+    	var url = "http://localhost/ohmy_mobile/public/sign-save";
+    	var _token = '{{ csrf_token() }}';
+    	$.post(url, {
+			//data: data,
+			_token: _token
+		}, function(rs) {
+			console.log(rs)				
+		})
     })
 })

@@ -155,9 +155,9 @@ a:hover, a:visited, a:link, a:active{
 	margin-bottom:0;
 	margin-top:0;
 }
-.submit input{
+.submit img{
 	width:1.8rem;
-	outline: none;
+	
 }
 @media (max-device-width:320px){
 	.name input{
