@@ -156,7 +156,6 @@ input[type='radio']:focus,input[type='button']:focus{
 	background:#fff;
 }
 .check .send:disabled{
-	color:#f9f9f9;
 	background:#ddd;
 }
 .check .send:disabled+div{
