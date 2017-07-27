@@ -15,16 +15,16 @@
     <style type="text/css">
         html, body {
             width:7.5rem;   
-            height:13.34rem;           
+            max-height:100vh;           
             font-family: Arial,Helvetica,'Hiragino Sans GB','Microsoft YaHei',sans-serif;
             -webkit-font-smoothing: antialiased;
         }
-        body{
-            position: relative;   
+        body{   
             overflow-x:hidden;
+            overflow-y: hidden;
             position:relative;
             background:url('{{asset('/mobile/img/signed.png')}}') no-repeat;
-            background-size:7.5rem 13.34rem;            
+            background-size:7.5rem;            
         }
         a:hover, a:visited, a:link, a:active{
             text-decoration: none;
