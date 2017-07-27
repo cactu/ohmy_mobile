@@ -184,3 +184,10 @@ input[type='radio']:focus,input[type='button']:focus{
 		margin-right:10px;
 	}
 }
+@media (max-device-width:340px) {
+	.check input[type='tel']{
+		width:1.3rem;
+		margin-right:10px;
+		padding:7px 0 7px 0px;
+	}
+}
