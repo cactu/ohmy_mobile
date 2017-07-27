@@ -29,7 +29,7 @@ a:hover, a:visited, a:link, a:active{
 	text-decoration: none;
 	color:#4a4a4a;
 }
-input[type='text'],input[type='tel']{
+input[type='text'],input[type='tel'],input[type='button']{
 	 -webkit-appearance: none;
 }
 .wrap{
@@ -51,7 +51,7 @@ input:focus{
 	border-color: #f9cc46;
     box-shadow: 0 0 10px #f9cc46;
 }
-input[type='radio']:focus{
+input[type='radio']:focus,input[type='button']:focus{
 	border:none;
 	box-shadow:none;
 }
@@ -153,10 +153,11 @@ input[type='radio']:focus{
 	border:1px solid #f0f0f0;
 	outline: none;
 	padding:0;
+	background:#fff;
 }
 .check .send:disabled{
 	color:#f9f9f9;
-	background:#333;
+	background:#ddd;
 }
 .check .send:disabled+div{
 	display:block;
