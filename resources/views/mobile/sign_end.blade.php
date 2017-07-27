@@ -14,18 +14,17 @@
     </script>
     <style type="text/css">
         html, body {
-            height: 100vh;
-            
+            width:7.5rem;   
+            height:13.34rem;           
             font-family: Arial,Helvetica,'Hiragino Sans GB','Microsoft YaHei',sans-serif;
             -webkit-font-smoothing: antialiased;
         }
         body{
-            position: relative;
-            width:7.5rem;   
+            position: relative;   
             overflow-x:hidden;
             position:relative;
             background:url('{{asset('/mobile/img/signed.png')}}') no-repeat;
-            background-size:7.5rem;            
+            background-size:7.5rem 13.34rem;            
         }
         a:hover, a:visited, a:link, a:active{
             text-decoration: none;
