@@ -32,9 +32,10 @@
         a{
             display:inline-block;
             position: absolute;
-            bottom:1.5rem;
+            top:10rem;
             left:50%;
             margin-left:-0.9rem;
+
         }
         img{            
             width:1.8rem;
